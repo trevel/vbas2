@@ -1,0 +1,8 @@
+
+3/26/2015
+CREATE ORDER:
+- Context menu for customer list/grid view
+- Button on Orders
+- Menu item? 
+- Right click on product to order it? 
+ADD to order? (Web form)
