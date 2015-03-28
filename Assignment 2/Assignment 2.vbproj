@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BC84A569-3D92-4283-B3C6-12875AFAF67F}</ProjectGuid>
+    <ProjectGuid>{4F4BCE53-5CDD-46E9-B430-A0F9424D5D99}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>Assignment2_GUI.My.MyApplication</StartupObject>
-    <RootNamespace>Assignment2_GUI</RootNamespace>
-    <AssemblyName>Assignment2 GUI</AssemblyName>
+    <StartupObject>Assignment_2.My.MyApplication</StartupObject>
+    <RootNamespace>Assignment_2</RootNamespace>
+    <AssemblyName>Assignment 2</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -20,7 +20,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Assignment2 GUI.xml</DocumentationFile>
+    <DocumentationFile>Assignment 2.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -30,7 +30,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Assignment2 GUI.xml</DocumentationFile>
+    <DocumentationFile>Assignment 2.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -46,19 +46,10 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -79,37 +70,16 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.vb">
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BWoF Data Model.Context.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BWoF Data Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BWoF Data Model.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BWoF Data Model.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="BWoF Data Model.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Customer.vb">
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="cvb815a_assign2DataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>cvb815a_assign2DataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Form1.vb">
+    <Compile Include="formMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="formMain.Designer.vb">
+      <DependentUpon>formMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -127,31 +97,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Order.vb">
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrderCreate.Designer.vb">
-      <DependentUpon>OrderCreate.vb</DependentUpon>
-    </Compile>
-    <Compile Include="OrderCreate.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Order_Line.vb">
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Product.vb">
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.vb">
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.vb">
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="formMain.resx">
+      <DependentUpon>formMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -159,28 +108,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrderCreate.resx">
-      <DependentUpon>OrderCreate.vb</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="BWoF Data Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BWoF Data Model.Designer.vb</LastGenOutput>
-    </EntityDeploy>
-    <None Include="BWoF Data Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BWoF Data Model.edmx</DependentUpon>
-      <LastGenOutput>BWoF Data Model.Context.vb</LastGenOutput>
-    </None>
-    <None Include="BWoF Data Model.edmx.diagram">
-      <DependentUpon>BWoF Data Model.edmx</DependentUpon>
-    </None>
-    <None Include="BWoF Data Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BWoF Data Model.edmx</DependentUpon>
-      <LastGenOutput>BWoF Data Model.vb</LastGenOutput>
-    </None>
     <None Include="cvb815a_assign2DataSet.xsc">
       <DependentUpon>cvb815a_assign2DataSet.xsd</DependentUpon>
     </None>
@@ -196,24 +125,18 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-    <None Include="My Project\DataSources\Database.Product+MoreInventoryEventHandler.datasource" />
-    <None Include="My Project\DataSources\Database.Product.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Database\Database.vbproj">
       <Project>{57cac3c7-651b-46d6-98d8-b6457eb4ada4}</Project>
       <Name>Database</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

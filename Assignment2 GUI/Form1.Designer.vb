@@ -27,23 +27,19 @@ Partial Class formDataManagement
         Me.tabProducts = New System.Windows.Forms.TabPage()
         Me.tabCustomers = New System.Windows.Forms.TabPage()
         Me.TabOrders = New System.Windows.Forms.TabPage()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.active = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.DescriptionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PriceDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.InventoryDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ProductBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.MoreInventoryEventHandlerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Cvb815a_assign2DataSet = New Assignment2_GUI.cvb815a_assign2DataSet()
+        Me.Cvb815aassign2DataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.tcMain.SuspendLayout()
         Me.tabProducts.SuspendLayout()
         Me.TabOrders.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
-        CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MoreInventoryEventHandlerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Cvb815a_assign2DataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Cvb815aassign2DataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tcMain
@@ -88,19 +84,14 @@ Partial Class formDataManagement
         Me.TabOrders.Text = "Orders"
         Me.TabOrders.UseVisualStyleBackColor = True
         '
-        'DataGridView1
+        'Button1
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AutoGenerateColumns = False
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DescriptionDataGridViewTextBoxColumn, Me.PriceDataGridViewTextBoxColumn, Me.InventoryDataGridViewTextBoxColumn, Me.active})
-        Me.DataGridView1.DataSource = Me.ProductBindingSource
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 6)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(570, 413)
-        Me.DataGridView1.TabIndex = 0
+        Me.Button1.Location = New System.Drawing.Point(319, 32)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'StatusStrip1
         '
@@ -117,50 +108,29 @@ Partial Class formDataManagement
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(121, 17)
         Me.ToolStripStatusLabel1.Text = "ToolStripStatusLabel1"
         '
-        'active
+        'DataGridView1
         '
-        Me.active.DataPropertyName = "active"
-        Me.active.HeaderText = "active"
-        Me.active.Name = "active"
-        Me.active.ReadOnly = True
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AutoGenerateColumns = False
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.DataSource = Me.Cvb815aassign2DataSetBindingSource
+        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView1.Location = New System.Drawing.Point(3, 3)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.Size = New System.Drawing.Size(570, 413)
+        Me.DataGridView1.TabIndex = 0
         '
-        'DescriptionDataGridViewTextBoxColumn
+        'Cvb815a_assign2DataSet
         '
-        Me.DescriptionDataGridViewTextBoxColumn.DataPropertyName = "Description"
-        Me.DescriptionDataGridViewTextBoxColumn.HeaderText = "Description"
-        Me.DescriptionDataGridViewTextBoxColumn.Name = "DescriptionDataGridViewTextBoxColumn"
-        Me.DescriptionDataGridViewTextBoxColumn.ReadOnly = True
+        Me.Cvb815a_assign2DataSet.DataSetName = "cvb815a_assign2DataSet"
+        Me.Cvb815a_assign2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'PriceDataGridViewTextBoxColumn
+        'Cvb815aassign2DataSetBindingSource
         '
-        Me.PriceDataGridViewTextBoxColumn.DataPropertyName = "Price"
-        Me.PriceDataGridViewTextBoxColumn.HeaderText = "Price"
-        Me.PriceDataGridViewTextBoxColumn.Name = "PriceDataGridViewTextBoxColumn"
-        Me.PriceDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'InventoryDataGridViewTextBoxColumn
-        '
-        Me.InventoryDataGridViewTextBoxColumn.DataPropertyName = "Inventory"
-        Me.InventoryDataGridViewTextBoxColumn.HeaderText = "Inventory"
-        Me.InventoryDataGridViewTextBoxColumn.Name = "InventoryDataGridViewTextBoxColumn"
-        Me.InventoryDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'ProductBindingSource
-        '
-        Me.ProductBindingSource.DataSource = GetType(Database.Product)
-        '
-        'MoreInventoryEventHandlerBindingSource
-        '
-        Me.MoreInventoryEventHandlerBindingSource.DataSource = GetType(Database.Product.MoreInventoryEventHandler)
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(319, 32)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Cvb815aassign2DataSetBindingSource.DataSource = Me.Cvb815a_assign2DataSet
+        Me.Cvb815aassign2DataSetBindingSource.Position = 0
         '
         'formDataManagement
         '
@@ -174,11 +144,11 @@ Partial Class formDataManagement
         Me.tcMain.ResumeLayout(False)
         Me.tabProducts.ResumeLayout(False)
         Me.TabOrders.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MoreInventoryEventHandlerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Cvb815a_assign2DataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Cvb815aassign2DataSetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -187,15 +157,11 @@ Partial Class formDataManagement
     Friend WithEvents tabProducts As System.Windows.Forms.TabPage
     Friend WithEvents tabCustomers As System.Windows.Forms.TabPage
     Friend WithEvents TabOrders As System.Windows.Forms.TabPage
-    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents ProductBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents MoreInventoryEventHandlerBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents DescriptionDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PriceDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents InventoryDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents active As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents Cvb815aassign2DataSetBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents Cvb815a_assign2DataSet As Assignment2_GUI.cvb815a_assign2DataSet
 
 End Class

@@ -58,10 +58,10 @@ Namespace My
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
          Global.System.Configuration.DefaultSettingValueAttribute("Data Source=135.23.74.62;Initial Catalog=cvb815a_assign2;Persist Security Info=Tr"& _ 
-            "ue;User ID=programaccess")>  _
-        Public ReadOnly Property complar() As String
+            "ue;User ID=programaccess;Password=butterfly")>  _
+        Public ReadOnly Property cvb815a_assign2ConnectionString() As String
             Get
-                Return CType(Me("complar"),String)
+                Return CType(Me("cvb815a_assign2ConnectionString"),String)
             End Get
         End Property
     End Class
@@ -75,9 +75,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.Assignment2_GUI.My.MySettings
+        Friend ReadOnly Property Settings() As Global.Assignment_2.My.MySettings
             Get
-                Return Global.Assignment2_GUI.My.MySettings.Default
+                Return Global.Assignment_2.My.MySettings.Default
             End Get
         End Property
     End Module
