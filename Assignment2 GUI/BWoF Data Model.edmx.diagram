@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5d91e1bd018a420c85d979dc3bd54772" Name="Diagram1">
+        <EntityTypeShape EntityType="cvb815a_assign2Model.Address" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cvb815a_assign2Model.Customer" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="cvb815a_assign2Model.Order_Line" Width="1.5" PointX="4.875" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="cvb815a_assign2Model.Order" Width="1.5" PointX="5.625" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="cvb815a_assign2Model.Product" Width="1.5" PointX="2.125" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="cvb815a_assign2Model.FK_Address_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="cvb815a_assign2Model.FK_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="cvb815a_assign2Model.FK_Order_Line_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="cvb815a_assign2Model.FK_Order_Line_Product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

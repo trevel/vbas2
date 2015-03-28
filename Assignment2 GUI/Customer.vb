@@ -16,12 +16,8 @@ Partial Public Class Customer
     Public Property email As String
     Public Property phone As String
     Public Property credit_limit As Decimal
-    Public Property mail_address As Nullable(Of Integer)
-    Public Property ship_address As Nullable(Of Integer)
 
     Public Overridable Property Addresses As ICollection(Of Address) = New HashSet(Of Address)
-    Public Overridable Property Address As Address
-    Public Overridable Property Address1 As Address
     Public Overridable Property Orders As ICollection(Of Order) = New HashSet(Of Order)
 
 End Class

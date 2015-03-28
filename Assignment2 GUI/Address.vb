@@ -17,10 +17,8 @@ Partial Public Class Address
     Public Property province As String
     Public Property postal_code As String
     Public Property type As Boolean
-    Public Property customer_id As Nullable(Of Integer)
+    Public Property customer_id As Integer
 
     Public Overridable Property Customer As Customer
-    Public Overridable Property Customers As ICollection(Of Customer) = New HashSet(Of Customer)
-    Public Overridable Property Customers1 As ICollection(Of Customer) = New HashSet(Of Customer)
 
 End Class
