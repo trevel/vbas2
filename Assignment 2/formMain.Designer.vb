@@ -31,8 +31,6 @@ Partial Class formMain
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.bindingProductsList = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Cvb815a_assign2DataSet = New Assignment_2.cvb815a_assign2DataSet()
-        Me.ProductTableAdapter = New Assignment_2.cvb815a_assign2DataSetTableAdapters.ProductTableAdapter()
         Me.gridProducts = New System.Windows.Forms.DataGridView()
         Me.DescriptionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PriceDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -42,7 +40,6 @@ Partial Class formMain
         Me.tabProducts.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.bindingProductsList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Cvb815a_assign2DataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -113,17 +110,6 @@ Partial Class formMain
         '
         'bindingProductsList
         '
-        Me.bindingProductsList.DataMember = "Product"
-        Me.bindingProductsList.DataSource = Me.Cvb815a_assign2DataSet
-        '
-        'Cvb815a_assign2DataSet
-        '
-        Me.Cvb815a_assign2DataSet.DataSetName = "cvb815a_assign2DataSet"
-        Me.Cvb815a_assign2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'ProductTableAdapter
-        '
-        Me.ProductTableAdapter.ClearBeforeFill = True
         '
         'gridProducts
         '
@@ -184,7 +170,6 @@ Partial Class formMain
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.bindingProductsList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Cvb815a_assign2DataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridProducts, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -198,8 +183,6 @@ Partial Class formMain
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents bindingProductsList As System.Windows.Forms.BindingSource
-    Friend WithEvents Cvb815a_assign2DataSet As Assignment_2.cvb815a_assign2DataSet
-    Friend WithEvents ProductTableAdapter As Assignment_2.cvb815a_assign2DataSetTableAdapters.ProductTableAdapter
     Friend WithEvents gridProducts As System.Windows.Forms.DataGridView
     Friend WithEvents DescriptionDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PriceDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn

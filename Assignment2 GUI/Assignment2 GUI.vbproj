@@ -79,27 +79,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.vb">
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BWoF Data Model.Context.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BWoF Data Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BWoF Data Model.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BWoF Data Model.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="BWoF Data Model.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Customer.vb">
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="cvb815a_assign2DataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -127,20 +106,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Order.vb">
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="OrderCreate.Designer.vb">
       <DependentUpon>OrderCreate.vb</DependentUpon>
     </Compile>
     <Compile Include="OrderCreate.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Order_Line.vb">
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Product.vb">
-      <DependentUpon>BWoF Data Model.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -158,23 +128,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="BWoF Data Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BWoF Data Model.Designer.vb</LastGenOutput>
-    </EntityDeploy>
-    <None Include="BWoF Data Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BWoF Data Model.edmx</DependentUpon>
-      <LastGenOutput>BWoF Data Model.Context.vb</LastGenOutput>
-    </None>
-    <None Include="BWoF Data Model.edmx.diagram">
-      <DependentUpon>BWoF Data Model.edmx</DependentUpon>
-    </None>
-    <None Include="BWoF Data Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BWoF Data Model.edmx</DependentUpon>
-      <LastGenOutput>BWoF Data Model.vb</LastGenOutput>
-    </None>
     <None Include="cvb815a_assign2DataSet.xsc">
       <DependentUpon>cvb815a_assign2DataSet.xsd</DependentUpon>
     </None>

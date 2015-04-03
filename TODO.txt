@@ -6,3 +6,17 @@ CREATE ORDER:
 - Menu item? 
 - Right click on product to order it? 
 ADD to order? (Web form)
+
+
+---
+Interface: 
+- Customer : Add, update, delete
+- Address : Add, update, delete
+- Order : Add, update, delete
+- OrderItem: 
+
+TASKS: 
+- Manage products
+- Manage customers
+- Manage addresses (subset of customers)
+- Manage orders

@@ -48,6 +48,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -70,10 +71,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="cvb815a_assign2DataSet.Designer.vb">
+    <Compile Include="DataClasses.designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>cvb815a_assign2DataSet.xsd</DependentUpon>
+      <DependentUpon>DataClasses.dbml</DependentUpon>
     </Compile>
     <Compile Include="formMain.vb">
       <SubType>Form</SubType>
@@ -97,8 +98,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="OrderDetails.Designer.vb">
+      <DependentUpon>OrderDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataClasses.dbml.layout">
+      <DependentUpon>DataClasses.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="formMain.resx">
       <DependentUpon>formMain.vb</DependentUpon>
     </EmbeddedResource>
@@ -108,23 +118,25 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="OrderDetails.resx">
+      <DependentUpon>OrderDetails.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="cvb815a_assign2DataSet.xsc">
-      <DependentUpon>cvb815a_assign2DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="cvb815a_assign2DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>cvb815a_assign2DataSet.Designer.vb</LastGenOutput>
+    <None Include="DataClasses.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClasses.designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="cvb815a_assign2DataSet.xss">
-      <DependentUpon>cvb815a_assign2DataSet.xsd</DependentUpon>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\Database.Address.datasource" />
+    <None Include="My Project\DataSources\Database.Customer.datasource" />
+    <None Include="My Project\DataSources\Database.Order.datasource" />
+    <None Include="My Project\DataSources\Database.OrderItem.datasource" />
+    <None Include="My Project\DataSources\Database.Product.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
@@ -138,6 +150,10 @@
       <Name>Database</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
