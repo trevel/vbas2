@@ -25,22 +25,31 @@ Partial Class formMain
         Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tabProducts = New System.Windows.Forms.TabPage()
+        Me.gridProducts = New System.Windows.Forms.DataGridView()
+        Me.bindingProductsList = New System.Windows.Forms.BindingSource(Me.components)
         Me.tabCustomers = New System.Windows.Forms.TabPage()
         Me.tabOrders = New System.Windows.Forms.TabPage()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.bindingProductsList = New System.Windows.Forms.BindingSource(Me.components)
-        Me.gridProducts = New System.Windows.Forms.DataGridView()
-        Me.DescriptionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PriceDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.InventoryDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ActiveDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.OrderDataGridView = New System.Windows.Forms.DataGridView()
+        Me.OrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.CustomerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomeridDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OrderdateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DiscountDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ItemcountDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.btnOrderAdd = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.tabProducts.SuspendLayout()
-        Me.StatusStrip1.SuspendLayout()
-        CType(Me.bindingProductsList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridProducts, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.bindingProductsList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tabOrders.SuspendLayout()
+        Me.StatusStrip1.SuspendLayout()
+        CType(Me.OrderDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.OrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -65,6 +74,20 @@ Partial Class formMain
         Me.tabProducts.Text = "Products"
         Me.tabProducts.UseVisualStyleBackColor = True
         '
+        'gridProducts
+        '
+        Me.gridProducts.AllowUserToAddRows = False
+        Me.gridProducts.AllowUserToDeleteRows = False
+        Me.gridProducts.AutoGenerateColumns = False
+        Me.gridProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.gridProducts.DataSource = Me.bindingProductsList
+        Me.gridProducts.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gridProducts.Location = New System.Drawing.Point(3, 3)
+        Me.gridProducts.Name = "gridProducts"
+        Me.gridProducts.ReadOnly = True
+        Me.gridProducts.Size = New System.Drawing.Size(489, 449)
+        Me.gridProducts.TabIndex = 0
+        '
         'tabCustomers
         '
         Me.tabCustomers.Location = New System.Drawing.Point(4, 22)
@@ -77,6 +100,8 @@ Partial Class formMain
         '
         'tabOrders
         '
+        Me.tabOrders.Controls.Add(Me.btnOrderAdd)
+        Me.tabOrders.Controls.Add(Me.OrderDataGridView)
         Me.tabOrders.Location = New System.Drawing.Point(4, 22)
         Me.tabOrders.Name = "tabOrders"
         Me.tabOrders.Padding = New System.Windows.Forms.Padding(3)
@@ -108,51 +133,82 @@ Partial Class formMain
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(80, 17)
         Me.ToolStripStatusLabel1.Text = "Status Update"
         '
-        'bindingProductsList
+        'OrderDataGridView
         '
+        Me.OrderDataGridView.AllowUserToAddRows = False
+        Me.OrderDataGridView.AllowUserToDeleteRows = False
+        Me.OrderDataGridView.AutoGenerateColumns = False
+        Me.OrderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.OrderDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CustomerDataGridViewTextBoxColumn, Me.CustomeridDataGridViewTextBoxColumn, Me.OrderdateDataGridViewTextBoxColumn, Me.DiscountDataGridViewTextBoxColumn, Me.ItemcountDataGridViewTextBoxColumn, Me.IDDataGridViewTextBoxColumn, Me.DataGridViewCheckBoxColumn1})
+        Me.OrderDataGridView.DataSource = Me.OrderBindingSource
+        Me.OrderDataGridView.Location = New System.Drawing.Point(-4, 35)
+        Me.OrderDataGridView.MultiSelect = False
+        Me.OrderDataGridView.Name = "OrderDataGridView"
+        Me.OrderDataGridView.ReadOnly = True
+        Me.OrderDataGridView.Size = New System.Drawing.Size(503, 437)
+        Me.OrderDataGridView.TabIndex = 0
         '
-        'gridProducts
+        'OrderBindingSource
         '
-        Me.gridProducts.AllowUserToAddRows = False
-        Me.gridProducts.AllowUserToDeleteRows = False
-        Me.gridProducts.AutoGenerateColumns = False
-        Me.gridProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridProducts.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DescriptionDataGridViewTextBoxColumn, Me.PriceDataGridViewTextBoxColumn, Me.InventoryDataGridViewTextBoxColumn, Me.ActiveDataGridViewCheckBoxColumn})
-        Me.gridProducts.DataSource = Me.bindingProductsList
-        Me.gridProducts.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gridProducts.Location = New System.Drawing.Point(3, 3)
-        Me.gridProducts.Name = "gridProducts"
-        Me.gridProducts.ReadOnly = True
-        Me.gridProducts.Size = New System.Drawing.Size(489, 449)
-        Me.gridProducts.TabIndex = 0
+        Me.OrderBindingSource.DataSource = GetType(Database.Order)
         '
-        'DescriptionDataGridViewTextBoxColumn
+        'CustomerDataGridViewTextBoxColumn
         '
-        Me.DescriptionDataGridViewTextBoxColumn.DataPropertyName = "description"
-        Me.DescriptionDataGridViewTextBoxColumn.HeaderText = "description"
-        Me.DescriptionDataGridViewTextBoxColumn.Name = "DescriptionDataGridViewTextBoxColumn"
-        Me.DescriptionDataGridViewTextBoxColumn.ReadOnly = True
+        Me.CustomerDataGridViewTextBoxColumn.DataPropertyName = "customer"
+        Me.CustomerDataGridViewTextBoxColumn.HeaderText = "customer"
+        Me.CustomerDataGridViewTextBoxColumn.Name = "CustomerDataGridViewTextBoxColumn"
+        Me.CustomerDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'PriceDataGridViewTextBoxColumn
+        'CustomeridDataGridViewTextBoxColumn
         '
-        Me.PriceDataGridViewTextBoxColumn.DataPropertyName = "price"
-        Me.PriceDataGridViewTextBoxColumn.HeaderText = "price"
-        Me.PriceDataGridViewTextBoxColumn.Name = "PriceDataGridViewTextBoxColumn"
-        Me.PriceDataGridViewTextBoxColumn.ReadOnly = True
+        Me.CustomeridDataGridViewTextBoxColumn.DataPropertyName = "customer_id"
+        Me.CustomeridDataGridViewTextBoxColumn.HeaderText = "customer_id"
+        Me.CustomeridDataGridViewTextBoxColumn.Name = "CustomeridDataGridViewTextBoxColumn"
+        Me.CustomeridDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'InventoryDataGridViewTextBoxColumn
+        'OrderdateDataGridViewTextBoxColumn
         '
-        Me.InventoryDataGridViewTextBoxColumn.DataPropertyName = "inventory"
-        Me.InventoryDataGridViewTextBoxColumn.HeaderText = "inventory"
-        Me.InventoryDataGridViewTextBoxColumn.Name = "InventoryDataGridViewTextBoxColumn"
-        Me.InventoryDataGridViewTextBoxColumn.ReadOnly = True
+        Me.OrderdateDataGridViewTextBoxColumn.DataPropertyName = "order_date"
+        Me.OrderdateDataGridViewTextBoxColumn.HeaderText = "order_date"
+        Me.OrderdateDataGridViewTextBoxColumn.Name = "OrderdateDataGridViewTextBoxColumn"
+        Me.OrderdateDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'ActiveDataGridViewCheckBoxColumn
+        'DiscountDataGridViewTextBoxColumn
         '
-        Me.ActiveDataGridViewCheckBoxColumn.DataPropertyName = "active"
-        Me.ActiveDataGridViewCheckBoxColumn.HeaderText = "active"
-        Me.ActiveDataGridViewCheckBoxColumn.Name = "ActiveDataGridViewCheckBoxColumn"
-        Me.ActiveDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.DiscountDataGridViewTextBoxColumn.DataPropertyName = "discount"
+        Me.DiscountDataGridViewTextBoxColumn.HeaderText = "discount"
+        Me.DiscountDataGridViewTextBoxColumn.Name = "DiscountDataGridViewTextBoxColumn"
+        Me.DiscountDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ItemcountDataGridViewTextBoxColumn
+        '
+        Me.ItemcountDataGridViewTextBoxColumn.DataPropertyName = "item_count"
+        Me.ItemcountDataGridViewTextBoxColumn.HeaderText = "item_count"
+        Me.ItemcountDataGridViewTextBoxColumn.Name = "ItemcountDataGridViewTextBoxColumn"
+        Me.ItemcountDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'IDDataGridViewTextBoxColumn
+        '
+        Me.IDDataGridViewTextBoxColumn.DataPropertyName = "ID"
+        Me.IDDataGridViewTextBoxColumn.HeaderText = "ID"
+        Me.IDDataGridViewTextBoxColumn.Name = "IDDataGridViewTextBoxColumn"
+        Me.IDDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DataGridViewCheckBoxColumn1
+        '
+        Me.DataGridViewCheckBoxColumn1.DataPropertyName = "active"
+        Me.DataGridViewCheckBoxColumn1.HeaderText = "active"
+        Me.DataGridViewCheckBoxColumn1.Name = "DataGridViewCheckBoxColumn1"
+        Me.DataGridViewCheckBoxColumn1.ReadOnly = True
+        '
+        'btnOrderAdd
+        '
+        Me.btnOrderAdd.Location = New System.Drawing.Point(9, 6)
+        Me.btnOrderAdd.Name = "btnOrderAdd"
+        Me.btnOrderAdd.Size = New System.Drawing.Size(106, 23)
+        Me.btnOrderAdd.TabIndex = 1
+        Me.btnOrderAdd.Text = "Create New Order"
+        Me.btnOrderAdd.UseVisualStyleBackColor = True
         '
         'formMain
         '
@@ -167,10 +223,13 @@ Partial Class formMain
         Me.Text = "Bob's World of Fish"
         Me.TabControl1.ResumeLayout(False)
         Me.tabProducts.ResumeLayout(False)
+        CType(Me.gridProducts, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.bindingProductsList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tabOrders.ResumeLayout(False)
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        CType(Me.bindingProductsList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gridProducts, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.OrderDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.OrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -188,5 +247,15 @@ Partial Class formMain
     Friend WithEvents PriceDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents InventoryDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ActiveDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents OrderDataGridView As System.Windows.Forms.DataGridView
+    Friend WithEvents CustomerDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents CustomeridDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents OrderdateDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DiscountDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ItemcountDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents IDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewCheckBoxColumn1 As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents OrderBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents btnOrderAdd As System.Windows.Forms.Button
 
 End Class
