@@ -295,7 +295,7 @@ Public Module Assign1
         Console.WriteLine("Enter Product Inventory")
         inv = GetInteger("Product Inventory")
         Try
-            productbook.Add(New Product(productbook.next_id, desc, price, inv))
+            productbook.Add(New Product(productbook.next_id, desc, price, inv, True))
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         End Try
