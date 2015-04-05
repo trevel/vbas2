@@ -29,36 +29,45 @@ Partial Class formMain
         Me.bindingProductsList = New System.Windows.Forms.BindingSource(Me.components)
         Me.tabCustomers = New System.Windows.Forms.TabPage()
         Me.CustomerDataGridView = New System.Windows.Forms.DataGridView()
-        Me.tabOrders = New System.Windows.Forms.TabPage()
-        Me.btnOrderAdd = New System.Windows.Forms.Button()
-        Me.OrderDataGridView = New System.Windows.Forms.DataGridView()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CustomerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.OrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.tabOrders = New System.Windows.Forms.TabPage()
+        Me.btnOrderAdd = New System.Windows.Forms.Button()
+        Me.OrderDataGridView = New System.Windows.Forms.DataGridView()
         Me.customer_name = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CustomeridDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrderdateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.subtotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DiscountDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.total = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ProductDataGridView = New System.Windows.Forms.DataGridView()
+        Me.ProductBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.TabControl1.SuspendLayout()
         Me.tabProducts.SuspendLayout()
         CType(Me.gridProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bindingProductsList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabCustomers.SuspendLayout()
         CType(Me.CustomerDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabOrders.SuspendLayout()
         CType(Me.OrderDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.StatusStrip1.SuspendLayout()
-        CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
+        CType(Me.ProductDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -76,11 +85,12 @@ Partial Class formMain
         '
         'tabProducts
         '
+        Me.tabProducts.Controls.Add(Me.ProductDataGridView)
         Me.tabProducts.Controls.Add(Me.gridProducts)
         Me.tabProducts.Location = New System.Drawing.Point(4, 22)
         Me.tabProducts.Name = "tabProducts"
         Me.tabProducts.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabProducts.Size = New System.Drawing.Size(495, 456)
+        Me.tabProducts.Size = New System.Drawing.Size(641, 456)
         Me.tabProducts.TabIndex = 0
         Me.tabProducts.Text = "Products"
         Me.tabProducts.UseVisualStyleBackColor = True
@@ -96,7 +106,7 @@ Partial Class formMain
         Me.gridProducts.Location = New System.Drawing.Point(3, 3)
         Me.gridProducts.Name = "gridProducts"
         Me.gridProducts.ReadOnly = True
-        Me.gridProducts.Size = New System.Drawing.Size(489, 450)
+        Me.gridProducts.Size = New System.Drawing.Size(635, 450)
         Me.gridProducts.TabIndex = 0
         '
         'tabCustomers
@@ -105,7 +115,7 @@ Partial Class formMain
         Me.tabCustomers.Location = New System.Drawing.Point(4, 22)
         Me.tabCustomers.Name = "tabCustomers"
         Me.tabCustomers.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabCustomers.Size = New System.Drawing.Size(495, 456)
+        Me.tabCustomers.Size = New System.Drawing.Size(641, 456)
         Me.tabCustomers.TabIndex = 1
         Me.tabCustomers.Text = "Customers"
         Me.tabCustomers.UseVisualStyleBackColor = True
@@ -122,69 +132,8 @@ Partial Class formMain
         Me.CustomerDataGridView.Location = New System.Drawing.Point(3, 3)
         Me.CustomerDataGridView.Name = "CustomerDataGridView"
         Me.CustomerDataGridView.ReadOnly = True
-        Me.CustomerDataGridView.Size = New System.Drawing.Size(489, 450)
+        Me.CustomerDataGridView.Size = New System.Drawing.Size(635, 450)
         Me.CustomerDataGridView.TabIndex = 0
-        '
-        'tabOrders
-        '
-        Me.tabOrders.Controls.Add(Me.btnOrderAdd)
-        Me.tabOrders.Controls.Add(Me.OrderDataGridView)
-        Me.tabOrders.Location = New System.Drawing.Point(4, 22)
-        Me.tabOrders.Name = "tabOrders"
-        Me.tabOrders.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabOrders.Size = New System.Drawing.Size(641, 456)
-        Me.tabOrders.TabIndex = 2
-        Me.tabOrders.Text = "Orders"
-        Me.tabOrders.UseVisualStyleBackColor = True
-        '
-        'btnOrderAdd
-        '
-        Me.btnOrderAdd.Location = New System.Drawing.Point(9, 6)
-        Me.btnOrderAdd.Name = "btnOrderAdd"
-        Me.btnOrderAdd.Size = New System.Drawing.Size(106, 23)
-        Me.btnOrderAdd.TabIndex = 1
-        Me.btnOrderAdd.Text = "Create New Order"
-        Me.btnOrderAdd.UseVisualStyleBackColor = True
-        '
-        'OrderDataGridView
-        '
-        Me.OrderDataGridView.AllowUserToAddRows = False
-        Me.OrderDataGridView.AllowUserToDeleteRows = False
-        Me.OrderDataGridView.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.OrderDataGridView.AutoGenerateColumns = False
-        Me.OrderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.OrderDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.customer_name, Me.CustomeridDataGridViewTextBoxColumn, Me.OrderdateDataGridViewTextBoxColumn, Me.subtotal, Me.DiscountDataGridViewTextBoxColumn, Me.total})
-        Me.OrderDataGridView.DataSource = Me.OrderBindingSource
-        Me.OrderDataGridView.Location = New System.Drawing.Point(-4, 35)
-        Me.OrderDataGridView.MultiSelect = False
-        Me.OrderDataGridView.Name = "OrderDataGridView"
-        Me.OrderDataGridView.ReadOnly = True
-        Me.OrderDataGridView.Size = New System.Drawing.Size(649, 437)
-        Me.OrderDataGridView.TabIndex = 0
-        '
-        'MenuStrip1
-        '
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(649, 24)
-        Me.MenuStrip1.TabIndex = 1
-        Me.MenuStrip1.Text = "MenuStrip1"
-        '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 484)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(649, 22)
-        Me.StatusStrip1.TabIndex = 2
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'ToolStripStatusLabel1
-        '
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(80, 17)
-        Me.ToolStripStatusLabel1.Text = "Status Update"
         '
         'DataGridViewTextBoxColumn1
         '
@@ -225,9 +174,43 @@ Partial Class formMain
         '
         Me.CustomerBindingSource.DataSource = GetType(Assignment_2.Customer)
         '
-        'OrderBindingSource
+        'tabOrders
         '
-        Me.OrderBindingSource.DataSource = GetType(Assignment_2.ExpandedOrders)
+        Me.tabOrders.Controls.Add(Me.btnOrderAdd)
+        Me.tabOrders.Controls.Add(Me.OrderDataGridView)
+        Me.tabOrders.Location = New System.Drawing.Point(4, 22)
+        Me.tabOrders.Name = "tabOrders"
+        Me.tabOrders.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabOrders.Size = New System.Drawing.Size(641, 456)
+        Me.tabOrders.TabIndex = 2
+        Me.tabOrders.Text = "Orders"
+        Me.tabOrders.UseVisualStyleBackColor = True
+        '
+        'btnOrderAdd
+        '
+        Me.btnOrderAdd.Location = New System.Drawing.Point(9, 6)
+        Me.btnOrderAdd.Name = "btnOrderAdd"
+        Me.btnOrderAdd.Size = New System.Drawing.Size(106, 23)
+        Me.btnOrderAdd.TabIndex = 1
+        Me.btnOrderAdd.Text = "Create New Order"
+        Me.btnOrderAdd.UseVisualStyleBackColor = True
+        '
+        'OrderDataGridView
+        '
+        Me.OrderDataGridView.AllowUserToAddRows = False
+        Me.OrderDataGridView.AllowUserToDeleteRows = False
+        Me.OrderDataGridView.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OrderDataGridView.AutoGenerateColumns = False
+        Me.OrderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.OrderDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.customer_name, Me.CustomeridDataGridViewTextBoxColumn, Me.OrderdateDataGridViewTextBoxColumn, Me.subtotal, Me.DiscountDataGridViewTextBoxColumn, Me.total})
+        Me.OrderDataGridView.DataSource = Me.OrderBindingSource
+        Me.OrderDataGridView.Location = New System.Drawing.Point(-4, 35)
+        Me.OrderDataGridView.MultiSelect = False
+        Me.OrderDataGridView.Name = "OrderDataGridView"
+        Me.OrderDataGridView.ReadOnly = True
+        Me.OrderDataGridView.Size = New System.Drawing.Size(649, 437)
+        Me.OrderDataGridView.TabIndex = 0
         '
         'customer_name
         '
@@ -271,6 +254,87 @@ Partial Class formMain
         Me.total.Name = "total"
         Me.total.ReadOnly = True
         '
+        'OrderBindingSource
+        '
+        Me.OrderBindingSource.DataSource = GetType(Assignment_2.ExpandedOrders)
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(649, 24)
+        Me.MenuStrip1.TabIndex = 1
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 484)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(649, 22)
+        Me.StatusStrip1.TabIndex = 2
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(80, 17)
+        Me.ToolStripStatusLabel1.Text = "Status Update"
+        '
+        'ProductDataGridView
+        '
+        Me.ProductDataGridView.AllowUserToAddRows = False
+        Me.ProductDataGridView.AllowUserToDeleteRows = False
+        Me.ProductDataGridView.AutoGenerateColumns = False
+        Me.ProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.ProductDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewCheckBoxColumn1})
+        Me.ProductDataGridView.DataSource = Me.ProductBindingSource
+        Me.ProductDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProductDataGridView.Location = New System.Drawing.Point(3, 3)
+        Me.ProductDataGridView.Name = "ProductDataGridView"
+        Me.ProductDataGridView.ReadOnly = True
+        Me.ProductDataGridView.Size = New System.Drawing.Size(635, 450)
+        Me.ProductDataGridView.TabIndex = 1
+        '
+        'ProductBindingSource
+        '
+        Me.ProductBindingSource.DataSource = GetType(Database.Product)
+        '
+        'IDDataGridViewTextBoxColumn
+        '
+        Me.IDDataGridViewTextBoxColumn.DataPropertyName = "ID"
+        Me.IDDataGridViewTextBoxColumn.HeaderText = "ID"
+        Me.IDDataGridViewTextBoxColumn.Name = "IDDataGridViewTextBoxColumn"
+        Me.IDDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.DataPropertyName = "Description"
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Description"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Price"
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Price"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.DataPropertyName = "Inventory"
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Inventory"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        Me.DataGridViewTextBoxColumn8.ReadOnly = True
+        '
+        'DataGridViewCheckBoxColumn1
+        '
+        Me.DataGridViewCheckBoxColumn1.DataPropertyName = "active"
+        Me.DataGridViewCheckBoxColumn1.HeaderText = "active"
+        Me.DataGridViewCheckBoxColumn1.Name = "DataGridViewCheckBoxColumn1"
+        Me.DataGridViewCheckBoxColumn1.ReadOnly = True
+        '
         'formMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -288,12 +352,14 @@ Partial Class formMain
         CType(Me.bindingProductsList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabCustomers.ResumeLayout(False)
         CType(Me.CustomerDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabOrders.ResumeLayout(False)
         CType(Me.OrderDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.OrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.OrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ProductDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -327,5 +393,12 @@ Partial Class formMain
     Friend WithEvents subtotal As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DiscountDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents total As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ProductDataGridView As System.Windows.Forms.DataGridView
+    Friend WithEvents IDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewCheckBoxColumn1 As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents ProductBindingSource As System.Windows.Forms.BindingSource
 
 End Class

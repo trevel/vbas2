@@ -3,7 +3,7 @@
     Private Sub formMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ' Dim dt = New DataTable
-
+        ProductDataGridView.DataSource = db.Products
         OrderDataGridView.DataSource = db.ExpandedOrders
         CustomerDataGridView.DataSource = db.Customers
 
