@@ -27,7 +27,7 @@ Partial Class OrderDetails
         Me.CustomerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.btnNewCustomerForm = New System.Windows.Forms.Button()
         Me.btnNewAddress = New System.Windows.Forms.Button()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.prodCombo = New System.Windows.Forms.ComboBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.ProductBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -36,12 +36,12 @@ Partial Class OrderDetails
         Me.ShipdateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QuantityDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Product = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.orderItemGridView = New System.Windows.Forms.DataGridView()
         CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AddressBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.orderItemGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'custCombo
@@ -80,13 +80,13 @@ Partial Class OrderDetails
         Me.btnNewAddress.Text = "New Address"
         Me.btnNewAddress.UseVisualStyleBackColor = True
         '
-        'ComboBox2
+        'prodCombo
         '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(12, 218)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(272, 21)
-        Me.ComboBox2.TabIndex = 4
+        Me.prodCombo.FormattingEnabled = True
+        Me.prodCombo.Location = New System.Drawing.Point(12, 218)
+        Me.prodCombo.Name = "prodCombo"
+        Me.prodCombo.Size = New System.Drawing.Size(272, 21)
+        Me.prodCombo.TabIndex = 4
         '
         'Button3
         '
@@ -140,29 +140,29 @@ Partial Class OrderDetails
         Me.Product.ReadOnly = True
         Me.Product.ValueMember = "description"
         '
-        'DataGridView1
+        'orderItemGridView
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AutoGenerateColumns = False
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Product, Me.QuantityDataGridViewTextBoxColumn, Me.ShipdateDataGridViewTextBoxColumn})
-        Me.DataGridView1.DataSource = Me.OrderItemBindingSource
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 246)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(490, 277)
-        Me.DataGridView1.TabIndex = 9
+        Me.orderItemGridView.AllowUserToAddRows = False
+        Me.orderItemGridView.AllowUserToDeleteRows = False
+        Me.orderItemGridView.AutoGenerateColumns = False
+        Me.orderItemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.orderItemGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Product, Me.QuantityDataGridViewTextBoxColumn, Me.ShipdateDataGridViewTextBoxColumn})
+        Me.orderItemGridView.DataSource = Me.OrderItemBindingSource
+        Me.orderItemGridView.Location = New System.Drawing.Point(12, 246)
+        Me.orderItemGridView.Name = "orderItemGridView"
+        Me.orderItemGridView.ReadOnly = True
+        Me.orderItemGridView.Size = New System.Drawing.Size(490, 277)
+        Me.orderItemGridView.TabIndex = 9
         '
         'OrderDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(522, 590)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.orderItemGridView)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.ComboBox2)
+        Me.Controls.Add(Me.prodCombo)
         Me.Controls.Add(Me.btnNewAddress)
         Me.Controls.Add(Me.btnNewCustomerForm)
         Me.Controls.Add(Me.custCombo)
@@ -172,7 +172,7 @@ Partial Class OrderDetails
         CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AddressBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.orderItemGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -180,7 +180,7 @@ Partial Class OrderDetails
     Friend WithEvents custCombo As System.Windows.Forms.ComboBox
     Friend WithEvents btnNewCustomerForm As System.Windows.Forms.Button
     Friend WithEvents btnNewAddress As System.Windows.Forms.Button
-    Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
+    Friend WithEvents prodCombo As System.Windows.Forms.ComboBox
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents ProductBindingSource As System.Windows.Forms.BindingSource
@@ -190,5 +190,5 @@ Partial Class OrderDetails
     Friend WithEvents ShipdateDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents QuantityDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Product As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents orderItemGridView As System.Windows.Forms.DataGridView
 End Class

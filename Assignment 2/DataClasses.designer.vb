@@ -61,6 +61,12 @@ Partial Public Class DataClassesDataContext
     End Sub
   Partial Private Sub DeleteOrder(instance As [Order])
     End Sub
+  Partial Private Sub InsertExpandedOrders(instance As ExpandedOrders)
+    End Sub
+  Partial Private Sub UpdateExpandedOrders(instance As ExpandedOrders)
+    End Sub
+  Partial Private Sub DeleteExpandedOrders(instance As ExpandedOrders)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -585,6 +591,8 @@ Partial Public Class Customer
 	
 	Private _Orders As EntitySet(Of [Order])
 	
+	Private _ExpandedOrders As EntityRef(Of ExpandedOrders)
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -618,6 +626,7 @@ Partial Public Class Customer
 		MyBase.New
 		Me._Addresses = New EntitySet(Of Address)(AddressOf Me.attach_Addresses, AddressOf Me.detach_Addresses)
 		Me._Orders = New EntitySet(Of [Order])(AddressOf Me.attach_Orders, AddressOf Me.detach_Orders)
+		Me._ExpandedOrders = CType(Nothing, EntityRef(Of ExpandedOrders))
 		OnCreated
 	End Sub
 	
@@ -629,6 +638,9 @@ Partial Public Class Customer
 		Set
 			If ((Me._id = value)  _
 						= false) Then
+				If Me._ExpandedOrders.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
 				Me.OnidChanging(value)
 				Me.SendPropertyChanging
 				Me._id = value
@@ -723,6 +735,34 @@ Partial Public Class Customer
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ExpandedOrders_Customer", Storage:="_ExpandedOrders", ThisKey:="id", OtherKey:="customer_id", IsForeignKey:=true)>  _
+	Public Property ExpandedOrders() As ExpandedOrders
+		Get
+			Return Me._ExpandedOrders.Entity
+		End Get
+		Set
+			Dim previousValue As ExpandedOrders = Me._ExpandedOrders.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._ExpandedOrders.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._ExpandedOrders.Entity = Nothing
+					previousValue.Customers.Remove(Me)
+				End If
+				Me._ExpandedOrders.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.Customers.Add(Me)
+					Me._id = value.customer_id
+				Else
+					Me._id = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("ExpandedOrders")
+			End If
+		End Set
+	End Property
+	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -782,6 +822,8 @@ Partial Public Class Order_Line
 	
 	Private _Order As EntityRef(Of [Order])
 	
+	Private _ExpandedOrders As EntityRef(Of ExpandedOrders)
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -815,6 +857,7 @@ Partial Public Class Order_Line
 		MyBase.New
 		Me._Product = CType(Nothing, EntityRef(Of Product))
 		Me._Order = CType(Nothing, EntityRef(Of [Order]))
+		Me._ExpandedOrders = CType(Nothing, EntityRef(Of ExpandedOrders))
 		OnCreated
 	End Sub
 	
@@ -843,7 +886,7 @@ Partial Public Class Order_Line
 		Set
 			If ((Me._order_id = value)  _
 						= false) Then
-				If Me._Order.HasLoadedOrAssignedValue Then
+				If (Me._Order.HasLoadedOrAssignedValue OrElse Me._ExpandedOrders.HasLoadedOrAssignedValue) Then
 					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
 				End If
 				Me.Onorder_idChanging(value)
@@ -960,6 +1003,34 @@ Partial Public Class Order_Line
 					Me._order_id = CType(Nothing, Integer)
 				End If
 				Me.SendPropertyChanged("[Order]")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ExpandedOrders_Order_Line", Storage:="_ExpandedOrders", ThisKey:="order_id", OtherKey:="id", IsForeignKey:=true)>  _
+	Public Property ExpandedOrders() As ExpandedOrders
+		Get
+			Return Me._ExpandedOrders.Entity
+		End Get
+		Set
+			Dim previousValue As ExpandedOrders = Me._ExpandedOrders.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._ExpandedOrders.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._ExpandedOrders.Entity = Nothing
+					previousValue.Order_Lines.Remove(Me)
+				End If
+				Me._ExpandedOrders.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.Order_Lines.Add(Me)
+					Me._order_id = value.id
+				Else
+					Me._order_id = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("ExpandedOrders")
 			End If
 		End Set
 	End Property
@@ -1301,6 +1372,8 @@ Partial Public Class [Order]
 	
 	Private _Customer As EntityRef(Of Customer)
 	
+	Private _ExpandedOrders As EntityRef(Of ExpandedOrders)
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -1335,6 +1408,7 @@ Partial Public Class [Order]
 		Me._Order_Lines = New EntitySet(Of Order_Line)(AddressOf Me.attach_Order_Lines, AddressOf Me.detach_Order_Lines)
 		Me._Address = CType(Nothing, EntityRef(Of Address))
 		Me._Customer = CType(Nothing, EntityRef(Of Customer))
+		Me._ExpandedOrders = CType(Nothing, EntityRef(Of ExpandedOrders))
 		OnCreated
 	End Sub
 	
@@ -1346,6 +1420,9 @@ Partial Public Class [Order]
 		Set
 			If ((Me._id = value)  _
 						= false) Then
+				If Me._ExpandedOrders.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
 				Me.OnidChanging(value)
 				Me.SendPropertyChanging
 				Me._id = value
@@ -1495,6 +1572,34 @@ Partial Public Class [Order]
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ExpandedOrders_Order", Storage:="_ExpandedOrders", ThisKey:="id", OtherKey:="id", IsForeignKey:=true)>  _
+	Public Property ExpandedOrders() As ExpandedOrders
+		Get
+			Return Me._ExpandedOrders.Entity
+		End Get
+		Set
+			Dim previousValue As ExpandedOrders = Me._ExpandedOrders.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._ExpandedOrders.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._ExpandedOrders.Entity = Nothing
+					previousValue.Orders = Nothing
+				End If
+				Me._ExpandedOrders.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.Orders = Me
+					Me._id = value.id
+				Else
+					Me._id = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("ExpandedOrders")
+			End If
+		End Set
+	End Property
+	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -1526,6 +1631,9 @@ End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.OrderExpanded")>  _
 Partial Public Class ExpandedOrders
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
 	
 	Private _id As Integer
 	
@@ -1547,11 +1655,70 @@ Partial Public Class ExpandedOrders
 	
 	Private _total As System.Nullable(Of Decimal)
 	
+	Private _Orders As EntityRef(Of [Order])
+	
+	Private _Order_Lines As EntitySet(Of Order_Line)
+	
+	Private _Customers As EntitySet(Of Customer)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnidChanged()
+    End Sub
+    Partial Private Sub Oncustomer_idChanging(value As Integer)
+    End Sub
+    Partial Private Sub Oncustomer_idChanged()
+    End Sub
+    Partial Private Sub OnnameChanging(value As String)
+    End Sub
+    Partial Private Sub OnnameChanged()
+    End Sub
+    Partial Private Sub OnemailChanging(value As String)
+    End Sub
+    Partial Private Sub OnemailChanged()
+    End Sub
+    Partial Private Sub OnphoneChanging(value As String)
+    End Sub
+    Partial Private Sub OnphoneChanged()
+    End Sub
+    Partial Private Sub Oncredit_limitChanging(value As Decimal)
+    End Sub
+    Partial Private Sub Oncredit_limitChanged()
+    End Sub
+    Partial Private Sub Onorder_dateChanging(value As Date)
+    End Sub
+    Partial Private Sub Onorder_dateChanged()
+    End Sub
+    Partial Private Sub OnsubtotalChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnsubtotalChanged()
+    End Sub
+    Partial Private Sub OndiscountChanging(value As Decimal)
+    End Sub
+    Partial Private Sub OndiscountChanged()
+    End Sub
+    Partial Private Sub OntotalChanging(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OntotalChanged()
+    End Sub
+    #End Region
+	
 	Public Sub New()
 		MyBase.New
+		Me._Orders = CType(Nothing, EntityRef(Of [Order]))
+		Me._Order_Lines = New EntitySet(Of Order_Line)(AddressOf Me.attach_Order_Lines, AddressOf Me.detach_Order_Lines)
+		Me._Customers = New EntitySet(Of Customer)(AddressOf Me.attach_Customers, AddressOf Me.detach_Customers)
+		OnCreated
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_id", DbType:="Int NOT NULL")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_id", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
 	Public Property id() As Integer
 		Get
 			Return Me._id
@@ -1559,7 +1726,11 @@ Partial Public Class ExpandedOrders
 		Set
 			If ((Me._id = value)  _
 						= false) Then
+				Me.OnidChanging(value)
+				Me.SendPropertyChanging
 				Me._id = value
+				Me.SendPropertyChanged("id")
+				Me.OnidChanged
 			End If
 		End Set
 	End Property
@@ -1572,7 +1743,11 @@ Partial Public Class ExpandedOrders
 		Set
 			If ((Me._customer_id = value)  _
 						= false) Then
+				Me.Oncustomer_idChanging(value)
+				Me.SendPropertyChanging
 				Me._customer_id = value
+				Me.SendPropertyChanged("customer_id")
+				Me.Oncustomer_idChanged
 			End If
 		End Set
 	End Property
@@ -1584,7 +1759,11 @@ Partial Public Class ExpandedOrders
 		End Get
 		Set
 			If (String.Equals(Me._name, value) = false) Then
+				Me.OnnameChanging(value)
+				Me.SendPropertyChanging
 				Me._name = value
+				Me.SendPropertyChanged("name")
+				Me.OnnameChanged
 			End If
 		End Set
 	End Property
@@ -1596,7 +1775,11 @@ Partial Public Class ExpandedOrders
 		End Get
 		Set
 			If (String.Equals(Me._email, value) = false) Then
+				Me.OnemailChanging(value)
+				Me.SendPropertyChanging
 				Me._email = value
+				Me.SendPropertyChanged("email")
+				Me.OnemailChanged
 			End If
 		End Set
 	End Property
@@ -1608,7 +1791,11 @@ Partial Public Class ExpandedOrders
 		End Get
 		Set
 			If (String.Equals(Me._phone, value) = false) Then
+				Me.OnphoneChanging(value)
+				Me.SendPropertyChanging
 				Me._phone = value
+				Me.SendPropertyChanged("phone")
+				Me.OnphoneChanged
 			End If
 		End Set
 	End Property
@@ -1621,7 +1808,11 @@ Partial Public Class ExpandedOrders
 		Set
 			If ((Me._credit_limit = value)  _
 						= false) Then
+				Me.Oncredit_limitChanging(value)
+				Me.SendPropertyChanging
 				Me._credit_limit = value
+				Me.SendPropertyChanged("credit_limit")
+				Me.Oncredit_limitChanged
 			End If
 		End Set
 	End Property
@@ -1634,7 +1825,11 @@ Partial Public Class ExpandedOrders
 		Set
 			If ((Me._order_date = value)  _
 						= false) Then
+				Me.Onorder_dateChanging(value)
+				Me.SendPropertyChanging
 				Me._order_date = value
+				Me.SendPropertyChanged("order_date")
+				Me.Onorder_dateChanged
 			End If
 		End Set
 	End Property
@@ -1646,7 +1841,11 @@ Partial Public Class ExpandedOrders
 		End Get
 		Set
 			If (Me._subtotal.Equals(value) = false) Then
+				Me.OnsubtotalChanging(value)
+				Me.SendPropertyChanging
 				Me._subtotal = value
+				Me.SendPropertyChanged("subtotal")
+				Me.OnsubtotalChanged
 			End If
 		End Set
 	End Property
@@ -1659,7 +1858,11 @@ Partial Public Class ExpandedOrders
 		Set
 			If ((Me._discount = value)  _
 						= false) Then
+				Me.OndiscountChanging(value)
+				Me.SendPropertyChanging
 				Me._discount = value
+				Me.SendPropertyChanged("discount")
+				Me.OndiscountChanged
 			End If
 		End Set
 	End Property
@@ -1671,8 +1874,94 @@ Partial Public Class ExpandedOrders
 		End Get
 		Set
 			If (Me._total.Equals(value) = false) Then
+				Me.OntotalChanging(value)
+				Me.SendPropertyChanging
 				Me._total = value
+				Me.SendPropertyChanged("total")
+				Me.OntotalChanged
 			End If
 		End Set
 	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ExpandedOrders_Order", Storage:="_Orders", ThisKey:="id", OtherKey:="id", IsUnique:=true, IsForeignKey:=false)>  _
+	Public Property Orders() As [Order]
+		Get
+			Return Me._Orders.Entity
+		End Get
+		Set
+			Dim previousValue As [Order] = Me._Orders.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Orders.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Orders.Entity = Nothing
+					previousValue.ExpandedOrders = Nothing
+				End If
+				Me._Orders.Entity = value
+				If (Object.Equals(value, Nothing) = false) Then
+					value.ExpandedOrders = Me
+				End If
+				Me.SendPropertyChanged("Orders")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ExpandedOrders_Order_Line", Storage:="_Order_Lines", ThisKey:="id", OtherKey:="order_id")>  _
+	Public Property Order_Lines() As EntitySet(Of Order_Line)
+		Get
+			Return Me._Order_Lines
+		End Get
+		Set
+			Me._Order_Lines.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ExpandedOrders_Customer", Storage:="_Customers", ThisKey:="customer_id", OtherKey:="id")>  _
+	Public Property Customers() As EntitySet(Of Customer)
+		Get
+			Return Me._Customers
+		End Get
+		Set
+			Me._Customers.Assign(value)
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+	
+	Private Sub attach_Order_Lines(ByVal entity As Order_Line)
+		Me.SendPropertyChanging
+		entity.ExpandedOrders = Me
+	End Sub
+	
+	Private Sub detach_Order_Lines(ByVal entity As Order_Line)
+		Me.SendPropertyChanging
+		entity.ExpandedOrders = Nothing
+	End Sub
+	
+	Private Sub attach_Customers(ByVal entity As Customer)
+		Me.SendPropertyChanging
+		entity.ExpandedOrders = Me
+	End Sub
+	
+	Private Sub detach_Customers(ByVal entity As Customer)
+		Me.SendPropertyChanging
+		entity.ExpandedOrders = Nothing
+	End Sub
 End Class

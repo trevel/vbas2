@@ -178,6 +178,10 @@
       <Project>{57cac3c7-651b-46d6-98d8-b6457eb4ada4}</Project>
       <Name>Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DBAccessLib\DBAccessLib.vbproj">
+      <Project>{fa09d0d0-a5b1-4867-86ee-8aba0135f79d}</Project>
+      <Name>DBAccessLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

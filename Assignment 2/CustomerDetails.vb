@@ -9,7 +9,6 @@
 
     Sub New(cust As Customer)
         Me.New()
-
     End Sub
 
 

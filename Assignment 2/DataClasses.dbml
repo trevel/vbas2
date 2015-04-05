@@ -32,6 +32,7 @@
       <Column Name="credit_limit" Type="System.Decimal" DbType="Decimal(9,2) NOT NULL" CanBeNull="false" />
       <Association Name="Customer_Address" Member="Addresses" ThisKey="id" OtherKey="customer_id" Type="Address" />
       <Association Name="Customer_Order" Member="Orders" ThisKey="id" OtherKey="customer_id" Type="Order" />
+      <Association Name="ExpandedOrders_Customer" Member="ExpandedOrders" ThisKey="id" OtherKey="customer_id" Type="ExpandedOrders" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Order_Line" Member="Order_Lines">
@@ -43,6 +44,7 @@
       <Column Name="ship_date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="Product_Order_Line" Member="Product" ThisKey="product_id" OtherKey="id" Type="Product" IsForeignKey="true" />
       <Association Name="Order_Order_Line" Member="Order" ThisKey="order_id" OtherKey="id" Type="Order" IsForeignKey="true" />
+      <Association Name="ExpandedOrders_Order_Line" Member="ExpandedOrders" ThisKey="order_id" OtherKey="id" Type="ExpandedOrders" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.OrderDetails" Member="OrderDetails">
@@ -82,11 +84,12 @@
       <Association Name="Order_Order_Line" Member="Order_Lines" ThisKey="id" OtherKey="order_id" Type="Order_Line" />
       <Association Name="Address_Order" Member="Address" ThisKey="shipping_address_id" OtherKey="id" Type="Address" IsForeignKey="true" />
       <Association Name="Customer_Order" Member="Customer" ThisKey="customer_id" OtherKey="id" Type="Customer" IsForeignKey="true" />
+      <Association Name="ExpandedOrders_Order" Member="ExpandedOrders" ThisKey="id" OtherKey="id" Type="ExpandedOrders" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.OrderExpanded" Member="ExpandedOrders">
     <Type Name="ExpandedOrders">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="customer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
@@ -96,6 +99,9 @@
       <Column Name="subtotal" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="discount" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
       <Column Name="total" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Association Name="ExpandedOrders_Order" Member="Orders" ThisKey="id" OtherKey="id" Type="Order" Cardinality="One" />
+      <Association Name="ExpandedOrders_Order_Line" Member="Order_Lines" ThisKey="id" OtherKey="order_id" Type="Order_Line" />
+      <Association Name="ExpandedOrders_Customer" Member="Customers" ThisKey="customer_id" OtherKey="id" Type="Customer" />
     </Type>
   </Table>
 </Database>
