@@ -1,4 +1,9 @@
-﻿Imports DBAccessLib
+﻿' '*****************************************************************************************
+' Student Names: Laurie Shields (034448142)
+'                Mark Lindan (063336143)
+' CVB815 - DBAccessTest
+'*******************************************************************************************
+Imports DBAccessLib
 Imports Database
 Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
@@ -16,11 +21,11 @@ Imports System.Data.SqlClient
         Assert.IsNull(prod2)
         prod1 = New Product(0, "Something", 1.0, 1, True)
         prod2 = New Product(0, "Other", 2.0, 2, False)
-        prod1.ID = DBAccessHelper.DBInsertProduct(prod1)
-        prod2.ID = DBAccessHelper.DBInsertProduct(prod2)
         'objects are created and references are updated accordingly
         Assert.IsNotNull(prod1)
         Assert.IsNotNull(prod2)
+        prod1.ID = DBAccessHelper.DBInsertProduct(prod1)
+        prod2.ID = DBAccessHelper.DBInsertProduct(prod2)
         Assert.AreNotEqual(prod1.ID, -1)
         Assert.AreNotEqual(prod2.ID, -1)
     End Sub
@@ -29,8 +34,8 @@ Imports System.Data.SqlClient
     <TestCleanup()> Public Sub CleanUp()
         Assert.IsNotNull(prod1)
         Assert.IsNotNull(prod2)
-        DBAccessHelper.DBDeleteProduct(prod1)
-        DBAccessHelper.DBDeleteProduct(prod2)
+        Assert.IsTrue(DBAccessHelper.DBDeleteProduct(prod1))
+        Assert.IsTrue(DBAccessHelper.DBDeleteProduct(prod2))
         prod1 = DBAccessHelper.DBReadProductByID(prod1.ID)
         prod2 = DBAccessHelper.DBReadProductByID(prod2.ID)
         ' objects are cleaned up
@@ -64,7 +69,7 @@ Imports System.Data.SqlClient
     <TestMethod()> Public Sub TestDBDeleteProduct()
         Dim p As Product = Nothing
         Assert.IsNotNull(prod1)
-        DBAccessHelper.DBDeleteProduct(prod1)
+        Assert.IsTrue(DBAccessHelper.DBDeleteProduct(prod1))
         p = DBAccessHelper.DBReadProductByID(prod1.ID)
         ' make sure we didn't find it
         Assert.IsNull(p)
@@ -77,7 +82,7 @@ Imports System.Data.SqlClient
         prod1.Inventory = 99
         prod1.active = False
         prod1.Price = 77.77
-        DBAccessHelper.DBUpdateProduct(prod1)
+        Assert.IsTrue(DBAccessHelper.DBUpdateProduct(prod1))
         p = DBAccessHelper.DBReadProductByID(prod1.ID)
         Assert.IsNotNull(p)
         Assert.AreEqual(p.Description, prod1.Description)

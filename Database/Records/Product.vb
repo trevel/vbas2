@@ -11,10 +11,6 @@ Imports System.IO
 
     Public Shared Event MoreInventory(prod As Product)
 
-    ' Public Sub New(Description As String, Price As Double, Inventory As Integer)
-
-    ' End Sub
-
     Public Sub New(ID As Integer, Description As String, Price As Double, Inventory As Integer, active As Boolean)
         Me.ID = ID
         Me.Description = Description
@@ -25,14 +21,6 @@ Imports System.IO
 
     Public Sub New(line As String)
         InterpretCSV(line)
-    End Sub
-
-    Public Sub New()
-        Me.ID = 0
-        Me._Description = ""
-        Me._Price = 0
-        Me._Inventory = 0
-        Me.active = False
     End Sub
 
     Protected Overrides ReadOnly Property fieldcount As UShort
