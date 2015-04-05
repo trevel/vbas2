@@ -129,6 +129,12 @@ Partial Public Class DataClassesDataContext
 			Return Me.GetTable(Of [Order])
 		End Get
 	End Property
+	
+	Public ReadOnly Property ExpandedOrders() As System.Data.Linq.Table(Of ExpandedOrders)
+		Get
+			Return Me.GetTable(Of ExpandedOrders)
+		End Get
+	End Property
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Address")>  _
@@ -1516,4 +1522,157 @@ Partial Public Class [Order]
 		Me.SendPropertyChanging
 		entity.[Order] = Nothing
 	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.OrderExpanded")>  _
+Partial Public Class ExpandedOrders
+	
+	Private _id As Integer
+	
+	Private _customer_id As Integer
+	
+	Private _name As String
+	
+	Private _email As String
+	
+	Private _phone As String
+	
+	Private _credit_limit As Decimal
+	
+	Private _order_date As Date
+	
+	Private _subtotal As System.Nullable(Of Decimal)
+	
+	Private _discount As Decimal
+	
+	Private _total As System.Nullable(Of Decimal)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_id", DbType:="Int NOT NULL")>  _
+	Public Property id() As Integer
+		Get
+			Return Me._id
+		End Get
+		Set
+			If ((Me._id = value)  _
+						= false) Then
+				Me._id = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_customer_id", DbType:="Int NOT NULL")>  _
+	Public Property customer_id() As Integer
+		Get
+			Return Me._customer_id
+		End Get
+		Set
+			If ((Me._customer_id = value)  _
+						= false) Then
+				Me._customer_id = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_name", DbType:="NVarChar(50) NOT NULL", CanBeNull:=false)>  _
+	Public Property name() As String
+		Get
+			Return Me._name
+		End Get
+		Set
+			If (String.Equals(Me._name, value) = false) Then
+				Me._name = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_email", DbType:="NVarChar(50) NOT NULL", CanBeNull:=false)>  _
+	Public Property email() As String
+		Get
+			Return Me._email
+		End Get
+		Set
+			If (String.Equals(Me._email, value) = false) Then
+				Me._email = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_phone", DbType:="NVarChar(50) NOT NULL", CanBeNull:=false)>  _
+	Public Property phone() As String
+		Get
+			Return Me._phone
+		End Get
+		Set
+			If (String.Equals(Me._phone, value) = false) Then
+				Me._phone = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_credit_limit", DbType:="Decimal(9,2) NOT NULL")>  _
+	Public Property credit_limit() As Decimal
+		Get
+			Return Me._credit_limit
+		End Get
+		Set
+			If ((Me._credit_limit = value)  _
+						= false) Then
+				Me._credit_limit = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_order_date", DbType:="Date NOT NULL")>  _
+	Public Property order_date() As Date
+		Get
+			Return Me._order_date
+		End Get
+		Set
+			If ((Me._order_date = value)  _
+						= false) Then
+				Me._order_date = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_subtotal", DbType:="Decimal(38,2)")>  _
+	Public Property subtotal() As System.Nullable(Of Decimal)
+		Get
+			Return Me._subtotal
+		End Get
+		Set
+			If (Me._subtotal.Equals(value) = false) Then
+				Me._subtotal = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_discount", DbType:="Decimal(3,0) NOT NULL")>  _
+	Public Property discount() As Decimal
+		Get
+			Return Me._discount
+		End Get
+		Set
+			If ((Me._discount = value)  _
+						= false) Then
+				Me._discount = value
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_total", DbType:="Decimal(38,2)")>  _
+	Public Property total() As System.Nullable(Of Decimal)
+		Get
+			Return Me._total
+		End Get
+		Set
+			If (Me._total.Equals(value) = false) Then
+				Me._total = value
+			End If
+		End Set
+	End Property
 End Class

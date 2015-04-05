@@ -153,11 +153,19 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\Address.datasource" />
+    <None Include="My Project\DataSources\Customer.datasource" />
     <None Include="My Project\DataSources\Database.Address.datasource" />
     <None Include="My Project\DataSources\Database.Customer.datasource" />
     <None Include="My Project\DataSources\Database.Order.datasource" />
     <None Include="My Project\DataSources\Database.OrderItem.datasource" />
     <None Include="My Project\DataSources\Database.Product.datasource" />
+    <None Include="My Project\DataSources\ExpandedOrders.datasource" />
+    <None Include="My Project\DataSources\Order.datasource" />
+    <None Include="My Project\DataSources\OrderDetail.datasource" />
+    <None Include="My Project\DataSources\Order_Line.datasource" />
+    <None Include="My Project\DataSources\Product.datasource" />
+    <None Include="My Project\DataSources\ProductsWithPending.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>

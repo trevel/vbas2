@@ -1,8 +1,11 @@
 ﻿Public Class OrderDetails
+    Dim db As New DataClassesDataContext
 
     Public Sub New()
         MyBase.New()
         InitializeComponent()
+        Me.CustomerBindingSource.DataSource = db.Customers
+        Me.ProductBindingSource.DataSource = db.Products
     End Sub
 
     Public Sub New(order As Order)
@@ -21,5 +24,10 @@
         If Me.custCombo.Text = "" Then Return
         Dim add As New AddressDetail(Me.custCombo.Text)
         add.Show()
+    End Sub
+
+    Private Sub btnNewCustomerForm_Click(sender As Object, e As EventArgs) Handles btnNewCustomerForm.Click
+        Dim cust = New CustomerDetails()
+        cust.Show()
     End Sub
 End Class
