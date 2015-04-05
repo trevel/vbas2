@@ -23,40 +23,49 @@ Partial Class OrderDetails
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.ListView1 = New System.Windows.Forms.ListView()
+        Me.custCombo = New System.Windows.Forms.ComboBox()
+        Me.CustomerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.lvAddresses = New System.Windows.Forms.ListView()
         Me.btnNewCustomerForm = New System.Windows.Forms.Button()
         Me.btnNewAddress = New System.Windows.Forms.Button()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.OrderItemBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ProductBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ProductDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.ProductBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.QuantityDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ShipdateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HasshippedDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.OrderItemBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'ComboBox1
+        'custCombo
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(13, 35)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(391, 21)
-        Me.ComboBox1.TabIndex = 0
+        Me.custCombo.DataSource = Me.CustomerBindingSource
+        Me.custCombo.DisplayMember = "name"
+        Me.custCombo.FormattingEnabled = True
+        Me.custCombo.Location = New System.Drawing.Point(13, 35)
+        Me.custCombo.Name = "custCombo"
+        Me.custCombo.Size = New System.Drawing.Size(391, 21)
+        Me.custCombo.TabIndex = 0
+        Me.custCombo.ValueMember = "ID"
         '
-        'ListView1
+        'CustomerBindingSource
         '
-        Me.ListView1.Location = New System.Drawing.Point(13, 80)
-        Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(391, 97)
-        Me.ListView1.TabIndex = 1
-        Me.ListView1.UseCompatibleStateImageBehavior = False
+        Me.CustomerBindingSource.DataSource = GetType(Database.Customer)
+        '
+        'lvAddresses
+        '
+        Me.lvAddresses.Location = New System.Drawing.Point(13, 80)
+        Me.lvAddresses.Name = "lvAddresses"
+        Me.lvAddresses.Size = New System.Drawing.Size(391, 97)
+        Me.lvAddresses.TabIndex = 1
+        Me.lvAddresses.UseCompatibleStateImageBehavior = False
         '
         'btnNewCustomerForm
         '
@@ -79,9 +88,9 @@ Partial Class OrderDetails
         'ComboBox2
         '
         Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(13, 218)
+        Me.ComboBox2.Location = New System.Drawing.Point(12, 218)
         Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(271, 21)
+        Me.ComboBox2.Size = New System.Drawing.Size(272, 21)
         Me.ComboBox2.TabIndex = 4
         '
         'Button3
@@ -108,19 +117,11 @@ Partial Class OrderDetails
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ProductDataGridViewTextBoxColumn, Me.QuantityDataGridViewTextBoxColumn, Me.ShipdateDataGridViewTextBoxColumn, Me.HasshippedDataGridViewCheckBoxColumn})
         Me.DataGridView1.DataSource = Me.OrderItemBindingSource
-        Me.DataGridView1.Location = New System.Drawing.Point(13, 246)
+        Me.DataGridView1.Location = New System.Drawing.Point(12, 246)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(489, 277)
+        Me.DataGridView1.Size = New System.Drawing.Size(490, 277)
         Me.DataGridView1.TabIndex = 9
-        '
-        'OrderItemBindingSource
-        '
-        Me.OrderItemBindingSource.DataSource = GetType(Database.OrderItem)
-        '
-        'ProductBindingSource
-        '
-        Me.ProductBindingSource.DataSource = GetType(Database.Product)
         '
         'ProductDataGridViewTextBoxColumn
         '
@@ -132,6 +133,10 @@ Partial Class OrderDetails
         Me.ProductDataGridViewTextBoxColumn.ReadOnly = True
         Me.ProductDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.ProductDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'ProductBindingSource
+        '
+        Me.ProductBindingSource.DataSource = GetType(Database.Product)
         '
         'QuantityDataGridViewTextBoxColumn
         '
@@ -154,6 +159,10 @@ Partial Class OrderDetails
         Me.HasshippedDataGridViewCheckBoxColumn.Name = "HasshippedDataGridViewCheckBoxColumn"
         Me.HasshippedDataGridViewCheckBoxColumn.ReadOnly = True
         '
+        'OrderItemBindingSource
+        '
+        Me.OrderItemBindingSource.DataSource = GetType(Database.OrderItem)
+        '
         'OrderDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -165,19 +174,20 @@ Partial Class OrderDetails
         Me.Controls.Add(Me.ComboBox2)
         Me.Controls.Add(Me.btnNewAddress)
         Me.Controls.Add(Me.btnNewCustomerForm)
-        Me.Controls.Add(Me.ListView1)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.lvAddresses)
+        Me.Controls.Add(Me.custCombo)
         Me.Name = "OrderDetails"
         Me.Text = "OrderDetails"
+        CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
-    Friend WithEvents ListView1 As System.Windows.Forms.ListView
+    Friend WithEvents custCombo As System.Windows.Forms.ComboBox
+    Friend WithEvents lvAddresses As System.Windows.Forms.ListView
     Friend WithEvents btnNewCustomerForm As System.Windows.Forms.Button
     Friend WithEvents btnNewAddress As System.Windows.Forms.Button
     Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
@@ -190,4 +200,5 @@ Partial Class OrderDetails
     Friend WithEvents ShipdateDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents HasshippedDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents OrderItemBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents CustomerBindingSource As System.Windows.Forms.BindingSource
 End Class

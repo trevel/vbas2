@@ -17,4 +17,9 @@
     End Sub
 
 
+    Private Sub btnNewAddress_Click(sender As Object, e As EventArgs) Handles btnNewAddress.Click
+        If Me.custCombo.Text = "" Then Return
+        Dim add As New AddressDetail(Me.custCombo.Text)
+        add.Show()
+    End Sub
 End Class

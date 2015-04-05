@@ -71,6 +71,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressDetail.Designer.vb">
+      <DependentUpon>AddressDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddressDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerDetails.Designer.vb">
+      <DependentUpon>CustomerDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DataClasses.designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -112,6 +124,12 @@
     <None Include="DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="AddressDetail.resx">
+      <DependentUpon>AddressDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerDetails.resx">
+      <DependentUpon>CustomerDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formMain.resx">
       <DependentUpon>formMain.vb</DependentUpon>
     </EmbeddedResource>

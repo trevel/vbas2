@@ -9,6 +9,7 @@
       <Column Name="postal_code" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
       <Column Name="type" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="customer_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Address_Order" Member="Orders" ThisKey="id" OtherKey="shipping_address_id" Type="Order" />
       <Association Name="Customer_Address" Member="Customer" ThisKey="customer_id" OtherKey="id" Type="Customer" IsForeignKey="true" />
     </Type>
   </Table>
@@ -44,16 +45,6 @@
       <Association Name="Order_Order_Line" Member="Order" ThisKey="order_id" OtherKey="id" Type="Order" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Orders" Member="Orders">
-    <Type Name="Order">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="order_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="discount" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
-      <Column Name="customer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Order_Order_Line" Member="Order_Lines" ThisKey="id" OtherKey="order_id" Type="Order_Line" />
-      <Association Name="Customer_Order" Member="Customer" ThisKey="customer_id" OtherKey="id" Type="Customer" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.OrderDetails" Member="OrderDetails">
     <Type Name="OrderDetail">
       <Column Name="customer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -79,6 +70,18 @@
       <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="price" Type="System.Decimal" DbType="Decimal(9,2) NOT NULL" CanBeNull="false" />
       <Column Name="Expr1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orders" Member="Orders">
+    <Type Name="Order">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="order_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="discount" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
+      <Column Name="customer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="shipping_address_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Order_Order_Line" Member="Order_Lines" ThisKey="id" OtherKey="order_id" Type="Order_Line" />
+      <Association Name="Address_Order" Member="Address" ThisKey="shipping_address_id" OtherKey="id" Type="Address" IsForeignKey="true" />
+      <Association Name="Customer_Order" Member="Customer" ThisKey="customer_id" OtherKey="id" Type="Customer" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
