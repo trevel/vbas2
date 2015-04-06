@@ -1,0 +1,34 @@
+USE [cvb815a_assign2]
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_update_orderline]   */
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].sp_update_orderline(
+	@id int
+	, @orderid int
+	, @prodid int
+	, @quantity int
+	, @shipdate date)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+UPDATE dbo.Order_Line
+SET order_id=@orderid,product_id=@prodid,quantity=@quantity,ship_date=@shipdate
+WHERE id=@id;
+END
+
+GO
+
