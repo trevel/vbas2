@@ -657,7 +657,7 @@ Public Class DBAccessHelper
         cmd.Parameters("@id").Value = id
         cmd.Parameters.Add("@orderid", SqlDbType.Int)
         cmd.Parameters("@orderid").Direction = ParameterDirection.Output
-        cmd.Parameters.Add("prodid", SqlDbType.Int)
+        cmd.Parameters.Add("@prodid", SqlDbType.Int)
         cmd.Parameters("@prodid").Direction = ParameterDirection.Output
         cmd.Parameters.Add("@shipdate", SqlDbType.Date)
         cmd.Parameters("@shipdate").Direction = ParameterDirection.Output
@@ -671,10 +671,14 @@ Public Class DBAccessHelper
             If id <> -1 Then
                 ' found the record, create and populate the new product object
                 'Public Sub New(id As Integer, order_id As Integer, product As Integer, quantity As UInteger)
+                Dim ship As Date = Nothing
+                If IsDBNull(cmd.Parameters("@shipdate").Value) = False Then
+                    ship = cmd.Parameters("@shipdate").Value
+                End If
+
                 i = New OrderItem(id, cmd.Parameters("@orderid").Value,
                                 cmd.Parameters("@prodid").Value,
-                                cmd.Parameters("@shipdate").Value,
-                                cmd.Parameters("@quantity").Value)
+                                cmd.Parameters("@quantity").Value, ship)
             End If
 
         Catch sqlExcept As SqlException

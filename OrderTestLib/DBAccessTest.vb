@@ -14,6 +14,8 @@ Imports Database.Address
     Dim prod1 As Product = Nothing
     Dim cust1 As Customer = Nothing
     Dim addr1 As Address = Nothing
+    Dim ordlin1 As OrderItem = Nothing
+    Dim ord1 As Order = Nothing
 
     <TestMethod()> Public Sub TestMethod1()
     End Sub
@@ -28,10 +30,18 @@ Imports Database.Address
         prod1.ID = DBAccessHelper.DBInsertProduct(prod1)
         cust1.ID = DBAccessHelper.DBInsertCustomer(cust1)
         addr1 = New Address(0, cust1.ID, "123 Some Street", "Toronto", "ON", "M1K2N4", AddressType.mailing_address)
+        Assert.IsNotNull(addr1)
         addr1.ID = DBAccessHelper.DBInsertAddress(addr1)
+        ord1 = New Order(0, cust1.ID, Today, 10, addr1.ID)
+        ord1.ID = DBAccessHelper.DBInsertOrder(ord1)
+        ordlin1 = New OrderItem(0, ord1.ID, prod1.ID, 99, Nothing)
+        Assert.IsNotNull(ord1)
+        Assert.IsNotNull(ordlin1)
         Assert.AreNotEqual(prod1.ID, -1)
         Assert.AreNotEqual(cust1.ID, -1)
         Assert.AreNotEqual(addr1.ID, -1)
+        Assert.AreNotEqual(ord1.ID, -1)
+        Assert.AreNotEqual(ordlin1.ID, -1)
     End Sub
 
     ' called after each test case
@@ -39,19 +49,27 @@ Imports Database.Address
         Assert.IsNotNull(prod1)
         Assert.IsNotNull(cust1)
         Assert.IsNotNull(addr1)
+        Assert.IsNotNull(ord1)
+        Assert.IsNotNull(ordlin1)
+        Assert.IsTrue(DBAccessHelper.DBDeleteOrderItem(ordlin1))
+        Assert.IsTrue(DBAccessHelper.DBDeleteOrder(ord1))
         Assert.IsTrue(DBAccessHelper.DBDeleteProduct(prod1))
         Assert.IsTrue(DBAccessHelper.DBDeleteAddress(addr1))
         Assert.IsTrue(DBAccessHelper.DBDeleteCustomer(cust1))
         prod1 = DBAccessHelper.DBReadProductByID(prod1.ID)
         addr1 = DBAccessHelper.DBReadAddressByID(addr1.ID)
         cust1 = DBAccessHelper.DBReadCustomerByID(cust1.ID)
+        ordlin1 = DBAccessHelper.DBReadOrderItemByID(ordlin1.ID)
+        ord1 = DBAccessHelper.DBReadOrderByID(ord1.ID)
         ' objects are cleaned up
         Assert.IsNull(prod1)
         Assert.IsNull(cust1)
         Assert.IsNull(addr1)
+        Assert.IsNull(ord1)
+        Assert.IsNull(ord1)
     End Sub
 
-    <TestMethod()> Public Sub TestOpenClose()
+    <TestMethod()> Public Sub TestDBOpenClose()
         Dim conn As SqlConnection = DBAccessHelper.DBGetConnection()
         Assert.IsNotNull(conn)
         DBAccessHelper.DBConnectionClose(conn)
