@@ -20,3 +20,15 @@ TASKS:
 - Manage customers
 - Manage addresses (subset of customers)
 - Manage orders
+
+
+Label
+Textbox
+GridDataView
+Button
+Menu Item
+List View
+Status Bar
+ComboBox
+ContextMenu
+Tab Control

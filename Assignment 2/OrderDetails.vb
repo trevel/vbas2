@@ -16,8 +16,7 @@
         ' TODO: Complete member initialization 
         _order = order
 
-        custCombo.DataSource = Nothing
-        custCombo.SelectedIndex = custCombo.Items.Add(order.name)
+        custCombo.DataSource = order.Customers
 
         btnNewCustomerForm.Visible = False
 
@@ -89,9 +88,16 @@
 
     Private Sub custCombo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles custCombo.SelectedIndexChanged
         If Me.Visible = True Then
+            '    If custCombo.SelectedItem.GetType() = System.String Then Return
             Dim cust As Customer = custCombo.SelectedItem
             populateAddress(cust.id, 0)
         End If
         
+    End Sub
+
+    Private Sub save()
+        Dim items As New Order_Line
+        '  items.id = ?
+        '  items.
     End Sub
 End Class
