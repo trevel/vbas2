@@ -323,7 +323,7 @@ Public Class DBAccessHelper
 
         ' Set the command type and text for the stored procedure
         cmd.CommandType = CommandType.StoredProcedure
-        cmd.CommandText = "dbo.sp_update_product"
+        cmd.CommandText = "dbo.sp_update_address"
 
         ' Set up the parameters and values
         cmd.Parameters.Add("@id", SqlDbType.Int)

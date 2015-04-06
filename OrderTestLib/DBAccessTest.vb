@@ -119,6 +119,7 @@ Imports Database.Address
     <TestMethod()> Public Sub TestDBDeleteCustomer()
         Dim c As Customer = Nothing
         Assert.IsNotNull(cust1)
+        Assert.IsTrue(DBAccessHelper.DBDeleteAddress(addr1))
         Assert.IsTrue(DBAccessHelper.DBDeleteCustomer(cust1))
         c = DBAccessHelper.DBReadCustomerByID(cust1.ID)
         ' make sure we didn't find it
@@ -172,7 +173,7 @@ Imports Database.Address
     <TestMethod()> Public Sub TestDBUpdateAddress()
         Dim a As Address = Nothing
         Assert.IsNotNull(cust1)
-        addr1.street = "New Street"
+        addr1.street = "987 New Street"
         addr1.city = "New City"
         addr1.province = "MB"
         addr1.postal_code = "N1N1N1"
