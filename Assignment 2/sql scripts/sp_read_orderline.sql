@@ -25,7 +25,7 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
  
-SELECT @id=id,@orderid=order_id,@prodid=product_id,@shipdate=ship_date 
+SELECT @id=id,@orderid=order_id,@prodid=product_id,@quantity=quantity,@shipdate=ship_date 
 FROM dbo.Order_Line
 IF @@ROWCOUNT=0
 	SET @id=-1
