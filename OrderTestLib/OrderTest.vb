@@ -9,8 +9,8 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     <TestInitialize()> Public Sub Initialize()
         Assert.IsNull(o1)
         Assert.IsNull(o2)
-        o1 = New Order(1, 1, Today, 0)
-        o2 = New Order(2, 2, Today, 10)
+        o1 = New Order(1, 1, Today, 0, 0)
+        o2 = New Order(2, 2, Today, 10, 0)
         'objects are created and references are updated accordingly
         Assert.IsNotNull(o1)
         Assert.IsNotNull(o2)
@@ -29,7 +29,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
     ' Test Other Constructor
     <TestMethod()> Public Sub TestConstructor1()
-        Dim o As New Order(1, 1, Today, 10.0)
+        Dim o As New Order(1, 1, Today, 10.0, 0)
         ' check that the object was created and all fields are set as expected
         Assert.IsNotNull(o)
         Assert.AreEqual(o.ID, 1)

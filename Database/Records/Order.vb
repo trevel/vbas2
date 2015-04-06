@@ -10,14 +10,16 @@ Imports System.IO
     Protected _order_date As Date
     Protected _discount As Double
     Protected _item_count As Integer
+    Protected _ship_addr_id As Integer
 
     Public Property customer As Customer
 
-    Public Sub New(id As Integer, cust As Integer, odate As Date, disc As Double)
+    Public Sub New(id As Integer, cust As Integer, odate As Date, disc As Double, ship As Integer)
         Me.ID = id
         Me.customer_id = cust
         Me.order_date = odate
         Me.discount = disc
+        Me.ship_addr_id = ship
         Me.item_count = 0
     End Sub
 
@@ -58,6 +60,16 @@ Imports System.IO
                 Me._discount = value
             Else
                 Throw New ArgumentException("Invalid discount")
+            End If
+        End Set
+    End Property
+    Public Property ship_addr_id As Integer
+        Get
+            Return _ship_addr_id
+        End Get
+        Set(value As Integer)
+            If (value > 0) Then
+                Me._ship_addr_id = value
             End If
         End Set
     End Property

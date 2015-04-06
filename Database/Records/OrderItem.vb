@@ -69,12 +69,12 @@ Imports System.IO
         End Set
     End Property
 
-    Public Sub New(id As Integer, order_id As Integer, product As Integer, quantity As UInteger)
+    Public Sub New(id As Integer, order_id As Integer, product As Integer, quantity As UInteger, ship As Date)
         Me.ID = id
         Me.order_id = order_id
         Me.product_id = product
         Me.quantity = quantity
-        Me.ship_date = Nothing
+        Me.ship_date = ship
     End Sub
 
     Public Sub New(csv As String)

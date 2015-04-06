@@ -454,7 +454,7 @@ Public Module Assign1
         disc = GetDouble("Discount")
 
         Try
-            order = New Order(orderbook.next_id, cust_record.GetID(), Today, disc)
+            order = New Order(orderbook.next_id, cust_record.GetID(), Today, disc, 0)
             orderbook.Add(order)
         Catch ex As Exception
             Console.WriteLine(ex.Message)
@@ -478,7 +478,7 @@ Public Module Assign1
                 Console.WriteLine("How many would you like at $" & prod_record.Price.ToString("0.00") & " each?")
                 qty = GetInteger("Quantity")
                 Try
-                    Dim newItem As New OrderItem(orderitembook.next_id, order.ID, prod_record.GetID, qty)
+                    Dim newItem As New OrderItem(orderitembook.next_id, order.ID, prod_record.GetID, qty, Nothing)
                     items.Add(newItem)
                     orderitembook.Add(newItem)
                 Catch ex As Exception
@@ -545,7 +545,7 @@ Public Module Assign1
                 Console.WriteLine("How many would you like at $" & prod_record.Price.ToString("0.00") & " each?")
                 Dim qty As Integer = GetInteger("Quantity")
                 Try
-                    orderitembook.Add(New OrderItem(orderitembook.next_id, record.ID, prod_record.GetID, qty))
+                    orderitembook.Add(New OrderItem(orderitembook.next_id, record.ID, prod_record.GetID, qty, Nothing))
                 Catch ex As Exception
                     Console.WriteLine(ex.Message)
                 End Try
