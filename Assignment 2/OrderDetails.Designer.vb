@@ -38,11 +38,15 @@ Partial Class OrderDetails
         Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ShipDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AddressesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.lvAddress = New System.Windows.Forms.ListView()
+        Me.Address = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AddressBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.orderItemGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AddressesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'custCombo
@@ -98,11 +102,11 @@ Partial Class OrderDetails
         '
         'btnProdAdd
         '
-        Me.btnProdAdd.Location = New System.Drawing.Point(299, 215)
+        Me.btnProdAdd.Location = New System.Drawing.Point(290, 218)
         Me.btnProdAdd.Name = "btnProdAdd"
-        Me.btnProdAdd.Size = New System.Drawing.Size(75, 23)
+        Me.btnProdAdd.Size = New System.Drawing.Size(40, 23)
         Me.btnProdAdd.TabIndex = 6
-        Me.btnProdAdd.Text = "."
+        Me.btnProdAdd.Text = "Add"
         Me.btnProdAdd.UseVisualStyleBackColor = True
         '
         'TextBox2
@@ -158,11 +162,35 @@ Partial Class OrderDetails
         Me.ShipDate.Name = "ShipDate"
         Me.ShipDate.ReadOnly = True
         '
+        'AddressesBindingSource
+        '
+        Me.AddressesBindingSource.DataMember = "Addresses"
+        Me.AddressesBindingSource.DataSource = Me.CustomerBindingSource
+        '
+        'lvAddress
+        '
+        Me.lvAddress.CheckBoxes = True
+        Me.lvAddress.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.Address})
+        Me.lvAddress.FullRowSelect = True
+        Me.lvAddress.Location = New System.Drawing.Point(13, 80)
+        Me.lvAddress.MultiSelect = False
+        Me.lvAddress.Name = "lvAddress"
+        Me.lvAddress.ShowGroups = False
+        Me.lvAddress.Size = New System.Drawing.Size(391, 101)
+        Me.lvAddress.TabIndex = 10
+        Me.lvAddress.UseCompatibleStateImageBehavior = False
+        Me.lvAddress.View = System.Windows.Forms.View.List
+        '
+        'Address
+        '
+        Me.Address.Width = 500
+        '
         'OrderDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(522, 590)
+        Me.Controls.Add(Me.lvAddress)
         Me.Controls.Add(Me.orderItemGridView)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.btnProdAdd)
@@ -177,6 +205,7 @@ Partial Class OrderDetails
         CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AddressBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.orderItemGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AddressesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -196,4 +225,7 @@ Partial Class OrderDetails
     Friend WithEvents Price As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Quantity As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ShipDate As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents AddressesBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents lvAddress As System.Windows.Forms.ListView
+    Friend WithEvents Address As System.Windows.Forms.ColumnHeader
 End Class

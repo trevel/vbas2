@@ -17,9 +17,11 @@
         _order = order
 
         custCombo.DataSource = Nothing
-        custCombo.SelectedItem = custCombo.Items.Add(order.name)
+        custCombo.SelectedIndex = custCombo.Items.Add(order.name)
 
         btnNewCustomerForm.Visible = False
+
+        populateAddress(order.customer_id, order.Orders.shipping_address_id)
 
         Me.prodCombo.DataSource = db.Products
 
@@ -45,6 +47,17 @@
 
     End Sub
 
+    Private Sub populateAddress(id As Integer, selected As Integer)
+        lvAddress.Items.Clear()
+        Dim a = From add In db.Addresses
+                Where add.customer_id = id
+                Select add
+        For Each item As Address In a
+            Dim x = lvAddress.Items.Add(item.street & "," & item.city & ", " & item.province)
+            If item.id = selected Then x.Selected = True
+        Next
+
+    End Sub
 
     Private Sub OrdersBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs)
         Me.Validate()
@@ -71,5 +84,14 @@
 
 
         End If
+    End Sub
+
+
+    Private Sub custCombo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles custCombo.SelectedIndexChanged
+        If Me.Visible = True Then
+            Dim cust As Customer = custCombo.SelectedItem
+            populateAddress(cust.id, 0)
+        End If
+        
     End Sub
 End Class
