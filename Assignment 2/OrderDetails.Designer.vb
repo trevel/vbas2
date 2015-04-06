@@ -28,15 +28,16 @@ Partial Class OrderDetails
         Me.btnNewCustomerForm = New System.Windows.Forms.Button()
         Me.btnNewAddress = New System.Windows.Forms.Button()
         Me.prodCombo = New System.Windows.Forms.ComboBox()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.ProductBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.btnProdAdd = New System.Windows.Forms.Button()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.OrderItemBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.AddressBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ShipdateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.QuantityDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Product = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.orderItemGridView = New System.Windows.Forms.DataGridView()
+        Me.Product = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ShipDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,20 +83,27 @@ Partial Class OrderDetails
         '
         'prodCombo
         '
+        Me.prodCombo.DataSource = Me.ProductBindingSource
+        Me.prodCombo.DisplayMember = "description"
         Me.prodCombo.FormattingEnabled = True
         Me.prodCombo.Location = New System.Drawing.Point(12, 218)
         Me.prodCombo.Name = "prodCombo"
         Me.prodCombo.Size = New System.Drawing.Size(272, 21)
         Me.prodCombo.TabIndex = 4
+        Me.prodCombo.ValueMember = "id"
         '
-        'Button3
+        'ProductBindingSource
         '
-        Me.Button3.Location = New System.Drawing.Point(299, 215)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 6
-        Me.Button3.Text = "."
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.ProductBindingSource.DataSource = GetType(Assignment_2.Product)
+        '
+        'btnProdAdd
+        '
+        Me.btnProdAdd.Location = New System.Drawing.Point(299, 215)
+        Me.btnProdAdd.Name = "btnProdAdd"
+        Me.btnProdAdd.Size = New System.Drawing.Size(75, 23)
+        Me.btnProdAdd.TabIndex = 6
+        Me.btnProdAdd.Text = "."
+        Me.btnProdAdd.UseVisualStyleBackColor = True
         '
         'TextBox2
         '
@@ -103,10 +111,6 @@ Partial Class OrderDetails
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(100, 20)
         Me.TextBox2.TabIndex = 8
-        '
-        'ProductBindingSource
-        '
-        Me.ProductBindingSource.DataSource = GetType(Assignment_2.Product)
         '
         'OrderItemBindingSource
         '
@@ -116,43 +120,43 @@ Partial Class OrderDetails
         '
         Me.AddressBindingSource.DataSource = GetType(Assignment_2.Address)
         '
-        'ShipdateDataGridViewTextBoxColumn
-        '
-        Me.ShipdateDataGridViewTextBoxColumn.DataPropertyName = "ship_date"
-        Me.ShipdateDataGridViewTextBoxColumn.HeaderText = "ship_date"
-        Me.ShipdateDataGridViewTextBoxColumn.Name = "ShipdateDataGridViewTextBoxColumn"
-        Me.ShipdateDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'QuantityDataGridViewTextBoxColumn
-        '
-        Me.QuantityDataGridViewTextBoxColumn.DataPropertyName = "quantity"
-        Me.QuantityDataGridViewTextBoxColumn.HeaderText = "quantity"
-        Me.QuantityDataGridViewTextBoxColumn.Name = "QuantityDataGridViewTextBoxColumn"
-        Me.QuantityDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'Product
-        '
-        Me.Product.DataPropertyName = "Product"
-        Me.Product.DataSource = Me.ProductBindingSource
-        Me.Product.DisplayMember = "description"
-        Me.Product.HeaderText = "Product"
-        Me.Product.Name = "Product"
-        Me.Product.ReadOnly = True
-        Me.Product.ValueMember = "description"
-        '
         'orderItemGridView
         '
         Me.orderItemGridView.AllowUserToAddRows = False
         Me.orderItemGridView.AllowUserToDeleteRows = False
-        Me.orderItemGridView.AutoGenerateColumns = False
         Me.orderItemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.orderItemGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Product, Me.QuantityDataGridViewTextBoxColumn, Me.ShipdateDataGridViewTextBoxColumn})
-        Me.orderItemGridView.DataSource = Me.OrderItemBindingSource
+        Me.orderItemGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Product, Me.Price, Me.Quantity, Me.ShipDate})
         Me.orderItemGridView.Location = New System.Drawing.Point(12, 246)
         Me.orderItemGridView.Name = "orderItemGridView"
-        Me.orderItemGridView.ReadOnly = True
         Me.orderItemGridView.Size = New System.Drawing.Size(490, 277)
         Me.orderItemGridView.TabIndex = 9
+        '
+        'Product
+        '
+        Me.Product.DataPropertyName = "Product"
+        Me.Product.HeaderText = "Product"
+        Me.Product.Name = "Product"
+        Me.Product.ReadOnly = True
+        Me.Product.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Product.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'Price
+        '
+        Me.Price.HeaderText = "Price"
+        Me.Price.Name = "Price"
+        Me.Price.ReadOnly = True
+        '
+        'Quantity
+        '
+        Me.Quantity.HeaderText = "Quantity"
+        Me.Quantity.Name = "Quantity"
+        Me.Quantity.ReadOnly = True
+        '
+        'ShipDate
+        '
+        Me.ShipDate.HeaderText = "Shipping Date"
+        Me.ShipDate.Name = "ShipDate"
+        Me.ShipDate.ReadOnly = True
         '
         'OrderDetails
         '
@@ -161,7 +165,7 @@ Partial Class OrderDetails
         Me.ClientSize = New System.Drawing.Size(522, 590)
         Me.Controls.Add(Me.orderItemGridView)
         Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.btnProdAdd)
         Me.Controls.Add(Me.prodCombo)
         Me.Controls.Add(Me.btnNewAddress)
         Me.Controls.Add(Me.btnNewCustomerForm)
@@ -181,14 +185,15 @@ Partial Class OrderDetails
     Friend WithEvents btnNewCustomerForm As System.Windows.Forms.Button
     Friend WithEvents btnNewAddress As System.Windows.Forms.Button
     Friend WithEvents prodCombo As System.Windows.Forms.ComboBox
-    Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents btnProdAdd As System.Windows.Forms.Button
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents ProductBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents OrderItemBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents CustomerBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents AddressBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents ShipdateDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents QuantityDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Product As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents orderItemGridView As System.Windows.Forms.DataGridView
+    Friend WithEvents Product As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Price As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Quantity As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ShipDate As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

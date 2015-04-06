@@ -55,8 +55,7 @@ Partial Class formMain
         Me.OrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.bindingProductsList = New System.Windows.Forms.BindingSource(Me.components)
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.StatusStrip2 = New System.Windows.Forms.StatusStrip()
+        Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TabControl1.SuspendLayout()
         Me.tabProducts.SuspendLayout()
@@ -69,7 +68,7 @@ Partial Class formMain
         CType(Me.OrderDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bindingProductsList, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.StatusStrip2.SuspendLayout()
+        Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -338,22 +337,14 @@ Partial Class formMain
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'StatusStrip1
+        'StatusStrip
         '
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 484)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(649, 22)
-        Me.StatusStrip1.TabIndex = 2
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'StatusStrip2
-        '
-        Me.StatusStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip2.Location = New System.Drawing.Point(0, 462)
-        Me.StatusStrip2.Name = "StatusStrip2"
-        Me.StatusStrip2.Size = New System.Drawing.Size(649, 22)
-        Me.StatusStrip2.TabIndex = 3
-        Me.StatusStrip2.Text = "StatusStrip2"
+        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 484)
+        Me.StatusStrip.Name = "StatusStrip"
+        Me.StatusStrip.Size = New System.Drawing.Size(649, 22)
+        Me.StatusStrip.TabIndex = 3
+        Me.StatusStrip.Text = "StatusStrip"
         '
         'ToolStripStatusLabel1
         '
@@ -366,8 +357,7 @@ Partial Class formMain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(649, 506)
-        Me.Controls.Add(Me.StatusStrip2)
-        Me.Controls.Add(Me.StatusStrip1)
+        Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -384,8 +374,8 @@ Partial Class formMain
         CType(Me.OrderDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bindingProductsList, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.StatusStrip2.ResumeLayout(False)
-        Me.StatusStrip2.PerformLayout()
+        Me.StatusStrip.ResumeLayout(False)
+        Me.StatusStrip.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -395,7 +385,6 @@ Partial Class formMain
     Friend WithEvents tabCustomers As System.Windows.Forms.TabPage
     Friend WithEvents tabOrders As System.Windows.Forms.TabPage
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
-    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents statusLabel As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents bindingProductsList As System.Windows.Forms.BindingSource
     Friend WithEvents DescriptionDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -428,7 +417,7 @@ Partial Class formMain
     Friend WithEvents btnProductUpdate As System.Windows.Forms.Button
     Friend WithEvents btnProductRemove As System.Windows.Forms.Button
     Friend WithEvents btnProductAdd As System.Windows.Forms.Button
-    Friend WithEvents StatusStrip2 As System.Windows.Forms.StatusStrip
+    Friend WithEvents StatusStrip As System.Windows.Forms.StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
 
 End Class

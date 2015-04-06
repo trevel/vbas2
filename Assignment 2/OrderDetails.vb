@@ -5,8 +5,8 @@
     Public Sub New()
         MyBase.New()
         InitializeComponent()
-        Me.CustomerBindingSource.DataSource = db.Customers
-        Me.ProductBindingSource.DataSource = db.Products
+        Me.custCombo.DataSource = db.Customers
+        Me.prodCombo.DataSource = db.Products
     End Sub
 
     Public Sub New(order As ExpandedOrders)
@@ -21,10 +21,12 @@
 
         btnNewCustomerForm.Visible = False
 
-        Dim x As List(Of Date) = From lines In order.Order_Lines
+        Me.prodCombo.DataSource = db.Products
+
+        Dim x As Integer = Aggregate lines In order.Order_Lines
                                  Where lines.ship_date IsNot Nothing
-                                 Select lines.ship_date
-        If x.Count = 0 Then
+                                 Into Count()
+        If x = 0 Then
             btnNewAddress.Visible = True
             'TODO: Address List box active, nothing has been sent.
         Else
@@ -32,7 +34,14 @@
             'TODO: Address List Box inactive. 
         End If
 
-        orderItemGridView.DataSource = order.Order_Lines
+        For Each item As Order_Line In order.Order_Lines
+            Dim row As Integer = orderItemGridView.Rows.Add(item.Product.description, item.Product.price, item.quantity, item.ship_date)
+            If item.ship_date Is Nothing Then
+                orderItemGridView.Rows.Item(row).Cells.Item(2).ReadOnly = False
+            End If
+        Next
+
+
 
     End Sub
 
@@ -52,5 +61,15 @@
     Private Sub btnNewCustomerForm_Click(sender As Object, e As EventArgs) Handles btnNewCustomerForm.Click
         Dim cust = New CustomerDetails()
         cust.Show()
+    End Sub
+
+    Private Sub btnProdAdd_Click(sender As Object, e As EventArgs) Handles btnProdAdd.Click
+        If prodCombo.SelectedItem IsNot Nothing Then
+            Dim prod As Product = prodCombo.SelectedItem
+            Dim row As Integer = orderItemGridView.Rows.Add(prod.description, prod.price, 1, Nothing)
+            orderItemGridView.Rows.Item(row).Cells.Item(2).ReadOnly = False
+
+
+        End If
     End Sub
 End Class

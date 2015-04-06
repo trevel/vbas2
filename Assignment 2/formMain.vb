@@ -25,18 +25,6 @@
 
     End Sub
 
-    Private Sub CustomerDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles CustomerDataGridView.CellContentClick
-
-    End Sub
-
-    Private Sub CustomerBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles CustomerBindingSource.CurrentChanged
-
-    End Sub
-
-    Private Sub OrderBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles OrderBindingSource.CurrentChanged
-
-    End Sub
-
     Private Sub btnProductRemove_Click(sender As Object, e As EventArgs) Handles btnProductRemove.Click
 
     End Sub
@@ -48,4 +36,5 @@
     Private Sub btnProductUpdate_click(sender As Object, e As EventArgs) Handles btnProductUpdate.Click
 
     End Sub
+
 End Class
