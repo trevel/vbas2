@@ -92,6 +92,22 @@ Public Class DBAccessHelper
         Return p
     End Function
 
+    ' return the product id, -1 on fail
+    Public Shared Function DBInsertOrUpdateProduct(p As Product) As Integer
+        If p Is Nothing Then
+            Return -1
+        End If
+        If p.ID = 0 Then
+            Return DBInsertProduct(p)
+        Else
+            If DBUpdateProduct(p) Then
+                Return p.ID
+            Else
+                Return -1
+            End If
+        End If
+    End Function
+
     ' return the product id of the new item, -1 on fail
     Public Shared Function DBInsertProduct(p As Product) As Integer
         Dim retVal As Integer = -1

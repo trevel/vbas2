@@ -50,12 +50,11 @@
     End Sub
 
     Private Sub btnProductAdd_Click(sender As Object, e As EventArgs) Handles btnProductAdd.Click
-
+        Dim prodD As ProductDetails = New ProductDetails()
+        AddHandler prodD.prodChanged, AddressOf ProdChangedEventHandler
+        prodD.Show()
     End Sub
 
-    Private Sub btnProductUpdate_click(sender As Object, e As EventArgs)
-
-    End Sub
 
     Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
         RefreshLists()
