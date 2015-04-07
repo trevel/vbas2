@@ -68,13 +68,8 @@
 
         Dim a As Database.Address
         For Each row As DataGridViewRow In AddressDataGridView.Rows
-            Dim addressid As Integer
-            Try
-                addressid = Integer.Parse(row.Cells.Item(4).Value(0))
-            Catch ex As Exception
-                addressid = 0
-            End Try
-            a = New Database.Address(addressid, cust.id, row.Cells.Item(0).Value, row.Cells.Item(1).Value, row.Cells.Item(2).Value, row.Cells.Item(3).Value)
+           
+            a = New Database.Address(row.Cells.Item(4).Value, cust.id, row.Cells.Item(0).Value, row.Cells.Item(1).Value, row.Cells.Item(2).Value, row.Cells.Item(3).Value)
             If a.ID = 0 Then
                 dbresult = DBAccessLib.DBAccessHelper.DBInsertAddress(a)
             Else
@@ -110,10 +105,21 @@
 
 
     Private Sub AddressDataGridView_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles AddressDataGridView.CellContentDoubleClick
-        Using ad As New AddressDetail(tbName.Text, New Address())
+        Dim oldadd As New Address()
+        Dim row As DataGridViewRow = AddressDataGridView.Rows.Item(e.RowIndex)
+        oldadd.street = row.Cells.Item(0).Value
+        oldadd.id = row.Cells.Item(4).Value
+        oldadd.city = row.Cells.Item(1).Value
+        oldadd.province = row.Cells.Item(2).Value
+        oldadd.postal_code = row.Cells.Item(3).Value
+
+        Using ad As New AddressDetail(tbName.Text, oldadd)
             ad.ShowDialog()
             If (ad.DialogResult = DialogResult.OK) Then
-                AddressDataGridView.Rows.Add(ad.address.street, ad.address.city, ad.address.province, ad.address.postal_code, 0)
+                row.Cells.Item(0).Value = ad.address.street
+                row.Cells.Item(1).Value = ad.address.city
+                row.Cells.Item(2).Value = ad.address.province
+                row.Cells.Item(3).Value = ad.address.postal_code
             End If
         End Using
     End Sub
@@ -126,6 +132,7 @@
                     AddressDataGridView.Rows.Remove(item)
                 End If
             Next
+            AddressDataGridView.Refresh()
         End If
     End Sub
 

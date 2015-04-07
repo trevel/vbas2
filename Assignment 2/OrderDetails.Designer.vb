@@ -39,14 +39,25 @@ Partial Class OrderDetails
         Me.Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ShipDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AddressesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.lvAddress = New System.Windows.Forms.ListView()
-        Me.Address = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.Status = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SetQuantityTo0ToDeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddressDataGridView = New System.Windows.Forms.DataGridView()
+        Me.street = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.city = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.province = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.postal_code = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AddressBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.orderItemGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AddressesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
+        Me.ContextMenuStrip.SuspendLayout()
+        CType(Me.AddressDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'custCombo
@@ -56,9 +67,10 @@ Partial Class OrderDetails
         Me.custCombo.DataSource = Me.CustomerBindingSource
         Me.custCombo.DisplayMember = "name"
         Me.custCombo.FormattingEnabled = True
-        Me.custCombo.Location = New System.Drawing.Point(13, 35)
+        Me.custCombo.Location = New System.Drawing.Point(26, 67)
+        Me.custCombo.Margin = New System.Windows.Forms.Padding(6)
         Me.custCombo.Name = "custCombo"
-        Me.custCombo.Size = New System.Drawing.Size(391, 21)
+        Me.custCombo.Size = New System.Drawing.Size(778, 33)
         Me.custCombo.TabIndex = 0
         Me.custCombo.ValueMember = "ID"
         '
@@ -69,18 +81,20 @@ Partial Class OrderDetails
         '
         'btnNewCustomerForm
         '
-        Me.btnNewCustomerForm.Location = New System.Drawing.Point(410, 35)
+        Me.btnNewCustomerForm.Location = New System.Drawing.Point(820, 67)
+        Me.btnNewCustomerForm.Margin = New System.Windows.Forms.Padding(6)
         Me.btnNewCustomerForm.Name = "btnNewCustomerForm"
-        Me.btnNewCustomerForm.Size = New System.Drawing.Size(92, 23)
+        Me.btnNewCustomerForm.Size = New System.Drawing.Size(184, 44)
         Me.btnNewCustomerForm.TabIndex = 2
         Me.btnNewCustomerForm.Text = "New Customer"
         Me.btnNewCustomerForm.UseVisualStyleBackColor = True
         '
         'btnNewAddress
         '
-        Me.btnNewAddress.Location = New System.Drawing.Point(410, 80)
+        Me.btnNewAddress.Location = New System.Drawing.Point(820, 154)
+        Me.btnNewAddress.Margin = New System.Windows.Forms.Padding(6)
         Me.btnNewAddress.Name = "btnNewAddress"
-        Me.btnNewAddress.Size = New System.Drawing.Size(92, 23)
+        Me.btnNewAddress.Size = New System.Drawing.Size(184, 44)
         Me.btnNewAddress.TabIndex = 3
         Me.btnNewAddress.Text = "New Address"
         Me.btnNewAddress.UseVisualStyleBackColor = True
@@ -90,9 +104,10 @@ Partial Class OrderDetails
         Me.prodCombo.DataSource = Me.ProductBindingSource
         Me.prodCombo.DisplayMember = "description"
         Me.prodCombo.FormattingEnabled = True
-        Me.prodCombo.Location = New System.Drawing.Point(12, 218)
+        Me.prodCombo.Location = New System.Drawing.Point(15, 419)
+        Me.prodCombo.Margin = New System.Windows.Forms.Padding(6)
         Me.prodCombo.Name = "prodCombo"
-        Me.prodCombo.Size = New System.Drawing.Size(272, 21)
+        Me.prodCombo.Size = New System.Drawing.Size(540, 33)
         Me.prodCombo.TabIndex = 4
         Me.prodCombo.ValueMember = "id"
         '
@@ -102,18 +117,20 @@ Partial Class OrderDetails
         '
         'btnProdAdd
         '
-        Me.btnProdAdd.Location = New System.Drawing.Point(290, 218)
+        Me.btnProdAdd.Location = New System.Drawing.Point(580, 419)
+        Me.btnProdAdd.Margin = New System.Windows.Forms.Padding(6)
         Me.btnProdAdd.Name = "btnProdAdd"
-        Me.btnProdAdd.Size = New System.Drawing.Size(40, 23)
+        Me.btnProdAdd.Size = New System.Drawing.Size(80, 44)
         Me.btnProdAdd.TabIndex = 6
         Me.btnProdAdd.Text = "Add"
         Me.btnProdAdd.UseVisualStyleBackColor = True
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(13, 529)
+        Me.TextBox2.Location = New System.Drawing.Point(26, 1017)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(6)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(196, 31)
         Me.TextBox2.TabIndex = 8
         '
         'OrderItemBindingSource
@@ -130,9 +147,10 @@ Partial Class OrderDetails
         Me.orderItemGridView.AllowUserToDeleteRows = False
         Me.orderItemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.orderItemGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Product, Me.Price, Me.Quantity, Me.ShipDate})
-        Me.orderItemGridView.Location = New System.Drawing.Point(12, 246)
+        Me.orderItemGridView.Location = New System.Drawing.Point(24, 473)
+        Me.orderItemGridView.Margin = New System.Windows.Forms.Padding(6)
         Me.orderItemGridView.Name = "orderItemGridView"
-        Me.orderItemGridView.Size = New System.Drawing.Size(490, 277)
+        Me.orderItemGridView.Size = New System.Drawing.Size(980, 533)
         Me.orderItemGridView.TabIndex = 9
         '
         'Product
@@ -167,30 +185,96 @@ Partial Class OrderDetails
         Me.AddressesBindingSource.DataMember = "Addresses"
         Me.AddressesBindingSource.DataSource = Me.CustomerBindingSource
         '
-        'lvAddress
+        'StatusStrip1
         '
-        Me.lvAddress.CheckBoxes = True
-        Me.lvAddress.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.Address})
-        Me.lvAddress.FullRowSelect = True
-        Me.lvAddress.Location = New System.Drawing.Point(13, 80)
-        Me.lvAddress.MultiSelect = False
-        Me.lvAddress.Name = "lvAddress"
-        Me.lvAddress.ShowGroups = False
-        Me.lvAddress.Size = New System.Drawing.Size(391, 101)
-        Me.lvAddress.TabIndex = 10
-        Me.lvAddress.UseCompatibleStateImageBehavior = False
-        Me.lvAddress.View = System.Windows.Forms.View.List
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Status})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 1113)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(1044, 22)
+        Me.StatusStrip1.TabIndex = 11
+        Me.StatusStrip1.Text = "StatusStrip1"
         '
-        'Address
+        'Status
         '
-        Me.Address.Width = 500
+        Me.Status.Name = "Status"
+        Me.Status.Size = New System.Drawing.Size(0, 17)
+        '
+        'ContextMenuStrip
+        '
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetQuantityTo0ToDeleteToolStripMenuItem})
+        Me.ContextMenuStrip.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(372, 40)
+        '
+        'SetQuantityTo0ToDeleteToolStripMenuItem
+        '
+        Me.SetQuantityTo0ToDeleteToolStripMenuItem.Name = "SetQuantityTo0ToDeleteToolStripMenuItem"
+        Me.SetQuantityTo0ToDeleteToolStripMenuItem.Size = New System.Drawing.Size(371, 36)
+        Me.SetQuantityTo0ToDeleteToolStripMenuItem.Text = "Set quantity to 0 to delete"
+        '
+        'AddressDataGridView
+        '
+        Me.AddressDataGridView.AllowUserToAddRows = False
+        Me.AddressDataGridView.AllowUserToDeleteRows = False
+        Me.AddressDataGridView.AllowUserToOrderColumns = True
+        Me.AddressDataGridView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.AddressDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.AddressDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.AddressDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.street, Me.city, Me.province, Me.postal_code, Me.id})
+        Me.AddressDataGridView.Location = New System.Drawing.Point(26, 154)
+        Me.AddressDataGridView.Margin = New System.Windows.Forms.Padding(6)
+        Me.AddressDataGridView.MultiSelect = False
+        Me.AddressDataGridView.Name = "AddressDataGridView"
+        Me.AddressDataGridView.ReadOnly = True
+        Me.AddressDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.AddressDataGridView.Size = New System.Drawing.Size(778, 217)
+        Me.AddressDataGridView.TabIndex = 15
+        '
+        'street
+        '
+        Me.street.HeaderText = "Street"
+        Me.street.Name = "street"
+        Me.street.ReadOnly = True
+        Me.street.Width = 94
+        '
+        'city
+        '
+        Me.city.HeaderText = "City"
+        Me.city.Name = "city"
+        Me.city.ReadOnly = True
+        Me.city.Width = 74
+        '
+        'province
+        '
+        Me.province.HeaderText = "Province"
+        Me.province.MaxInputLength = 2
+        Me.province.Name = "province"
+        Me.province.ReadOnly = True
+        Me.province.Width = 121
+        '
+        'postal_code
+        '
+        Me.postal_code.HeaderText = "PostalCode"
+        Me.postal_code.MaxInputLength = 7
+        Me.postal_code.Name = "postal_code"
+        Me.postal_code.ReadOnly = True
+        Me.postal_code.Width = 148
+        '
+        'id
+        '
+        Me.id.HeaderText = "id"
+        Me.id.Name = "id"
+        Me.id.ReadOnly = True
+        Me.id.Visible = False
         '
         'OrderDetails
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(522, 590)
-        Me.Controls.Add(Me.lvAddress)
+        Me.ClientSize = New System.Drawing.Size(1044, 1135)
+        Me.Controls.Add(Me.AddressDataGridView)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.orderItemGridView)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.btnProdAdd)
@@ -198,6 +282,7 @@ Partial Class OrderDetails
         Me.Controls.Add(Me.btnNewAddress)
         Me.Controls.Add(Me.btnNewCustomerForm)
         Me.Controls.Add(Me.custCombo)
+        Me.Margin = New System.Windows.Forms.Padding(6)
         Me.Name = "OrderDetails"
         Me.Text = "OrderDetails"
         CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -206,6 +291,10 @@ Partial Class OrderDetails
         CType(Me.AddressBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.orderItemGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AddressesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
+        Me.ContextMenuStrip.ResumeLayout(False)
+        CType(Me.AddressDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -226,6 +315,14 @@ Partial Class OrderDetails
     Friend WithEvents Quantity As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ShipDate As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AddressesBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents lvAddress As System.Windows.Forms.ListView
-    Friend WithEvents Address As System.Windows.Forms.ColumnHeader
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents Status As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents ContextMenuStrip As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents SetQuantityTo0ToDeleteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AddressDataGridView As System.Windows.Forms.DataGridView
+    Friend WithEvents street As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents city As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents province As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents postal_code As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents id As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

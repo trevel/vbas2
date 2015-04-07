@@ -9,6 +9,7 @@
         InitializeComponent()
         Me.custCombo.DataSource = db.Customers
         Me.prodCombo.DataSource = db.Products
+
     End Sub
 
     Public Sub New(order As ExpandedOrders)
@@ -31,10 +32,10 @@
                                  Into Count()
         If x = 0 Then
             btnNewAddress.Visible = True
-            'TODO: Address List box active, nothing has been sent.
+            AddressDataGridView.Enabled = True
         Else
             btnNewAddress.Visible = False
-            'TODO: Address List Box inactive. 
+            AddressDataGridView.Enabled = False
         End If
 
         For Each item As Order_Line In order.Order_Lines
@@ -43,33 +44,45 @@
                 orderItemGridView.Rows.Item(row).Cells.Item(2).ReadOnly = False
             End If
         Next
-
-
-
     End Sub
 
     Private Sub populateAddress(id As Integer, selected As Integer)
-        lvAddress.Items.Clear()
+        AddressDataGridView.Rows.Clear()
         Dim a = From add In db.Addresses
                 Where add.customer_id = id
                 Select add
-        For Each item As Address In a
-            Dim x = lvAddress.Items.Add(item.street & "," & item.city & ", " & item.province)
-            If item.id = selected Then x.Selected = True
+        For Each ad As Address In a
+            AddressDataGridView.Rows.Add(ad.street, ad.city, ad.province, ad.postal_code, ad.id)
         Next
-
+        For Each row As DataGridViewRow In AddressDataGridView.Rows
+            If row.Cells.Item(4).Value = selected Then
+                row.Selected = True
+            End If
+        Next
     End Sub
 
     Private Sub OrdersBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs)
         Me.Validate()
-
     End Sub
 
-
     Private Sub btnNewAddress_Click(sender As Object, e As EventArgs) Handles btnNewAddress.Click
+        Dim a As Database.Address
+
         If Me.custCombo.Text = "" Then Return
-        Dim add As New AddressDetail(Me.custCombo.Text)
-        add.Show()
+        Using add As New AddressDetail(Me.custCombo.Text)
+            add.ShowDialog()
+            If add.DialogResult = Windows.Forms.DialogResult.OK Then
+                a = New Database.Address(add.address.id, Me.custCombo.SelectedItem.id, add.address.street, add.address.city, add.address.province, add.address.postal_code)
+                If a.ID = 0 Then
+                    a.ID = DBAccessLib.DBAccessHelper.DBInsertAddress(a)
+                End If
+                If a.ID = -1 Then
+                    MsgBox("Could not save address: " & a.ToString)
+                End If
+                populateAddress(Me.custCombo.SelectedItem.id, a.ID)
+            End If
+        End Using
+
     End Sub
 
     Private Sub btnNewCustomerForm_Click(sender As Object, e As EventArgs) Handles btnNewCustomerForm.Click
@@ -81,6 +94,7 @@
                 custCombo.SelectedIndex = custCombo.Items.Count - 1
                 custCombo.Refresh()
                 RaiseEvent CustChanged(custD.cust)
+                Status.Text = "New customer created"
             End If
         End Using
     End Sub
@@ -88,26 +102,35 @@
     Private Sub btnProdAdd_Click(sender As Object, e As EventArgs) Handles btnProdAdd.Click
         If prodCombo.SelectedItem IsNot Nothing Then
             Dim prod As Product = prodCombo.SelectedItem
-            Dim row As Integer = orderItemGridView.Rows.Add(prod.description, prod.price, 1, Nothing)
-            orderItemGridView.Rows.Item(row).Cells.Item(2).ReadOnly = False
-
-
+            Dim item = From rows As DataGridViewRow In orderItemGridView.Rows
+                       Where rows.Cells.Item(0).Value = prod.description And ShipDate Is Nothing
+                       Select rows.Index
+            If item Is Nothing Or item.Count = 0 Then
+                Dim row As Integer = orderItemGridView.Rows.Add(prod.description, prod.price, 1, Nothing)
+                orderItemGridView.Rows.Item(row).Cells.Item(2).ReadOnly = False
+            Else
+                orderItemGridView.Rows.Item(item(0)).Cells.Item(2).Value += 1
+            End If
         End If
     End Sub
 
 
     Private Sub custCombo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles custCombo.SelectedIndexChanged
-        If Me.Visible = True Then
-            '    If custCombo.SelectedItem.GetType() = System.String Then Return
-            Dim cust As Customer = custCombo.SelectedItem
-            populateAddress(cust.id, 0)
-        End If
-        
+        'If Me.Visible = True Then
+        '    If custCombo.SelectedItem.GetType() = System.String Then Return
+        Dim cust As Customer = custCombo.SelectedItem
+        populateAddress(cust.id, 0)
+        'End If
+
     End Sub
 
     Private Sub save()
         Dim items As New Order_Line
-        '  items.id = ?
-        '  items.
+
+        ' step one: validate customer/address
+        ' step two: validate order items
+        ' step three: validate discount/order date
+        ' step four: save all 
+
     End Sub
 End Class
