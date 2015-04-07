@@ -111,12 +111,6 @@
     <Compile Include="DataClasses.vb">
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </Compile>
-    <Compile Include="ProductDetails.Designer.vb">
-      <DependentUpon>ProductDetails.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ProductDetails.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="formMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -166,9 +160,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerDetails.resx">
       <DependentUpon>CustomerDetails.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProductDetails.resx">
-      <DependentUpon>ProductDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formMain.resx">
       <DependentUpon>formMain.vb</DependentUpon>
