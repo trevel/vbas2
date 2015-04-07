@@ -71,8 +71,15 @@
     End Sub
 
     Private Sub btnNewCustomerForm_Click(sender As Object, e As EventArgs) Handles btnNewCustomerForm.Click
-        Dim cust = New CustomerDetails()
-        cust.Show()
+        Using custD As CustomerDetails = New CustomerDetails()
+            custD.ShowDialog()
+            db = New DataClassesDataContext
+            If (custD.DialogResult = DialogResult.OK) Then
+                custCombo.DataSource = db.Customers
+                custCombo.SelectedIndex = custCombo.Items.Count - 1
+                custCombo.Refresh()
+            End If
+        End Using
     End Sub
 
     Private Sub btnProdAdd_Click(sender As Object, e As EventArgs) Handles btnProdAdd.Click

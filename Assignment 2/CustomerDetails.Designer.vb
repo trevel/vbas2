@@ -129,6 +129,7 @@ Partial Class CustomerDetails
         '
         'btnSave
         '
+        Me.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.btnSave.Location = New System.Drawing.Point(307, 317)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
@@ -138,6 +139,7 @@ Partial Class CustomerDetails
         '
         'btnCancel
         '
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Location = New System.Drawing.Point(226, 317)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)

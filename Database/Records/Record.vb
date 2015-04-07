@@ -8,7 +8,7 @@ Imports CSLib
 
 <Serializable()> Public MustInherit Class Record : Implements IValidator : Implements IRecord
 
-    Protected m_ID As UInteger
+    Protected m_ID As Integer
     Protected MustOverride ReadOnly Property fieldcount As UInt16
 
     Public MustOverride Sub InterpretCSV(csv As String)
