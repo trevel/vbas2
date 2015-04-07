@@ -69,7 +69,7 @@ Imports System.IO
         End Set
     End Property
 
-    Public Sub New(id As Integer, order_id As Integer, product As Integer, quantity As UInteger, ship As Date)
+    Public Sub New(id As Integer, order_id As Integer, product As Integer, quantity As UInteger, ship As Date?)
         Me.ID = id
         Me.order_id = order_id
         Me.product_id = product

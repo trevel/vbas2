@@ -132,11 +132,9 @@ Public Class DBAccessHelper
     End Function
 
     ' true on success, false on fail
-    Public Shared Function DBDeleteProduct(p As Product) As Boolean
+    Public Shared Function DBDeleteProduct(id As Integer) As Boolean
         Dim bRetVal As Boolean = False
-        If p Is Nothing Then
-            Return bRetVal
-        End If
+
         ' Get the connection
         Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
         ' Create the command
@@ -148,7 +146,7 @@ Public Class DBAccessHelper
 
         ' Set up the parameters and values
         cmd.Parameters.Add("@id", SqlDbType.Int)
-        cmd.Parameters("@id").Value = p.ID
+        cmd.Parameters("@id").Value = id
 
         If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
             bRetVal = True
@@ -288,11 +286,9 @@ Public Class DBAccessHelper
     End Function
 
     ' true on success, false on fail
-    Public Shared Function DBDeleteAddress(a As Address) As Boolean
+    Public Shared Function DBDeleteAddress(id As Integer) As Boolean
         Dim bRetVal As Boolean = False
-        If a Is Nothing Then
-            Return bRetVal
-        End If
+
         ' Get the connection
         Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
         ' Create the command
@@ -304,7 +300,7 @@ Public Class DBAccessHelper
 
         ' Set up the parameters and values
         cmd.Parameters.Add("@id", SqlDbType.Int)
-        cmd.Parameters("@id").Value = a.ID
+        cmd.Parameters("@id").Value = id
 
         If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
             bRetVal = True
@@ -434,11 +430,9 @@ Public Class DBAccessHelper
     End Function
 
     ' true on success, false on fail
-    Public Shared Function DBDeleteCustomer(c As Customer) As Boolean
+    Public Shared Function DBDeleteCustomer(id As Integer) As Boolean
         Dim bRetVal As Boolean = False
-        If c Is Nothing Then
-            Return bRetVal
-        End If
+
         ' Get the connection
         Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
         ' Create the command
@@ -450,7 +444,7 @@ Public Class DBAccessHelper
 
         ' Set up the parameters and values
         cmd.Parameters.Add("@id", SqlDbType.Int)
-        cmd.Parameters("@id").Value = c.ID
+        cmd.Parameters("@id").Value = id
 
         If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
             bRetVal = True
@@ -578,11 +572,9 @@ Public Class DBAccessHelper
 
 
     ' true on success, false on fail
-    Public Shared Function DBDeleteOrder(o As Order) As Boolean
+    Public Shared Function DBDeleteOrder(id As Integer) As Boolean
         Dim bRetVal As Boolean = False
-        If o Is Nothing Then
-            Return bRetVal
-        End If
+
         ' Get the connection
         Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
         ' Create the command
@@ -594,7 +586,7 @@ Public Class DBAccessHelper
 
         ' Set up the parameters and values
         cmd.Parameters.Add("@id", SqlDbType.Int)
-        cmd.Parameters("@id").Value = o.ID
+        cmd.Parameters("@id").Value = id
 
         If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
             bRetVal = True
@@ -671,7 +663,7 @@ Public Class DBAccessHelper
             If id <> -1 Then
                 ' found the record, create and populate the new product object
                 'Public Sub New(id As Integer, order_id As Integer, product As Integer, quantity As UInteger)
-                Dim ship As Date = Nothing
+                Dim ship As Date? = Nothing
                 If IsDBNull(cmd.Parameters("@shipdate").Value) = False Then
                     ship = cmd.Parameters("@shipdate").Value
                 End If
@@ -730,11 +722,9 @@ Public Class DBAccessHelper
     End Function
 
     ' true on success, false on fail
-    Public Shared Function DBDeleteOrderItem(i As OrderItem) As Boolean
+    Public Shared Function DBDeleteOrderItem(id As Integer) As Boolean
         Dim bRetVal As Boolean = False
-        If i Is Nothing Then
-            Return bRetVal
-        End If
+
         ' Get the connection
         Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
         ' Create the command
@@ -746,7 +736,7 @@ Public Class DBAccessHelper
 
         ' Set up the parameters and values
         cmd.Parameters.Add("@id", SqlDbType.Int)
-        cmd.Parameters("@id").Value = i.ID
+        cmd.Parameters("@id").Value = id
 
         If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
             bRetVal = True
@@ -774,18 +764,19 @@ Public Class DBAccessHelper
         ' Set up the parameters and values
         cmd.Parameters.Add("@id", SqlDbType.Int)
         cmd.Parameters("@id").Value = i.ID
-        If IsNothing(i.ship_date) Then
-            cmd.Parameters("@shipdate").Value = DBNull.Value
-        Else
-            cmd.Parameters("@shipdate").Value = i.ship_date
-        End If
+
         cmd.Parameters.Add("@orderid", SqlDbType.Int)
         cmd.Parameters("@orderid").Value = i.order_id
         cmd.Parameters.Add("@prodid", SqlDbType.Int)
         cmd.Parameters("@prodid").Value = i.product_id
         cmd.Parameters.Add("@quantity", SqlDbType.Int)
         cmd.Parameters("@quantity").Value = i.quantity
-
+        cmd.Parameters.Add("@shipdate", SqlDbType.Date)
+        If IsNothing(i.ship_date) Then
+            cmd.Parameters("@shipdate").Value = DBNull.Value
+        Else
+            cmd.Parameters("@shipdate").Value = i.ship_date
+        End If
         If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
             bRetVal = True
         End If
