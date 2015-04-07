@@ -1,6 +1,8 @@
 ﻿Public Class OrderDetails
     Dim db As New DataClassesDataContext
     Private _order As ExpandedOrders
+    Public Event OrderChanged(ByVal order As Order)
+    Public Event CustChanged(ByVal cust As Customer)
 
     Public Sub New()
         MyBase.New()
@@ -78,6 +80,7 @@
                 custCombo.DataSource = db.Customers
                 custCombo.SelectedIndex = custCombo.Items.Count - 1
                 custCombo.Refresh()
+                RaiseEvent CustChanged(custD.cust)
             End If
         End Using
     End Sub

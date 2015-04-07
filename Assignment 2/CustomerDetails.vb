@@ -8,6 +8,8 @@
         cust.id = 0
     End Sub
 
+    Public Event CustChanged(ByVal cust As Object)
+
     Sub New(ByRef cust As Customer)
         Me.New()
         Me.cust = cust
@@ -35,6 +37,12 @@
         cust.name = c.name
         cust.email = c.email
         cust.credit_limit = c.credit_limit
+        RaiseEvent CustChanged(cust)
+        Me.Close()
+
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Me.Close()
     End Sub
 End Class

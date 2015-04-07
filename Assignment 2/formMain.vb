@@ -19,8 +19,17 @@
         od.Show()
     End Sub
 
+    Private Sub RefreshLists()
+        db = New DataClassesDataContext
+        ProductDataGridView.DataSource = db.Products
+        OrderDataGridView.DataSource = db.ExpandedOrders
+        CustomerDataGridView.DataSource = db.Customers
+    End Sub
+
     Private Sub btnOrderAdd_Click(sender As Object, e As EventArgs) Handles btnOrderAdd.Click
         Dim od As New OrderDetails()
+        AddHandler od.OrderChanged, AddressOf OrderchangedEventHandler
+        AddHandler od.CustChanged, AddressOf CustChangedEventHandler
         od.Show()
 
     End Sub
@@ -35,6 +44,28 @@
 
     Private Sub btnProductUpdate_click(sender As Object, e As EventArgs) Handles btnProductUpdate.Click
 
+    End Sub
+
+    Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
+        RefreshLists()
+    End Sub
+
+    Private Sub btnCustAdd_Click(sender As Object, e As EventArgs) Handles btnCustAdd.Click
+        Dim custD As CustomerDetails = New CustomerDetails()
+        AddHandler custD.CustChanged, AddressOf CustChangedEventHandler
+        custD.Show()
+    End Sub
+
+    Private Sub CustChangedEventHandler(cust As Customer)
+        RefreshLists()
+    End Sub
+
+    Private Sub ProdChangedEventHanler(prod As Product)
+        RefreshLists()
+    End Sub
+
+    Private Sub OrderchangedEventHandler(order As Order)
+        RefreshLists()
     End Sub
 
 End Class
