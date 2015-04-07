@@ -9,15 +9,27 @@
 
     End Sub
 
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles OrderDataGridView.CellContentClick
-        ' e.RowIndex()
-    End Sub
-
     Private Sub OrderDataGridView1_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles OrderDataGridView.CellContentDoubleClick
         Dim exp_order As ExpandedOrders = OrderDataGridView.Rows(e.RowIndex).DataBoundItem
-        Dim od As New OrderDetails(exp_order) 'DBAccessLib.getOrderById(exp_order.id))
+        Dim od As New OrderDetails(exp_order)
+        AddHandler od.OrderChanged, AddressOf OrderchangedEventHandler
         od.Show()
     End Sub
+
+    Private Sub CustomerDataGridView_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles CustomerDataGridView.CellContentDoubleClick
+        Dim cust As Customer = CustomerDataGridView.Rows(e.RowIndex).DataBoundItem
+        Dim cd As New CustomerDetails(cust)
+        AddHandler cd.CustChanged, AddressOf CustChangedEventHandler
+        cd.Show()
+    End Sub
+
+    Private Sub ProductDataGridView_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles ProductDataGridView.CellContentDoubleClick
+        Dim prod As Product = ProductDataGridView.Rows(e.RowIndex).DataBoundItem
+        Dim pd As New ProductDetails(prod)
+        AddHandler pd.ProdChanged, AddressOf ProdChangedEventHandler
+        pd.Show()
+    End Sub
+
 
     Private Sub RefreshLists()
         db = New DataClassesDataContext
@@ -31,7 +43,6 @@
         AddHandler od.OrderChanged, AddressOf OrderchangedEventHandler
         AddHandler od.CustChanged, AddressOf CustChangedEventHandler
         od.Show()
-
     End Sub
 
     Private Sub btnProductRemove_Click(sender As Object, e As EventArgs) Handles btnProductRemove.Click
@@ -60,12 +71,13 @@
         RefreshLists()
     End Sub
 
-    Private Sub ProdChangedEventHanler(prod As Product)
+    Private Sub ProdChangedEventHandler(prod As Product)
         RefreshLists()
     End Sub
 
     Private Sub OrderchangedEventHandler(order As Order)
         RefreshLists()
     End Sub
+
 
 End Class

@@ -22,6 +22,7 @@ Partial Class CustomerDetails
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.tbName = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -30,19 +31,26 @@ Partial Class CustomerDetails
         Me.tbPhoneNumber = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.tbCreditLimit = New System.Windows.Forms.TextBox()
-        Me.lvAddresses = New System.Windows.Forms.ListView()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnAdd = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.status = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.StatusStrip1.SuspendLayout
-        Me.SuspendLayout
+        Me.AddressDataGridView = New System.Windows.Forms.DataGridView()
+        Me.street = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.contextAddresses = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.city = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.province = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.postal_code = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StatusStrip1.SuspendLayout()
+        CType(Me.AddressDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
         '
         'Label1
         '
-        Me.Label1.AutoSize = true
+        Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(13, 13)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(35, 13)
@@ -58,7 +66,7 @@ Partial Class CustomerDetails
         '
         'Label2
         '
-        Me.Label2.AutoSize = true
+        Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(13, 53)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(32, 13)
@@ -74,7 +82,7 @@ Partial Class CustomerDetails
         '
         'Label3
         '
-        Me.Label3.AutoSize = true
+        Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(16, 97)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(78, 13)
@@ -90,7 +98,7 @@ Partial Class CustomerDetails
         '
         'Label4
         '
-        Me.Label4.AutoSize = true
+        Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(16, 141)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(58, 13)
@@ -104,51 +112,46 @@ Partial Class CustomerDetails
         Me.tbCreditLimit.Size = New System.Drawing.Size(319, 20)
         Me.tbCreditLimit.TabIndex = 7
         '
-        'lvAddresses
-        '
-        Me.lvAddresses.Location = New System.Drawing.Point(16, 197)
-        Me.lvAddresses.Name = "lvAddresses"
-        Me.lvAddresses.Size = New System.Drawing.Size(319, 114)
-        Me.lvAddresses.TabIndex = 8
-        Me.lvAddresses.UseCompatibleStateImageBehavior = false
-        '
         'Label5
         '
-        Me.Label5.AutoSize = true
+        Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(16, 181)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(56, 13)
         Me.Label5.TabIndex = 9
         Me.Label5.Text = "Addresses"
         '
-        'Button1
+        'btnAdd
         '
-        Me.Button1.Location = New System.Drawing.Point(341, 197)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(41, 23)
-        Me.Button1.TabIndex = 10
-        Me.Button1.Text = "Add"
-        Me.Button1.UseVisualStyleBackColor = true
+        Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAdd.Location = New System.Drawing.Point(349, 169)
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(41, 23)
+        Me.btnAdd.TabIndex = 10
+        Me.btnAdd.Text = "Add"
+        Me.btnAdd.UseVisualStyleBackColor = True
         '
         'btnSave
         '
+        Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnSave.Location = New System.Drawing.Point(307, 317)
+        Me.btnSave.Location = New System.Drawing.Point(315, 317)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 11
         Me.btnSave.Text = "Save"
-        Me.btnSave.UseVisualStyleBackColor = true
+        Me.btnSave.UseVisualStyleBackColor = True
         '
         'btnCancel
         '
+        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(226, 317)
+        Me.btnCancel.Location = New System.Drawing.Point(234, 317)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 12
         Me.btnCancel.Text = "Cancel"
-        Me.btnCancel.UseVisualStyleBackColor = true
+        Me.btnCancel.UseVisualStyleBackColor = True
         '
         'StatusStrip1
         '
@@ -164,17 +167,76 @@ Partial Class CustomerDetails
         Me.status.Name = "status"
         Me.status.Size = New System.Drawing.Size(0, 17)
         '
+        'AddressDataGridView
+        '
+        Me.AddressDataGridView.AllowUserToAddRows = False
+        Me.AddressDataGridView.AllowUserToDeleteRows = False
+        Me.AddressDataGridView.AllowUserToOrderColumns = True
+        Me.AddressDataGridView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.AddressDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.AddressDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.street, Me.city, Me.province, Me.postal_code, Me.id})
+        Me.AddressDataGridView.Location = New System.Drawing.Point(16, 198)
+        Me.AddressDataGridView.Name = "AddressDataGridView"
+        Me.AddressDataGridView.ReadOnly = True
+        Me.AddressDataGridView.Size = New System.Drawing.Size(374, 113)
+        Me.AddressDataGridView.TabIndex = 14
+        '
+        'street
+        '
+        Me.street.ContextMenuStrip = Me.contextAddresses
+        Me.street.HeaderText = "Street"
+        Me.street.Name = "street"
+        Me.street.ReadOnly = True
+        '
+        'contextAddresses
+        '
+        Me.contextAddresses.Name = "contextAddresses"
+        Me.contextAddresses.Size = New System.Drawing.Size(61, 4)
+        '
+        'city
+        '
+        Me.city.ContextMenuStrip = Me.contextAddresses
+        Me.city.HeaderText = "City"
+        Me.city.Name = "city"
+        Me.city.ReadOnly = True
+        Me.city.Width = 40
+        '
+        'province
+        '
+        Me.province.ContextMenuStrip = Me.contextAddresses
+        Me.province.HeaderText = "Province"
+        Me.province.Name = "province"
+        Me.province.ReadOnly = True
+        Me.province.Width = 30
+        '
+        'postal_code
+        '
+        Me.postal_code.ContextMenuStrip = Me.contextAddresses
+        Me.postal_code.HeaderText = "PostalCode"
+        Me.postal_code.Name = "postal_code"
+        Me.postal_code.ReadOnly = True
+        Me.postal_code.Width = 80
+        '
+        'id
+        '
+        Me.id.HeaderText = "id"
+        Me.id.Name = "id"
+        Me.id.ReadOnly = True
+        Me.id.Visible = False
+        '
         'CustomerDetails
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(402, 367)
+        Me.Controls.Add(Me.AddressDataGridView)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.lvAddresses)
         Me.Controls.Add(Me.tbCreditLimit)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.tbPhoneNumber)
@@ -185,12 +247,13 @@ Partial Class CustomerDetails
         Me.Controls.Add(Me.Label1)
         Me.Name = "CustomerDetails"
         Me.Text = "CustomerDetails"
-        Me.StatusStrip1.ResumeLayout(false)
-        Me.StatusStrip1.PerformLayout
-        Me.ResumeLayout(false)
-        Me.PerformLayout
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
+        CType(Me.AddressDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-End Sub
+    End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents tbName As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
@@ -199,11 +262,17 @@ End Sub
     Friend WithEvents tbPhoneNumber As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents tbCreditLimit As System.Windows.Forms.TextBox
-    Friend WithEvents lvAddresses As System.Windows.Forms.ListView
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents btnAdd As System.Windows.Forms.Button
     Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents status As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents AddressDataGridView As System.Windows.Forms.DataGridView
+    Friend WithEvents street As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents contextAddresses As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents city As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents province As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents postal_code As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents id As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

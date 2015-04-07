@@ -139,6 +139,12 @@
     <Compile Include="OrderDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ProductDetails.Designer.vb">
+      <DependentUpon>ProductDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProductDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cvb815a_assign2DataSet.xsc">

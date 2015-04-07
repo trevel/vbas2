@@ -36,6 +36,9 @@ Partial Class formMain
         Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ProductBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.tabCustomers = New System.Windows.Forms.TabPage()
+        Me.btnCustUpdate = New System.Windows.Forms.Button()
+        Me.btnCustRemove = New System.Windows.Forms.Button()
+        Me.btnCustAdd = New System.Windows.Forms.Button()
         Me.CustomerDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -56,15 +59,12 @@ Partial Class formMain
         Me.bindingProductsList = New System.Windows.Forms.BindingSource(Me.components)
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RefreshToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.RefreshToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.btnCustAdd = New System.Windows.Forms.Button()
-        Me.btnCustRemove = New System.Windows.Forms.Button()
-        Me.btnCustUpdate = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.tabProducts.SuspendLayout()
         CType(Me.ProductDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -202,6 +202,33 @@ Partial Class formMain
         Me.tabCustomers.TabIndex = 1
         Me.tabCustomers.Text = "Customers"
         Me.tabCustomers.UseVisualStyleBackColor = True
+        '
+        'btnCustUpdate
+        '
+        Me.btnCustUpdate.Location = New System.Drawing.Point(171, 6)
+        Me.btnCustUpdate.Name = "btnCustUpdate"
+        Me.btnCustUpdate.Size = New System.Drawing.Size(75, 23)
+        Me.btnCustUpdate.TabIndex = 3
+        Me.btnCustUpdate.Text = "Update"
+        Me.btnCustUpdate.UseVisualStyleBackColor = True
+        '
+        'btnCustRemove
+        '
+        Me.btnCustRemove.Location = New System.Drawing.Point(90, 6)
+        Me.btnCustRemove.Name = "btnCustRemove"
+        Me.btnCustRemove.Size = New System.Drawing.Size(75, 23)
+        Me.btnCustRemove.TabIndex = 2
+        Me.btnCustRemove.Text = "Remove"
+        Me.btnCustRemove.UseVisualStyleBackColor = True
+        '
+        'btnCustAdd
+        '
+        Me.btnCustAdd.Location = New System.Drawing.Point(9, 6)
+        Me.btnCustAdd.Name = "btnCustAdd"
+        Me.btnCustAdd.Size = New System.Drawing.Size(75, 23)
+        Me.btnCustAdd.TabIndex = 1
+        Me.btnCustAdd.Text = "Add"
+        Me.btnCustAdd.UseVisualStyleBackColor = True
         '
         'CustomerDataGridView
         '
@@ -358,10 +385,16 @@ Partial Class formMain
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
+        'RefreshToolStripMenuItem
+        '
+        Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
+        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(113, 22)
+        Me.RefreshToolStripMenuItem.Text = "Refresh"
+        '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(113, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'HelpToolStripMenuItem
@@ -391,39 +424,6 @@ Partial Class formMain
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(67, 17)
         Me.ToolStripStatusLabel1.Text = "StatusLabel"
-        '
-        'RefreshToolStripMenuItem
-        '
-        Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
-        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.RefreshToolStripMenuItem.Text = "Refresh"
-        '
-        'btnCustAdd
-        '
-        Me.btnCustAdd.Location = New System.Drawing.Point(9, 6)
-        Me.btnCustAdd.Name = "btnCustAdd"
-        Me.btnCustAdd.Size = New System.Drawing.Size(75, 23)
-        Me.btnCustAdd.TabIndex = 1
-        Me.btnCustAdd.Text = "Add"
-        Me.btnCustAdd.UseVisualStyleBackColor = True
-        '
-        'btnCustRemove
-        '
-        Me.btnCustRemove.Location = New System.Drawing.Point(90, 6)
-        Me.btnCustRemove.Name = "btnCustRemove"
-        Me.btnCustRemove.Size = New System.Drawing.Size(75, 23)
-        Me.btnCustRemove.TabIndex = 2
-        Me.btnCustRemove.Text = "Remove"
-        Me.btnCustRemove.UseVisualStyleBackColor = True
-        '
-        'btnCustUpdate
-        '
-        Me.btnCustUpdate.Location = New System.Drawing.Point(171, 6)
-        Me.btnCustUpdate.Name = "btnCustUpdate"
-        Me.btnCustUpdate.Size = New System.Drawing.Size(75, 23)
-        Me.btnCustUpdate.TabIndex = 3
-        Me.btnCustUpdate.Text = "Update"
-        Me.btnCustUpdate.UseVisualStyleBackColor = True
         '
         'formMain
         '
