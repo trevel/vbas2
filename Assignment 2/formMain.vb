@@ -53,7 +53,7 @@
 
     End Sub
 
-    Private Sub btnProductUpdate_click(sender As Object, e As EventArgs) Handles btnProductUpdate.Click
+    Private Sub btnProductUpdate_click(sender As Object, e As EventArgs)
 
     End Sub
 

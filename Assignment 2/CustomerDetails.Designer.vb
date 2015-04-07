@@ -38,14 +38,16 @@ Partial Class CustomerDetails
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.status = New System.Windows.Forms.ToolStripStatusLabel()
         Me.AddressDataGridView = New System.Windows.Forms.DataGridView()
-        Me.street = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.contextAddresses = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.addressDelete = New System.Windows.Forms.ToolStripMenuItem()
+        Me.street = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.city = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.province = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.postal_code = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.AddressDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.contextAddresses.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -177,27 +179,33 @@ Partial Class CustomerDetails
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.AddressDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.AddressDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.street, Me.city, Me.province, Me.postal_code, Me.id})
+        Me.AddressDataGridView.ContextMenuStrip = Me.contextAddresses
         Me.AddressDataGridView.Location = New System.Drawing.Point(16, 198)
         Me.AddressDataGridView.Name = "AddressDataGridView"
         Me.AddressDataGridView.ReadOnly = True
         Me.AddressDataGridView.Size = New System.Drawing.Size(374, 113)
         Me.AddressDataGridView.TabIndex = 14
         '
+        'contextAddresses
+        '
+        Me.contextAddresses.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.addressDelete})
+        Me.contextAddresses.Name = "contextAddresses"
+        Me.contextAddresses.Size = New System.Drawing.Size(211, 26)
+        '
+        'addressDelete
+        '
+        Me.addressDelete.Name = "addressDelete"
+        Me.addressDelete.Size = New System.Drawing.Size(210, 22)
+        Me.addressDelete.Text = "Delete Selected Addresses"
+        '
         'street
         '
-        Me.street.ContextMenuStrip = Me.contextAddresses
         Me.street.HeaderText = "Street"
         Me.street.Name = "street"
         Me.street.ReadOnly = True
         '
-        'contextAddresses
-        '
-        Me.contextAddresses.Name = "contextAddresses"
-        Me.contextAddresses.Size = New System.Drawing.Size(61, 4)
-        '
         'city
         '
-        Me.city.ContextMenuStrip = Me.contextAddresses
         Me.city.HeaderText = "City"
         Me.city.Name = "city"
         Me.city.ReadOnly = True
@@ -205,22 +213,23 @@ Partial Class CustomerDetails
         '
         'province
         '
-        Me.province.ContextMenuStrip = Me.contextAddresses
         Me.province.HeaderText = "Province"
+        Me.province.MaxInputLength = 2
         Me.province.Name = "province"
         Me.province.ReadOnly = True
         Me.province.Width = 30
         '
         'postal_code
         '
-        Me.postal_code.ContextMenuStrip = Me.contextAddresses
         Me.postal_code.HeaderText = "PostalCode"
+        Me.postal_code.MaxInputLength = 7
         Me.postal_code.Name = "postal_code"
         Me.postal_code.ReadOnly = True
         Me.postal_code.Width = 80
         '
         'id
         '
+        Me.id.ContextMenuStrip = Me.contextAddresses
         Me.id.HeaderText = "id"
         Me.id.Name = "id"
         Me.id.ReadOnly = True
@@ -250,6 +259,7 @@ Partial Class CustomerDetails
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.AddressDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.contextAddresses.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -269,8 +279,9 @@ Partial Class CustomerDetails
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents status As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents AddressDataGridView As System.Windows.Forms.DataGridView
-    Friend WithEvents street As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents contextAddresses As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents addressDelete As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents street As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents city As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents province As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents postal_code As System.Windows.Forms.DataGridViewTextBoxColumn

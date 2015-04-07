@@ -1,5 +1,6 @@
 ﻿Public Class CustomerDetails
     Public Property cust As New Customer
+    Private deleted As New List(Of Integer)
     Sub New()
         MyBase.New()
         ' This call is required by the designer.
@@ -22,7 +23,9 @@
         tbEmail.Text = cust.email
         tbPhoneNumber.Text = cust.phone
         tbCreditLimit.Text = cust.credit_limit.ToString
-
+        For Each ad As Address In cust.Addresses
+            AddressDataGridView.Rows.Add(ad.street, ad.city, ad.province, ad.postal_code, ad.id)
+        Next
     End Sub
 
 
@@ -85,8 +88,9 @@
                 MsgBox("Could not save address: " & a.ToString)
             End If
         Next
-
-
+        For Each item As Integer In deleted
+            DBAccessLib.DBAccessHelper.DBDeleteAddress(item)
+        Next
         Me.Close()
 
     End Sub
@@ -102,6 +106,27 @@
                 AddressDataGridView.Rows.Add(ad.address.street, ad.address.city, ad.address.province, ad.address.postal_code, 0)
             End If
         End Using
-
     End Sub
+
+
+    Private Sub AddressDataGridView_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles AddressDataGridView.CellContentDoubleClick
+        Using ad As New AddressDetail(tbName.Text, New Address())
+            ad.ShowDialog()
+            If (ad.DialogResult = DialogResult.OK) Then
+                AddressDataGridView.Rows.Add(ad.address.street, ad.address.city, ad.address.province, ad.address.postal_code, 0)
+            End If
+        End Using
+    End Sub
+
+    Private Sub addressDelete_Click(sender As Object, e As EventArgs) Handles addressDelete.Click
+        If addressDelete IsNot Nothing Then
+            For Each item As DataGridViewRow In AddressDataGridView.SelectedRows
+                If item.Cells.Item(4).Value <> 0 Then
+                    deleted.Add(item.Cells.Item(4).Value)
+                    AddressDataGridView.Rows.Remove(item)
+                End If
+            Next
+        End If
+    End Sub
+
 End Class

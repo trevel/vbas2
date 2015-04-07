@@ -25,26 +25,14 @@ Partial Class formMain
         Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tabProducts = New System.Windows.Forms.TabPage()
-        Me.btnProductUpdate = New System.Windows.Forms.Button()
         Me.btnProductRemove = New System.Windows.Forms.Button()
         Me.btnProductAdd = New System.Windows.Forms.Button()
         Me.ProductDataGridView = New System.Windows.Forms.DataGridView()
-        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ProductBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.tabCustomers = New System.Windows.Forms.TabPage()
-        Me.btnCustUpdate = New System.Windows.Forms.Button()
         Me.btnCustRemove = New System.Windows.Forms.Button()
         Me.btnCustAdd = New System.Windows.Forms.Button()
         Me.CustomerDataGridView = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CustomerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.tabOrders = New System.Windows.Forms.TabPage()
         Me.btnOrderAdd = New System.Windows.Forms.Button()
@@ -65,6 +53,14 @@ Partial Class formMain
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.TabControl1.SuspendLayout()
         Me.tabProducts.SuspendLayout()
         CType(Me.ProductDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,7 +91,6 @@ Partial Class formMain
         '
         'tabProducts
         '
-        Me.tabProducts.Controls.Add(Me.btnProductUpdate)
         Me.tabProducts.Controls.Add(Me.btnProductRemove)
         Me.tabProducts.Controls.Add(Me.btnProductAdd)
         Me.tabProducts.Controls.Add(Me.ProductDataGridView)
@@ -106,15 +101,6 @@ Partial Class formMain
         Me.tabProducts.TabIndex = 0
         Me.tabProducts.Text = "Products"
         Me.tabProducts.UseVisualStyleBackColor = True
-        '
-        'btnProductUpdate
-        '
-        Me.btnProductUpdate.Location = New System.Drawing.Point(162, 6)
-        Me.btnProductUpdate.Name = "btnProductUpdate"
-        Me.btnProductUpdate.Size = New System.Drawing.Size(75, 23)
-        Me.btnProductUpdate.TabIndex = 4
-        Me.btnProductUpdate.Text = "Update"
-        Me.btnProductUpdate.UseVisualStyleBackColor = True
         '
         'btnProductRemove
         '
@@ -142,7 +128,7 @@ Partial Class formMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ProductDataGridView.AutoGenerateColumns = False
         Me.ProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.ProductDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewCheckBoxColumn1})
+        Me.ProductDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewCheckBoxColumn1})
         Me.ProductDataGridView.DataSource = Me.ProductBindingSource
         Me.ProductDataGridView.Location = New System.Drawing.Point(3, 32)
         Me.ProductDataGridView.Name = "ProductDataGridView"
@@ -150,48 +136,12 @@ Partial Class formMain
         Me.ProductDataGridView.Size = New System.Drawing.Size(635, 403)
         Me.ProductDataGridView.TabIndex = 1
         '
-        'IDDataGridViewTextBoxColumn
-        '
-        Me.IDDataGridViewTextBoxColumn.DataPropertyName = "ID"
-        Me.IDDataGridViewTextBoxColumn.HeaderText = "ID"
-        Me.IDDataGridViewTextBoxColumn.Name = "IDDataGridViewTextBoxColumn"
-        Me.IDDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.DataPropertyName = "Description"
-        Me.DataGridViewTextBoxColumn6.HeaderText = "Description"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        Me.DataGridViewTextBoxColumn6.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn7
-        '
-        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Price"
-        Me.DataGridViewTextBoxColumn7.HeaderText = "Price"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        Me.DataGridViewTextBoxColumn7.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn8
-        '
-        Me.DataGridViewTextBoxColumn8.DataPropertyName = "Inventory"
-        Me.DataGridViewTextBoxColumn8.HeaderText = "Inventory"
-        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        Me.DataGridViewTextBoxColumn8.ReadOnly = True
-        '
-        'DataGridViewCheckBoxColumn1
-        '
-        Me.DataGridViewCheckBoxColumn1.DataPropertyName = "active"
-        Me.DataGridViewCheckBoxColumn1.HeaderText = "active"
-        Me.DataGridViewCheckBoxColumn1.Name = "DataGridViewCheckBoxColumn1"
-        Me.DataGridViewCheckBoxColumn1.ReadOnly = True
-        '
         'ProductBindingSource
         '
         Me.ProductBindingSource.DataSource = GetType(Database.Product)
         '
         'tabCustomers
         '
-        Me.tabCustomers.Controls.Add(Me.btnCustUpdate)
         Me.tabCustomers.Controls.Add(Me.btnCustRemove)
         Me.tabCustomers.Controls.Add(Me.btnCustAdd)
         Me.tabCustomers.Controls.Add(Me.CustomerDataGridView)
@@ -202,15 +152,6 @@ Partial Class formMain
         Me.tabCustomers.TabIndex = 1
         Me.tabCustomers.Text = "Customers"
         Me.tabCustomers.UseVisualStyleBackColor = True
-        '
-        'btnCustUpdate
-        '
-        Me.btnCustUpdate.Location = New System.Drawing.Point(171, 6)
-        Me.btnCustUpdate.Name = "btnCustUpdate"
-        Me.btnCustUpdate.Size = New System.Drawing.Size(75, 23)
-        Me.btnCustUpdate.TabIndex = 3
-        Me.btnCustUpdate.Text = "Update"
-        Me.btnCustUpdate.UseVisualStyleBackColor = True
         '
         'btnCustRemove
         '
@@ -238,48 +179,13 @@ Partial Class formMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CustomerDataGridView.AutoGenerateColumns = False
         Me.CustomerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.CustomerDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5})
+        Me.CustomerDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5})
         Me.CustomerDataGridView.DataSource = Me.CustomerBindingSource
         Me.CustomerDataGridView.Location = New System.Drawing.Point(3, 32)
         Me.CustomerDataGridView.Name = "CustomerDataGridView"
         Me.CustomerDataGridView.ReadOnly = True
         Me.CustomerDataGridView.Size = New System.Drawing.Size(635, 403)
         Me.CustomerDataGridView.TabIndex = 0
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "id"
-        Me.DataGridViewTextBoxColumn1.HeaderText = "id"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "name"
-        Me.DataGridViewTextBoxColumn2.HeaderText = "name"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.DataPropertyName = "email"
-        Me.DataGridViewTextBoxColumn3.HeaderText = "email"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.DataPropertyName = "phone"
-        Me.DataGridViewTextBoxColumn4.HeaderText = "phone"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.DataPropertyName = "credit_limit"
-        Me.DataGridViewTextBoxColumn5.HeaderText = "credit_limit"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.ReadOnly = True
         '
         'CustomerBindingSource
         '
@@ -425,6 +331,62 @@ Partial Class formMain
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(67, 17)
         Me.ToolStripStatusLabel1.Text = "StatusLabel"
         '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "name"
+        Me.DataGridViewTextBoxColumn2.HeaderText = "name"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.DataPropertyName = "email"
+        Me.DataGridViewTextBoxColumn3.HeaderText = "email"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.DataPropertyName = "phone"
+        Me.DataGridViewTextBoxColumn4.HeaderText = "phone"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.DataPropertyName = "credit_limit"
+        Me.DataGridViewTextBoxColumn5.HeaderText = "credit_limit"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.DataPropertyName = "Description"
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Description"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Price"
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Price"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.DataPropertyName = "Inventory"
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Inventory"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        Me.DataGridViewTextBoxColumn8.ReadOnly = True
+        '
+        'DataGridViewCheckBoxColumn1
+        '
+        Me.DataGridViewCheckBoxColumn1.DataPropertyName = "active"
+        Me.DataGridViewCheckBoxColumn1.HeaderText = "active"
+        Me.DataGridViewCheckBoxColumn1.Name = "DataGridViewCheckBoxColumn1"
+        Me.DataGridViewCheckBoxColumn1.ReadOnly = True
+        '
         'formMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -470,11 +432,6 @@ Partial Class formMain
     Friend WithEvents OrderBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents btnOrderAdd As System.Windows.Forms.Button
     Friend WithEvents CustomerDataGridView As System.Windows.Forms.DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CustomerBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents customer_name As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CustomeridDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -483,13 +440,7 @@ Partial Class formMain
     Friend WithEvents DiscountDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents total As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ProductDataGridView As System.Windows.Forms.DataGridView
-    Friend WithEvents IDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewCheckBoxColumn1 As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents ProductBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents btnProductUpdate As System.Windows.Forms.Button
     Friend WithEvents btnProductRemove As System.Windows.Forms.Button
     Friend WithEvents btnProductAdd As System.Windows.Forms.Button
     Friend WithEvents StatusStrip As System.Windows.Forms.StatusStrip
@@ -499,8 +450,15 @@ Partial Class formMain
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RefreshToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents btnCustUpdate As System.Windows.Forms.Button
     Friend WithEvents btnCustRemove As System.Windows.Forms.Button
     Friend WithEvents btnCustAdd As System.Windows.Forms.Button
+    Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewCheckBoxColumn1 As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class
