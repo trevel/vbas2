@@ -6,6 +6,7 @@
         InitializeComponent()
         ' Add any initialization after the InitializeComponent() call.
         cust.id = 0
+        status.Text = "New Customer..."
     End Sub
 
     Public Event CustChanged(ByVal cust As Object)
@@ -13,14 +14,16 @@
     Sub New(ByRef cust As Customer)
         Me.New()
         Me.cust = cust
+        status.Text = "Editing..."
     End Sub
 
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Dim c As Database.Customer
         Try
-            c = New Database.Customer(cust.id, tbName.Text, tbEmail.Text, 0, 0, tbPhoneNumber.Text, Double.Parse(tbCreditLimit.Text))
-        Catch
+            c = New Database.Customer(cust.id, tbName.Text, tbEmail.Text, 0, 0, tbPhoneNumber.Text, Double.TryParse(tbCreditLimit.Text, -1))
+        Catch ex As Exception
+            status.Text = ex.Message
             Return
         End Try
         Dim dbresult As Integer
@@ -31,6 +34,7 @@
             dbresult = DBAccessLib.DBAccessHelper.DBUpdateCustomer(c)
         End If
         If dbresult = -1 Then
+            status.Text = "Error saving..."
             Return
         End If
         cust.id = c.ID

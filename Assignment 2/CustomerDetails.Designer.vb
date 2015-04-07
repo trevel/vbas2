@@ -35,11 +35,14 @@ Partial Class CustomerDetails
         Me.Button1 = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
-        Me.SuspendLayout()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.status = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.StatusStrip1.SuspendLayout
+        Me.SuspendLayout
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
+        Me.Label1.AutoSize = true
         Me.Label1.Location = New System.Drawing.Point(13, 13)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(35, 13)
@@ -55,7 +58,7 @@ Partial Class CustomerDetails
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
+        Me.Label2.AutoSize = true
         Me.Label2.Location = New System.Drawing.Point(13, 53)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(32, 13)
@@ -71,7 +74,7 @@ Partial Class CustomerDetails
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
+        Me.Label3.AutoSize = true
         Me.Label3.Location = New System.Drawing.Point(16, 97)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(78, 13)
@@ -87,7 +90,7 @@ Partial Class CustomerDetails
         '
         'Label4
         '
-        Me.Label4.AutoSize = True
+        Me.Label4.AutoSize = true
         Me.Label4.Location = New System.Drawing.Point(16, 141)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(58, 13)
@@ -107,11 +110,11 @@ Partial Class CustomerDetails
         Me.lvAddresses.Name = "lvAddresses"
         Me.lvAddresses.Size = New System.Drawing.Size(319, 114)
         Me.lvAddresses.TabIndex = 8
-        Me.lvAddresses.UseCompatibleStateImageBehavior = False
+        Me.lvAddresses.UseCompatibleStateImageBehavior = false
         '
         'Label5
         '
-        Me.Label5.AutoSize = True
+        Me.Label5.AutoSize = true
         Me.Label5.Location = New System.Drawing.Point(16, 181)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(56, 13)
@@ -125,7 +128,7 @@ Partial Class CustomerDetails
         Me.Button1.Size = New System.Drawing.Size(41, 23)
         Me.Button1.TabIndex = 10
         Me.Button1.Text = "Add"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.UseVisualStyleBackColor = true
         '
         'btnSave
         '
@@ -135,7 +138,7 @@ Partial Class CustomerDetails
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 11
         Me.btnSave.Text = "Save"
-        Me.btnSave.UseVisualStyleBackColor = True
+        Me.btnSave.UseVisualStyleBackColor = true
         '
         'btnCancel
         '
@@ -145,13 +148,28 @@ Partial Class CustomerDetails
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 12
         Me.btnCancel.Text = "Cancel"
-        Me.btnCancel.UseVisualStyleBackColor = True
+        Me.btnCancel.UseVisualStyleBackColor = true
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.status})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 345)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(402, 22)
+        Me.StatusStrip1.TabIndex = 13
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'status
+        '
+        Me.status.Name = "status"
+        Me.status.Size = New System.Drawing.Size(0, 17)
         '
         'CustomerDetails
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(402, 349)
+        Me.ClientSize = New System.Drawing.Size(402, 367)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.Button1)
@@ -167,10 +185,12 @@ Partial Class CustomerDetails
         Me.Controls.Add(Me.Label1)
         Me.Name = "CustomerDetails"
         Me.Text = "CustomerDetails"
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.StatusStrip1.ResumeLayout(false)
+        Me.StatusStrip1.PerformLayout
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents tbName As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
@@ -184,4 +204,6 @@ Partial Class CustomerDetails
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents status As System.Windows.Forms.ToolStripStatusLabel
 End Class

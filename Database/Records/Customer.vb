@@ -117,6 +117,8 @@ Imports CSLib
             Return True
         Catch ex As FormatException
             Return False
+        Catch ex As ArgumentException
+            Return False
         End Try
     End Function
 
