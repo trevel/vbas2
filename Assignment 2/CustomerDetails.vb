@@ -68,7 +68,7 @@
 
         Dim a As Database.Address
         For Each row As DataGridViewRow In AddressDataGridView.Rows
-           
+
             a = New Database.Address(row.Cells.Item(4).Value, cust.id, row.Cells.Item(0).Value, row.Cells.Item(1).Value, row.Cells.Item(2).Value, row.Cells.Item(3).Value)
             If a.ID = 0 Then
                 dbresult = DBAccessLib.DBAccessHelper.DBInsertAddress(a)

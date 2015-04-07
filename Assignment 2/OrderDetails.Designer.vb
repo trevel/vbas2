@@ -49,6 +49,14 @@ Partial Class OrderDetails
         Me.province = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.postal_code = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.subtotal = New System.Windows.Forms.Label()
+        Me.total = New System.Windows.Forms.Label()
         CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,7 +112,7 @@ Partial Class OrderDetails
         Me.prodCombo.DataSource = Me.ProductBindingSource
         Me.prodCombo.DisplayMember = "description"
         Me.prodCombo.FormattingEnabled = True
-        Me.prodCombo.Location = New System.Drawing.Point(15, 419)
+        Me.prodCombo.Location = New System.Drawing.Point(24, 430)
         Me.prodCombo.Margin = New System.Windows.Forms.Padding(6)
         Me.prodCombo.Name = "prodCombo"
         Me.prodCombo.Size = New System.Drawing.Size(540, 33)
@@ -117,7 +125,7 @@ Partial Class OrderDetails
         '
         'btnProdAdd
         '
-        Me.btnProdAdd.Location = New System.Drawing.Point(580, 419)
+        Me.btnProdAdd.Location = New System.Drawing.Point(576, 417)
         Me.btnProdAdd.Margin = New System.Windows.Forms.Padding(6)
         Me.btnProdAdd.Name = "btnProdAdd"
         Me.btnProdAdd.Size = New System.Drawing.Size(80, 44)
@@ -127,7 +135,7 @@ Partial Class OrderDetails
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(26, 1017)
+        Me.TextBox2.Location = New System.Drawing.Point(420, 1059)
         Me.TextBox2.Margin = New System.Windows.Forms.Padding(6)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(196, 31)
@@ -268,11 +276,89 @@ Partial Class OrderDetails
         Me.id.ReadOnly = True
         Me.id.Visible = False
         '
+        'DateTimePicker1
+        '
+        Me.DateTimePicker1.Location = New System.Drawing.Point(24, 1059)
+        Me.DateTimePicker1.Name = "DateTimePicker1"
+        Me.DateTimePicker1.Size = New System.Drawing.Size(200, 31)
+        Me.DateTimePicker1.TabIndex = 16
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(415, 1028)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(96, 25)
+        Me.Label1.TabIndex = 17
+        Me.Label1.Text = "Discount"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(21, 1028)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(117, 25)
+        Me.Label2.TabIndex = 18
+        Me.Label2.Text = "Order Date"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(21, 36)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(104, 25)
+        Me.Label3.TabIndex = 19
+        Me.Label3.Text = "Customer"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(26, 120)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(181, 25)
+        Me.Label4.TabIndex = 20
+        Me.Label4.Text = "Shipping Address"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(26, 399)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(188, 25)
+        Me.Label5.TabIndex = 21
+        Me.Label5.Text = "Products To Order"
+        '
+        'subtotal
+        '
+        Me.subtotal.AutoSize = True
+        Me.subtotal.Location = New System.Drawing.Point(250, 1028)
+        Me.subtotal.Name = "subtotal"
+        Me.subtotal.Size = New System.Drawing.Size(104, 25)
+        Me.subtotal.TabIndex = 22
+        Me.subtotal.Text = "SubTotal:"
+        '
+        'total
+        '
+        Me.total.AutoSize = True
+        Me.total.Location = New System.Drawing.Point(640, 1028)
+        Me.total.Name = "total"
+        Me.total.Size = New System.Drawing.Size(66, 25)
+        Me.total.TabIndex = 23
+        Me.total.Text = "Total:"
+        '
         'OrderDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1044, 1135)
+        Me.Controls.Add(Me.total)
+        Me.Controls.Add(Me.subtotal)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.DateTimePicker1)
         Me.Controls.Add(Me.AddressDataGridView)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.orderItemGridView)
@@ -325,4 +411,12 @@ Partial Class OrderDetails
     Friend WithEvents province As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents postal_code As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents id As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents subtotal As System.Windows.Forms.Label
+    Friend WithEvents total As System.Windows.Forms.Label
 End Class
