@@ -706,16 +706,16 @@ Public Class DBAccessHelper
 
         ' Set up the parameters and values
         cmd.Parameters.Add("@shipdate", SqlDbType.Date)
-        If (i.has_shipped = True) Then
-            cmd.Parameters("@shipdate").Value = i.ship_date
-        Else
+        If IsNothing(i.ship_date) Then
             cmd.Parameters("@shipdate").Value = DBNull.Value
+        Else
+            cmd.Parameters("@shipdate").Value = i.ship_date
         End If
         cmd.Parameters.Add("@orderid", SqlDbType.Int)
         cmd.Parameters("@orderid").Value = i.order_id
         cmd.Parameters.Add("@prodid", SqlDbType.Int)
         cmd.Parameters("@prodid").Value = i.product_id
-        cmd.Parameters.Add("@quantitiy", SqlDbType.Int)
+        cmd.Parameters.Add("@quantity", SqlDbType.Int)
         cmd.Parameters("@quantity").Value = i.quantity
 
         ' set up the output parameter that we use to extract the id
@@ -774,16 +774,16 @@ Public Class DBAccessHelper
         ' Set up the parameters and values
         cmd.Parameters.Add("@id", SqlDbType.Int)
         cmd.Parameters("@id").Value = i.ID
-        If (i.has_shipped = True) Then
-            cmd.Parameters("@shipdate").Value = i.ship_date
-        Else
+        If IsNothing(i.ship_date) Then
             cmd.Parameters("@shipdate").Value = DBNull.Value
+        Else
+            cmd.Parameters("@shipdate").Value = i.ship_date
         End If
         cmd.Parameters.Add("@orderid", SqlDbType.Int)
         cmd.Parameters("@orderid").Value = i.order_id
         cmd.Parameters.Add("@prodid", SqlDbType.Int)
         cmd.Parameters("@prodid").Value = i.product_id
-        cmd.Parameters.Add("@quantitiy", SqlDbType.Int)
+        cmd.Parameters.Add("@quantity", SqlDbType.Int)
         cmd.Parameters("@quantity").Value = i.quantity
 
         If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
