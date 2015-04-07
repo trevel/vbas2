@@ -45,7 +45,7 @@
         od.Show()
     End Sub
 
-    Private Sub btnProductRemove_Click(sender As Object, e As EventArgs) Handles btnProductRemove.Click
+    Private Sub btnProductRemove_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -79,4 +79,21 @@
     End Sub
 
 
+    Private Sub deleteSelectedProducts_clicked(sender As Object, e As EventArgs) Handles DeleteSelectedProductsToolStripMenuItem.Click, btnProductRemove.Click
+        Dim bFailed As Boolean = False
+        For Each item As DataGridViewRow In ProductDataGridView.SelectedRows
+            Dim p As Product = TryCast(item.DataBoundItem, Product)
+            If p IsNot Nothing Then
+                If Not DBAccessLib.DBAccessHelper.DBDeleteProduct(p.id) Then
+                    bFailed = True
+                End If
+            End If
+        Next
+        RefreshLists()
+        If bFailed Then
+            ToolStripStatusLabel1.Text = "Failed to remove a product(s)"
+        Else
+            ToolStripStatusLabel1.Text = "Successfully removed product(s) "
+        End If
+    End Sub
 End Class
