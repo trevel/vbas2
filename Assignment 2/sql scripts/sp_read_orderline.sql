@@ -27,6 +27,7 @@ BEGIN
  
 SELECT @id=id,@orderid=order_id,@prodid=product_id,@quantity=quantity,@shipdate=ship_date 
 FROM dbo.Order_Line
+WHERE id=@id;
 IF @@ROWCOUNT=0
 	SET @id=-1
 END
