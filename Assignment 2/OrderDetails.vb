@@ -1,6 +1,6 @@
 ﻿Public Class OrderDetails
     Dim db As New DataClassesDataContext
-    Private _order As ExpandedOrders
+    Private _order As New ExpandedOrders
     Public Event OrderChanged(ByVal order As Order)
     Public Event CustChanged(ByVal cust As Customer)
 
@@ -9,7 +9,8 @@
         InitializeComponent()
         Me.custCombo.DataSource = db.Customers
         Me.prodCombo.DataSource = db.Products
-
+        Me.OrderDatePicker.Value = Today.Date
+        _order.id = 0
     End Sub
 
     Public Sub New(order As ExpandedOrders)
@@ -39,11 +40,13 @@
         End If
 
         For Each item As Order_Line In order.Order_Lines
-            Dim row As Integer = orderItemGridView.Rows.Add(item.Product.description, item.Product.price, item.quantity, item.ship_date)
+            Dim row As Integer = orderItemGridView.Rows.Add(item.Product.description, item.Product.price, item.quantity, item.ship_date, item.product_id, item.id)
             If item.ship_date Is Nothing Then
-                orderItemGridView.Rows.Item(row).Cells.Item(2).ReadOnly = False
+                orderItemGridView.Rows(row).Cells("Quantity").ReadOnly = False
             End If
         Next
+        CalculateTotals()
+        Me.OrderDatePicker.Value = order.order_date
     End Sub
 
     Private Sub populateAddress(id As Integer, selected As Integer)
@@ -106,12 +109,13 @@
                        Where rows.Cells.Item(0).Value = prod.description And ShipDate Is Nothing
                        Select rows.Index
             If item Is Nothing Or item.Count = 0 Then
-                Dim row As Integer = orderItemGridView.Rows.Add(prod.description, prod.price, 1, Nothing)
-                orderItemGridView.Rows.Item(row).Cells.Item(2).ReadOnly = False
+                Dim row As Integer = orderItemGridView.Rows.Add(prod.description, prod.price, 1, Nothing, prod.id, 0)
+                orderItemGridView.Rows.Item(row).Cells("Quantity").ReadOnly = False
             Else
-                orderItemGridView.Rows.Item(item(0)).Cells.Item(2).Value += 1
+                orderItemGridView.Rows.Item(item(0)).Cells.Item("Quantity").Value += 1
             End If
         End If
+        CalculateTotals()
     End Sub
 
 
@@ -124,17 +128,68 @@
 
     End Sub
 
-    Private Sub save()
-        Dim items As New Order_Line
-
-        ' step one: validate customer/address
-        ' step two: validate order items
-        ' step three: validate discount/order date
-        ' step four: save all 
-
+    Private Function getDiscount() As Double
+        Dim discount As Double = 0
+        If tbDiscount.Text = "" Then
+            discount = 0
+        Else
+            Double.TryParse(tbDiscount.Text, discount)
+        End If
+        Return discount
+    End Function
+    Private Sub CalculateTotals()
+        Dim subtotal As Double = 0
+        For Each row As DataGridViewRow In orderItemGridView.Rows
+            subtotal += row.Cells(1).Value * row.Cells(2).Value
+        Next
+        Me.subtotal.Text = String.Format("${0:N2}", subtotal)
+        Me.Total.Text = String.Format("${0:N2}", subtotal * (100 - getDiscount()) / 100)
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+    Private Sub orderItemGridView_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles orderItemGridView.CellValueChanged
+        CalculateTotals()
+    End Sub
 
+    Private Sub tbDiscount_TextChanged(sender As Object, e As EventArgs) Handles tbDiscount.TextChanged
+        CalculateTotals()
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Me.Close()
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Dim order As Database.Order
+        Dim items As New List(Of Database.OrderItem)
+
+        Try
+            order = New Database.Order(_order.id, Me.custCombo.SelectedItem.id, OrderDatePicker.Value, getDiscount, AddressDataGridView.SelectedRows(0).Cells(4).Value)
+        Catch ex As Exception
+            Status.Text = ex.Message
+            DialogResult = Windows.Forms.DialogResult.None
+            Return
+        End Try
+
+        For Each row As DataGridViewRow In orderItemGridView.Rows
+            Try
+
+                items.Add(New Database.OrderItem(row.Cells("OrderItemId").Value, _order.id, row.Cells("prodid").Value, row.Cells("quantity").Value, row.Cells("ShipDate").Value))
+            Catch ex As Exception
+                Try
+                    Status.Text = ex.Message & " : " & row.Cells("product").Value
+                Catch ex2 As Exception
+                    Status.Text = ex.Message
+                End Try
+            End Try
+        Next
+
+        Dim dbresult As Integer = DBAccessLib.DBAccessHelper.DBInsertOrUpdateOrder(order, items)
+        If dbresult = -1 Then
+            Status.Text = "Save failed."
+            DialogResult = Windows.Forms.DialogResult.None
+            Return
+        End If
+
+        Me.Close()
     End Sub
 End Class
