@@ -611,6 +611,8 @@ Public Class DBAccessHelper
                 cmd.CommandText = "dbo.sp_insert_orderline"
                 For Each ol As OrderItem In items
                     ol.order_id = o.ID
+                    ' LAURIE - TODO if quantity is 0, then delete the item
+                    ' else add the item
                     DBSetOrderItemParameters(ol, cmd, True)
                     cmd.ExecuteScalar()
                     ol.ID = cmd.Parameters("@id").Value
@@ -645,6 +647,7 @@ Public Class DBAccessHelper
             Return o.ID
         End If
     End Function
+
 
     Public Shared Function DBInsertOrUpdateOrder(o As Order) As Integer
         If o Is Nothing Then
@@ -705,7 +708,7 @@ Public Class DBAccessHelper
         Return retVal
     End Function
 
-
+    ' 
     ' true on success, false on fail
     Public Shared Function DBDeleteOrder(id As Integer) As Boolean
         Dim bRetVal As Boolean = False
@@ -722,6 +725,9 @@ Public Class DBAccessHelper
         ' Set up the parameters and values
         cmd.Parameters.Add("@id", SqlDbType.Int)
         cmd.Parameters("@id").Value = id
+
+        ' LAURIE - TODO check each order line - if not item not shipped then remove it
+        ' if an item is shipped we need to roll back
 
         If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
             bRetVal = True
@@ -918,6 +924,10 @@ Public Class DBAccessHelper
         DBAccessHelper.DBConnectionClose(conn)
         conn = Nothing
         Return bRetVal
+    End Function
+
+    Public Shared Function DBOrderShip(id As Integer) As Integer
+        Return 0
     End Function
 End Class
 
