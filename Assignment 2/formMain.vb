@@ -97,4 +97,9 @@
             ToolStripStatusLabel1.Text = "Successfully removed product(s) "
         End If
     End Sub
+
+    Private Sub AboutToolStripMenuItem_clicked(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        Dim aboutDlg As AboutBox1 = New AboutBox1()
+        aboutDlg.ShowDialog()
+    End Sub
 End Class

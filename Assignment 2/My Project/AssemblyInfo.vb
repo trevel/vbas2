@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Assignment 2")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("Assignment 2")> 
+<Assembly: AssemblyTitle("CVB815 Assignment 2")> 
+<Assembly: AssemblyDescription("You'll find every fish you could wish as a dish at Bob's World of Fish. Please contact Mark Lindan or Laurie Shields for further information.")> 
+<Assembly: AssemblyCompany("Bob's World of Fish")> 
+<Assembly: AssemblyProduct("Innovation Order Tracking System")> 
 <Assembly: AssemblyCopyright("Copyright ©  2015")> 
 <Assembly: AssemblyTrademark("")> 
 
