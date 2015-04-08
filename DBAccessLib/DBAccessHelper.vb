@@ -267,9 +267,9 @@ Public Class DBAccessHelper
             Return -1
         End If
         If a.ID = 0 Then
-            Return DBInsertProduct(a)
+            Return DBInsertAddress(a)
         Else
-            If DBUpdateProduct(a) Then
+            If DBUpdateAddress(a) Then
                 Return a.ID
             Else
                 Return -1
