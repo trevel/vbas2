@@ -7,9 +7,13 @@ Imports System.Data.SqlClient
 Imports Database
 Imports System.Configuration
 Public Class DBAccessHelper
+    Private Shared connString As String = Nothing
+    ' Propagate the connection string down from Assignment_2
+    Public Shared Sub DBSetConnectionString(cs As String)
+        connString = cs
+    End Sub
+
     Public Shared Function DBGetConnection() As SqlClient.SqlConnection
-        Dim connString As String = "Data Source=135.23.74.62;Initial Catalog=cvb815a_assign2;Persist Security Info=True;User ID=programaccess;Password=butterfly"
-        '     Dim connString As String = System.Configuration.ConfigurationManager.ConnectionStrings("Assignment_2.My.MySettings.cvb815a_assign2ConnectionString").ConnectionString
         Return (New SqlConnection(connString))
     End Function
 

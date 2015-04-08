@@ -3,6 +3,7 @@
     Private Sub formMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ' Dim dt = New DataTable
+        DBAccessLib.DBAccessHelper.DBSetConnectionString(My.Settings.cvb815a_assign2ConnectionString)
         ProductDataGridView.DataSource = db.Products
         OrderDataGridView.DataSource = db.ExpandedOrders
         CustomerDataGridView.DataSource = db.Customers
