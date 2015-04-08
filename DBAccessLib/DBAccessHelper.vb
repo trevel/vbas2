@@ -261,6 +261,22 @@ Public Class DBAccessHelper
         Return a
     End Function
 
+    ' return the address id, -1 on fail
+    Public Shared Function DBInsertOrUpdateAddress(a As Address) As Integer
+        If a Is Nothing Then
+            Return -1
+        End If
+        If a.ID = 0 Then
+            Return DBInsertProduct(a)
+        Else
+            If DBUpdateProduct(a) Then
+                Return a.ID
+            Else
+                Return -1
+            End If
+        End If
+    End Function
+
     ' return the product id of the new item, -1 on fail
     Public Shared Function DBInsertAddress(a As Address) As Integer
         Dim retVal As Integer = -1
@@ -409,7 +425,23 @@ Public Class DBAccessHelper
         Return c
     End Function
 
-    ' return the product id of the new item, -1 on fail
+    ' return the customer id, -1 on fail
+    Public Shared Function DBInsertOrUpdateCustomer(c As Customer) As Integer
+        If c Is Nothing Then
+            Return -1
+        End If
+        If c.ID = 0 Then
+            Return DBInsertCustomer(c)
+        Else
+            If DBUpdateCustomer(c) Then
+                Return c.ID
+            Else
+                Return -1
+            End If
+        End If
+    End Function
+
+    ' return the customer id of the new item, -1 on fail
     Public Shared Function DBInsertCustomer(c As Customer) As Integer
         Dim retVal As Integer = -1
         If c Is Nothing Then
@@ -550,7 +582,22 @@ Public Class DBAccessHelper
         Return o
     End Function
 
-    ' return the product id of the new item, -1 on fail
+    Public Shared Function DBInsertOrUpdateOrder(o As Order) As Integer
+        If o Is Nothing Then
+            Return -1
+        End If
+        If o.ID = 0 Then
+            Return DBInsertOrder(o)
+        Else
+            If DBUpdateOrder(o) Then
+                Return o.ID
+            Else
+                Return -1
+            End If
+        End If
+    End Function
+
+    ' return the order id of the new item, -1 on fail
     Public Shared Function DBInsertOrder(o As Order) As Integer
         Dim retVal As Integer = -1
         If o Is Nothing Then
@@ -695,6 +742,21 @@ Public Class DBAccessHelper
             DBAccessHelper.DBConnectionClose(conn)
         End Try
         Return i
+    End Function
+
+    Public Shared Function DBInsertOrUpdateOrderItem(i As OrderItem) As Integer
+        If i Is Nothing Then
+            Return -1
+        End If
+        If i.ID = 0 Then
+            Return DBInsertOrderItem(i)
+        Else
+            If DBUpdateOrderItem(i) Then
+                Return i.ID
+            Else
+                Return -1
+            End If
+        End If
     End Function
 
     ' return the product id of the new item, -1 on fail
