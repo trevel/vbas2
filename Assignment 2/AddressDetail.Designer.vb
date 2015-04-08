@@ -121,7 +121,7 @@ Partial Class AddressDetail
         '
         Me.btnSaveAddress.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSaveAddress.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnSaveAddress.Location = New System.Drawing.Point(273, 156)
+        Me.btnSaveAddress.Location = New System.Drawing.Point(192, 156)
         Me.btnSaveAddress.Name = "btnSaveAddress"
         Me.btnSaveAddress.Size = New System.Drawing.Size(75, 23)
         Me.btnSaveAddress.TabIndex = 4
@@ -132,7 +132,7 @@ Partial Class AddressDetail
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(192, 156)
+        Me.btnCancel.Location = New System.Drawing.Point(273, 156)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 5

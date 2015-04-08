@@ -96,7 +96,7 @@ Partial Class ProductDetails
         '
         'btnProdCancel
         '
-        Me.btnProdCancel.Location = New System.Drawing.Point(127, 213)
+        Me.btnProdCancel.Location = New System.Drawing.Point(197, 214)
         Me.btnProdCancel.Name = "btnProdCancel"
         Me.btnProdCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnProdCancel.TabIndex = 7
@@ -105,7 +105,7 @@ Partial Class ProductDetails
         '
         'btnProdSave
         '
-        Me.btnProdSave.Location = New System.Drawing.Point(208, 212)
+        Me.btnProdSave.Location = New System.Drawing.Point(116, 214)
         Me.btnProdSave.Name = "btnProdSave"
         Me.btnProdSave.Size = New System.Drawing.Size(75, 23)
         Me.btnProdSave.TabIndex = 8

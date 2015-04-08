@@ -1,7 +1,7 @@
 ﻿Public Class OrderDetails
     Dim db As New DataClassesDataContext
     Private _order As New ExpandedOrders
-    Public Event OrderChanged(ByVal order As Order)
+    Public Event OrderChanged()
     Public Event CustChanged(ByVal cust As Customer)
 
     Public Sub New()
@@ -10,6 +10,7 @@
         Me.custCombo.DataSource = db.Customers
         Me.prodCombo.DataSource = db.Products
         Me.OrderDatePicker.Value = Today.Date
+        Me.OrderDatePicker.MaxDate = Today.Date
         _order.id = 0
     End Sub
 
@@ -189,7 +190,7 @@
             DialogResult = Windows.Forms.DialogResult.None
             Return
         End If
-
+        RaiseEvent OrderChanged()
         Me.Close()
     End Sub
 End Class

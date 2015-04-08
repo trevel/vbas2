@@ -104,11 +104,6 @@
     <Compile Include="CustomerDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="cvb815a_assign2DataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>cvb815a_assign2DataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="DataClasses.designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -159,17 +154,6 @@
     <EmbeddedResource Include="ProductDetails.resx">
       <DependentUpon>ProductDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <None Include="cvb815a_assign2DataSet.xsc">
-      <DependentUpon>cvb815a_assign2DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="cvb815a_assign2DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>cvb815a_assign2DataSet.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="cvb815a_assign2DataSet.xss">
-      <DependentUpon>cvb815a_assign2DataSet.xsd</DependentUpon>
-    </None>
     <None Include="DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </None>

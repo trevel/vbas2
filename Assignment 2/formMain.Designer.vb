@@ -32,6 +32,8 @@ Partial Class formMain
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.prodContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DeleteSelectedProductsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProductBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.tabCustomers = New System.Windows.Forms.TabPage()
         Me.btnCustRemove = New System.Windows.Forms.Button()
@@ -61,11 +63,10 @@ Partial Class formMain
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.prodContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.DeleteSelectedProductsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.tabProducts.SuspendLayout()
         CType(Me.ProductDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.prodContextMenu.SuspendLayout()
         CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabCustomers.SuspendLayout()
         CType(Me.CustomerDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,7 +77,6 @@ Partial Class formMain
         CType(Me.bindingProductsList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
-        Me.prodContextMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -125,7 +125,6 @@ Partial Class formMain
         '
         'ProductDataGridView
         '
-        Me.ProductDataGridView.AllowUserToAddRows = False
         Me.ProductDataGridView.AllowUserToDeleteRows = False
         Me.ProductDataGridView.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -168,6 +167,18 @@ Partial Class formMain
         Me.DataGridViewCheckBoxColumn1.HeaderText = "active"
         Me.DataGridViewCheckBoxColumn1.Name = "DataGridViewCheckBoxColumn1"
         Me.DataGridViewCheckBoxColumn1.ReadOnly = True
+        '
+        'prodContextMenu
+        '
+        Me.prodContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteSelectedProductsToolStripMenuItem})
+        Me.prodContextMenu.Name = "prodContextMenu"
+        Me.prodContextMenu.Size = New System.Drawing.Size(205, 26)
+        '
+        'DeleteSelectedProductsToolStripMenuItem
+        '
+        Me.DeleteSelectedProductsToolStripMenuItem.Name = "DeleteSelectedProductsToolStripMenuItem"
+        Me.DeleteSelectedProductsToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.DeleteSelectedProductsToolStripMenuItem.Text = "Delete Selected Products"
         '
         'ProductBindingSource
         '
@@ -392,18 +403,6 @@ Partial Class formMain
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(67, 17)
         Me.ToolStripStatusLabel1.Text = "StatusLabel"
         '
-        'prodContextMenu
-        '
-        Me.prodContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteSelectedProductsToolStripMenuItem})
-        Me.prodContextMenu.Name = "prodContextMenu"
-        Me.prodContextMenu.Size = New System.Drawing.Size(205, 26)
-        '
-        'DeleteSelectedProductsToolStripMenuItem
-        '
-        Me.DeleteSelectedProductsToolStripMenuItem.Name = "DeleteSelectedProductsToolStripMenuItem"
-        Me.DeleteSelectedProductsToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
-        Me.DeleteSelectedProductsToolStripMenuItem.Text = "Delete Selected Products"
-        '
         'formMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -418,6 +417,7 @@ Partial Class formMain
         Me.TabControl1.ResumeLayout(False)
         Me.tabProducts.ResumeLayout(False)
         CType(Me.ProductDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.prodContextMenu.ResumeLayout(False)
         CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabCustomers.ResumeLayout(False)
         CType(Me.CustomerDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
@@ -430,7 +430,6 @@ Partial Class formMain
         Me.MenuStrip1.PerformLayout()
         Me.StatusStrip.ResumeLayout(False)
         Me.StatusStrip.PerformLayout()
-        Me.prodContextMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

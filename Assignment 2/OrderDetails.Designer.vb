@@ -34,6 +34,12 @@ Partial Class OrderDetails
         Me.OrderItemBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.AddressBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.orderItemGridView = New System.Windows.Forms.DataGridView()
+        Me.Product = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ShipDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OrderItemId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AddressesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.Status = New System.Windows.Forms.ToolStripStatusLabel()
@@ -58,12 +64,6 @@ Partial Class OrderDetails
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.subtotal = New System.Windows.Forms.Label()
         Me.Total = New System.Windows.Forms.Label()
-        Me.Product = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ShipDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OrderItemId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,7 +128,7 @@ Partial Class OrderDetails
         '
         'btnProdAdd
         '
-        Me.btnProdAdd.Location = New System.Drawing.Point(288, 217)
+        Me.btnProdAdd.Location = New System.Drawing.Point(290, 222)
         Me.btnProdAdd.Name = "btnProdAdd"
         Me.btnProdAdd.Size = New System.Drawing.Size(40, 23)
         Me.btnProdAdd.TabIndex = 6
@@ -160,6 +160,47 @@ Partial Class OrderDetails
         Me.orderItemGridView.Name = "orderItemGridView"
         Me.orderItemGridView.Size = New System.Drawing.Size(490, 277)
         Me.orderItemGridView.TabIndex = 9
+        '
+        'Product
+        '
+        Me.Product.DataPropertyName = "Product"
+        Me.Product.HeaderText = "Product"
+        Me.Product.Name = "Product"
+        Me.Product.ReadOnly = True
+        Me.Product.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Product.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'Price
+        '
+        Me.Price.HeaderText = "Price"
+        Me.Price.Name = "Price"
+        Me.Price.ReadOnly = True
+        '
+        'Quantity
+        '
+        Me.Quantity.HeaderText = "Quantity"
+        Me.Quantity.Name = "Quantity"
+        Me.Quantity.ReadOnly = True
+        '
+        'ShipDate
+        '
+        Me.ShipDate.HeaderText = "Shipping Date"
+        Me.ShipDate.Name = "ShipDate"
+        Me.ShipDate.ReadOnly = True
+        '
+        'prodid
+        '
+        Me.prodid.HeaderText = "Prodid"
+        Me.prodid.Name = "prodid"
+        Me.prodid.ReadOnly = True
+        Me.prodid.Visible = False
+        '
+        'OrderItemId
+        '
+        Me.OrderItemId.HeaderText = "OrderItemId"
+        Me.OrderItemId.Name = "OrderItemId"
+        Me.OrderItemId.ReadOnly = True
+        Me.OrderItemId.Visible = False
         '
         'AddressesBindingSource
         '
@@ -338,7 +379,7 @@ Partial Class OrderDetails
         'btnSave
         '
         Me.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnSave.Location = New System.Drawing.Point(439, 592)
+        Me.btnSave.Location = New System.Drawing.Point(359, 592)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 25
@@ -348,7 +389,7 @@ Partial Class OrderDetails
         'btnCancel
         '
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(358, 592)
+        Me.btnCancel.Location = New System.Drawing.Point(440, 592)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 26
@@ -372,47 +413,6 @@ Partial Class OrderDetails
         Me.Total.Size = New System.Drawing.Size(39, 13)
         Me.Total.TabIndex = 28
         Me.Total.Text = "Label8"
-        '
-        'Product
-        '
-        Me.Product.DataPropertyName = "Product"
-        Me.Product.HeaderText = "Product"
-        Me.Product.Name = "Product"
-        Me.Product.ReadOnly = True
-        Me.Product.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Product.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'Price
-        '
-        Me.Price.HeaderText = "Price"
-        Me.Price.Name = "Price"
-        Me.Price.ReadOnly = True
-        '
-        'Quantity
-        '
-        Me.Quantity.HeaderText = "Quantity"
-        Me.Quantity.Name = "Quantity"
-        Me.Quantity.ReadOnly = True
-        '
-        'ShipDate
-        '
-        Me.ShipDate.HeaderText = "Shipping Date"
-        Me.ShipDate.Name = "ShipDate"
-        Me.ShipDate.ReadOnly = True
-        '
-        'prodid
-        '
-        Me.prodid.HeaderText = "Prodid"
-        Me.prodid.Name = "prodid"
-        Me.prodid.ReadOnly = True
-        Me.prodid.Visible = False
-        '
-        'OrderItemId
-        '
-        Me.OrderItemId.HeaderText = "OrderItemId"
-        Me.OrderItemId.Name = "OrderItemId"
-        Me.OrderItemId.ReadOnly = True
-        Me.OrderItemId.Visible = False
         '
         'OrderDetails
         '

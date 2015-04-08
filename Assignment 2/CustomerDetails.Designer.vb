@@ -53,92 +53,82 @@ Partial Class CustomerDetails
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(26, 25)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
+        Me.Label1.Location = New System.Drawing.Point(13, 13)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(68, 25)
+        Me.Label1.Size = New System.Drawing.Size(35, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Name"
         '
         'tbName
         '
-        Me.tbName.Location = New System.Drawing.Point(32, 58)
-        Me.tbName.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.tbName.Location = New System.Drawing.Point(16, 30)
         Me.tbName.Name = "tbName"
-        Me.tbName.Size = New System.Drawing.Size(628, 31)
+        Me.tbName.Size = New System.Drawing.Size(316, 20)
         Me.tbName.TabIndex = 0
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(26, 102)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
+        Me.Label2.Location = New System.Drawing.Point(13, 53)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(65, 25)
+        Me.Label2.Size = New System.Drawing.Size(32, 13)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Email"
         '
         'tbEmail
         '
-        Me.tbEmail.Location = New System.Drawing.Point(32, 135)
-        Me.tbEmail.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.tbEmail.Location = New System.Drawing.Point(16, 70)
         Me.tbEmail.Name = "tbEmail"
-        Me.tbEmail.Size = New System.Drawing.Size(628, 31)
+        Me.tbEmail.Size = New System.Drawing.Size(316, 20)
         Me.tbEmail.TabIndex = 3
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(32, 187)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
+        Me.Label3.Location = New System.Drawing.Point(16, 97)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(155, 25)
+        Me.Label3.Size = New System.Drawing.Size(78, 13)
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Phone Number"
         '
         'tbPhoneNumber
         '
-        Me.tbPhoneNumber.Location = New System.Drawing.Point(32, 219)
-        Me.tbPhoneNumber.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.tbPhoneNumber.Location = New System.Drawing.Point(16, 114)
         Me.tbPhoneNumber.Name = "tbPhoneNumber"
-        Me.tbPhoneNumber.Size = New System.Drawing.Size(628, 31)
+        Me.tbPhoneNumber.Size = New System.Drawing.Size(316, 20)
         Me.tbPhoneNumber.TabIndex = 5
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(32, 271)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
+        Me.Label4.Location = New System.Drawing.Point(16, 141)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(120, 25)
+        Me.Label4.Size = New System.Drawing.Size(58, 13)
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Credit Limit"
         '
         'tbCreditLimit
         '
-        Me.tbCreditLimit.Location = New System.Drawing.Point(26, 304)
-        Me.tbCreditLimit.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.tbCreditLimit.Location = New System.Drawing.Point(13, 158)
         Me.tbCreditLimit.Name = "tbCreditLimit"
-        Me.tbCreditLimit.Size = New System.Drawing.Size(634, 31)
+        Me.tbCreditLimit.Size = New System.Drawing.Size(319, 20)
         Me.tbCreditLimit.TabIndex = 7
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(32, 348)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
+        Me.Label5.Location = New System.Drawing.Point(16, 181)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(114, 25)
+        Me.Label5.Size = New System.Drawing.Size(56, 13)
         Me.Label5.TabIndex = 9
         Me.Label5.Text = "Addresses"
         '
         'btnAdd
         '
         Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAdd.Location = New System.Drawing.Point(698, 325)
-        Me.btnAdd.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.btnAdd.Location = New System.Drawing.Point(349, 169)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(82, 44)
+        Me.btnAdd.Size = New System.Drawing.Size(41, 23)
         Me.btnAdd.TabIndex = 10
         Me.btnAdd.Text = "Add"
         Me.btnAdd.UseVisualStyleBackColor = True
@@ -147,10 +137,9 @@ Partial Class CustomerDetails
         '
         Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnSave.Location = New System.Drawing.Point(630, 610)
-        Me.btnSave.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.btnSave.Location = New System.Drawing.Point(234, 319)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(150, 44)
+        Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 11
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
@@ -159,10 +148,9 @@ Partial Class CustomerDetails
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(468, 610)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.btnCancel.Location = New System.Drawing.Point(315, 317)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(150, 44)
+        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 12
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
@@ -170,10 +158,9 @@ Partial Class CustomerDetails
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.status})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 684)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 345)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(2, 0, 28, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(804, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(402, 22)
         Me.StatusStrip1.TabIndex = 13
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -194,12 +181,11 @@ Partial Class CustomerDetails
         Me.AddressDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.AddressDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.street, Me.city, Me.province, Me.postal_code, Me.id})
         Me.AddressDataGridView.ContextMenuStrip = Me.contextAddresses
-        Me.AddressDataGridView.Location = New System.Drawing.Point(32, 381)
-        Me.AddressDataGridView.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.AddressDataGridView.Location = New System.Drawing.Point(16, 198)
         Me.AddressDataGridView.Name = "AddressDataGridView"
         Me.AddressDataGridView.ReadOnly = True
         Me.AddressDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.AddressDataGridView.Size = New System.Drawing.Size(748, 217)
+        Me.AddressDataGridView.Size = New System.Drawing.Size(374, 113)
         Me.AddressDataGridView.TabIndex = 14
         '
         'street
@@ -207,14 +193,14 @@ Partial Class CustomerDetails
         Me.street.HeaderText = "Street"
         Me.street.Name = "street"
         Me.street.ReadOnly = True
-        Me.street.Width = 94
+        Me.street.Width = 60
         '
         'city
         '
         Me.city.HeaderText = "City"
         Me.city.Name = "city"
         Me.city.ReadOnly = True
-        Me.city.Width = 74
+        Me.city.Width = 49
         '
         'province
         '
@@ -222,7 +208,7 @@ Partial Class CustomerDetails
         Me.province.MaxInputLength = 2
         Me.province.Name = "province"
         Me.province.ReadOnly = True
-        Me.province.Width = 121
+        Me.province.Width = 74
         '
         'postal_code
         '
@@ -230,7 +216,7 @@ Partial Class CustomerDetails
         Me.postal_code.MaxInputLength = 7
         Me.postal_code.Name = "postal_code"
         Me.postal_code.ReadOnly = True
-        Me.postal_code.Width = 148
+        Me.postal_code.Width = 86
         '
         'id
         '
@@ -244,19 +230,19 @@ Partial Class CustomerDetails
         '
         Me.contextAddresses.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.addressDelete})
         Me.contextAddresses.Name = "contextAddresses"
-        Me.contextAddresses.Size = New System.Drawing.Size(373, 40)
+        Me.contextAddresses.Size = New System.Drawing.Size(211, 26)
         '
         'addressDelete
         '
         Me.addressDelete.Name = "addressDelete"
-        Me.addressDelete.Size = New System.Drawing.Size(372, 36)
+        Me.addressDelete.Size = New System.Drawing.Size(210, 22)
         Me.addressDelete.Text = "Delete Selected Addresses"
         '
         'CustomerDetails
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(804, 706)
+        Me.ClientSize = New System.Drawing.Size(402, 367)
         Me.Controls.Add(Me.AddressDataGridView)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.btnCancel)
@@ -271,7 +257,6 @@ Partial Class CustomerDetails
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.tbName)
         Me.Controls.Add(Me.Label1)
-        Me.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Name = "CustomerDetails"
         Me.Text = "CustomerDetails"
         Me.StatusStrip1.ResumeLayout(False)
