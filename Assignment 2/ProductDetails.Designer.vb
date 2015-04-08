@@ -50,7 +50,7 @@ Partial Class ProductDetails
         Me.tbProdDesc.Location = New System.Drawing.Point(16, 30)
         Me.tbProdDesc.Name = "tbProdDesc"
         Me.tbProdDesc.Size = New System.Drawing.Size(221, 20)
-        Me.tbProdDesc.TabIndex = 1
+        Me.tbProdDesc.TabIndex = 0
         '
         'lblProdPrice
         '
@@ -66,7 +66,7 @@ Partial Class ProductDetails
         Me.tbProdPrice.Location = New System.Drawing.Point(16, 78)
         Me.tbProdPrice.Name = "tbProdPrice"
         Me.tbProdPrice.Size = New System.Drawing.Size(100, 20)
-        Me.tbProdPrice.TabIndex = 3
+        Me.tbProdPrice.TabIndex = 1
         '
         'lblProdInv
         '
@@ -82,7 +82,7 @@ Partial Class ProductDetails
         Me.tbProdInv.Location = New System.Drawing.Point(16, 130)
         Me.tbProdInv.Name = "tbProdInv"
         Me.tbProdInv.Size = New System.Drawing.Size(100, 20)
-        Me.tbProdInv.TabIndex = 5
+        Me.tbProdInv.TabIndex = 2
         '
         'cbProdActive
         '
@@ -90,7 +90,7 @@ Partial Class ProductDetails
         Me.cbProdActive.Location = New System.Drawing.Point(16, 169)
         Me.cbProdActive.Name = "cbProdActive"
         Me.cbProdActive.Size = New System.Drawing.Size(56, 17)
-        Me.cbProdActive.TabIndex = 6
+        Me.cbProdActive.TabIndex = 3
         Me.cbProdActive.Text = "Active"
         Me.cbProdActive.UseVisualStyleBackColor = True
         '
@@ -99,7 +99,7 @@ Partial Class ProductDetails
         Me.btnProdCancel.Location = New System.Drawing.Point(197, 214)
         Me.btnProdCancel.Name = "btnProdCancel"
         Me.btnProdCancel.Size = New System.Drawing.Size(75, 23)
-        Me.btnProdCancel.TabIndex = 7
+        Me.btnProdCancel.TabIndex = 5
         Me.btnProdCancel.Text = "Cancel"
         Me.btnProdCancel.UseVisualStyleBackColor = True
         '
@@ -108,7 +108,7 @@ Partial Class ProductDetails
         Me.btnProdSave.Location = New System.Drawing.Point(116, 214)
         Me.btnProdSave.Name = "btnProdSave"
         Me.btnProdSave.Size = New System.Drawing.Size(75, 23)
-        Me.btnProdSave.TabIndex = 8
+        Me.btnProdSave.TabIndex = 4
         Me.btnProdSave.Text = "Save"
         Me.btnProdSave.UseVisualStyleBackColor = True
         '

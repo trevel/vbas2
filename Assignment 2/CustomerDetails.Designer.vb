@@ -80,7 +80,7 @@ Partial Class CustomerDetails
         Me.tbEmail.Location = New System.Drawing.Point(16, 70)
         Me.tbEmail.Name = "tbEmail"
         Me.tbEmail.Size = New System.Drawing.Size(316, 20)
-        Me.tbEmail.TabIndex = 3
+        Me.tbEmail.TabIndex = 1
         '
         'Label3
         '
@@ -96,7 +96,7 @@ Partial Class CustomerDetails
         Me.tbPhoneNumber.Location = New System.Drawing.Point(16, 114)
         Me.tbPhoneNumber.Name = "tbPhoneNumber"
         Me.tbPhoneNumber.Size = New System.Drawing.Size(316, 20)
-        Me.tbPhoneNumber.TabIndex = 5
+        Me.tbPhoneNumber.TabIndex = 2
         '
         'Label4
         '
@@ -112,7 +112,7 @@ Partial Class CustomerDetails
         Me.tbCreditLimit.Location = New System.Drawing.Point(13, 158)
         Me.tbCreditLimit.Name = "tbCreditLimit"
         Me.tbCreditLimit.Size = New System.Drawing.Size(319, 20)
-        Me.tbCreditLimit.TabIndex = 7
+        Me.tbCreditLimit.TabIndex = 3
         '
         'Label5
         '
@@ -129,7 +129,7 @@ Partial Class CustomerDetails
         Me.btnAdd.Location = New System.Drawing.Point(349, 169)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(41, 23)
-        Me.btnAdd.TabIndex = 10
+        Me.btnAdd.TabIndex = 4
         Me.btnAdd.Text = "Add"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
@@ -137,10 +137,10 @@ Partial Class CustomerDetails
         '
         Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnSave.Location = New System.Drawing.Point(234, 319)
+        Me.btnSave.Location = New System.Drawing.Point(246, 317)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
-        Me.btnSave.TabIndex = 11
+        Me.btnSave.TabIndex = 6
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
         '
@@ -148,10 +148,10 @@ Partial Class CustomerDetails
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(315, 317)
+        Me.btnCancel.Location = New System.Drawing.Point(327, 317)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
-        Me.btnCancel.TabIndex = 12
+        Me.btnCancel.TabIndex = 7
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
@@ -186,7 +186,7 @@ Partial Class CustomerDetails
         Me.AddressDataGridView.ReadOnly = True
         Me.AddressDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.AddressDataGridView.Size = New System.Drawing.Size(374, 113)
-        Me.AddressDataGridView.TabIndex = 14
+        Me.AddressDataGridView.TabIndex = 5
         '
         'street
         '

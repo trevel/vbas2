@@ -96,8 +96,49 @@
         End If
     End Sub
 
+
     Private Sub AboutToolStripMenuItem_clicked(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         Dim aboutDlg As AboutBox1 = New AboutBox1()
         aboutDlg.ShowDialog()
+    End Sub
+
+    Private Sub DeleteSelectedCustomers_Click(sender As Object, e As EventArgs) Handles DeleteSelectedCustomersToolStripMenuItem.Click
+        Dim bFailed As Boolean = False
+        For Each item As DataGridViewRow In CustomerDataGridView.SelectedRows
+            Dim c As Customer = TryCast(item.DataBoundItem, Customer)
+            If c IsNot Nothing Then
+                If Not DBAccessLib.DBAccessHelper.DBDeleteCustomer(c.id) Then
+                    bFailed = True
+                End If
+            End If
+        Next
+        RefreshLists()
+        If bFailed Then
+            Status.Text = "Failed to remove a customer(s)"
+        Else
+            Status.Text = "Successfully removed customer(s)"
+        End If
+    End Sub
+
+    Private Sub DeleteSelectedOrders_Click(sender As Object, e As EventArgs) Handles DeleteSelectedOrdersToolStripMenuItem.Click
+        Dim bFailed As Boolean = False
+        For Each item As DataGridViewRow In OrderDataGridView.SelectedRows
+            Dim o As Order = TryCast(item.DataBoundItem, Order)
+            If o IsNot Nothing Then
+                If Not DBAccessLib.DBAccessHelper.DBDeleteOrder(o.id) Then
+                    bFailed = True
+                End If
+            End If
+        Next
+        RefreshLists()
+        If bFailed Then
+            Status.Text = "Failed to remove an order(s)"
+        Else
+            Status.Text = "Successfully removed order(s)"
+        End If
+    End Sub
+
+    Private Sub JingleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles JingleToolStripMenuItem.Click
+        My.Computer.Audio.Play(My.Resources.Bobs_Fish_Jingle, AudioPlayMode.Background)
     End Sub
 End Class

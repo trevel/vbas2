@@ -40,11 +40,11 @@ Partial Class OrderDetails
         Me.ShipDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.prodid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrderItemId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OrderItemContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SetQuantityTo0ToDeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddressesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.Status = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.OrderItemContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SetQuantityTo0ToDeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddressDataGridView = New System.Windows.Forms.DataGridView()
         Me.street = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.city = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -69,9 +69,9 @@ Partial Class OrderDetails
         CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AddressBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.orderItemGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.OrderItemContextMenuStrip.SuspendLayout()
         CType(Me.AddressesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
-        Me.OrderItemContextMenuStrip.SuspendLayout()
         CType(Me.AddressDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -98,7 +98,7 @@ Partial Class OrderDetails
         Me.btnNewCustomerForm.Location = New System.Drawing.Point(410, 35)
         Me.btnNewCustomerForm.Name = "btnNewCustomerForm"
         Me.btnNewCustomerForm.Size = New System.Drawing.Size(92, 23)
-        Me.btnNewCustomerForm.TabIndex = 2
+        Me.btnNewCustomerForm.TabIndex = 1
         Me.btnNewCustomerForm.Text = "New Customer"
         Me.btnNewCustomerForm.UseVisualStyleBackColor = True
         '
@@ -131,7 +131,7 @@ Partial Class OrderDetails
         Me.btnProdAdd.Location = New System.Drawing.Point(290, 222)
         Me.btnProdAdd.Name = "btnProdAdd"
         Me.btnProdAdd.Size = New System.Drawing.Size(40, 23)
-        Me.btnProdAdd.TabIndex = 6
+        Me.btnProdAdd.TabIndex = 5
         Me.btnProdAdd.Text = "Add"
         Me.btnProdAdd.UseVisualStyleBackColor = True
         '
@@ -160,7 +160,7 @@ Partial Class OrderDetails
         Me.orderItemGridView.Location = New System.Drawing.Point(12, 246)
         Me.orderItemGridView.Name = "orderItemGridView"
         Me.orderItemGridView.Size = New System.Drawing.Size(490, 277)
-        Me.orderItemGridView.TabIndex = 9
+        Me.orderItemGridView.TabIndex = 6
         '
         'Product
         '
@@ -203,6 +203,18 @@ Partial Class OrderDetails
         Me.OrderItemId.ReadOnly = True
         Me.OrderItemId.Visible = False
         '
+        'OrderItemContextMenuStrip
+        '
+        Me.OrderItemContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetQuantityTo0ToDeleteToolStripMenuItem})
+        Me.OrderItemContextMenuStrip.Name = "ContextMenuStrip"
+        Me.OrderItemContextMenuStrip.Size = New System.Drawing.Size(210, 26)
+        '
+        'SetQuantityTo0ToDeleteToolStripMenuItem
+        '
+        Me.SetQuantityTo0ToDeleteToolStripMenuItem.Name = "SetQuantityTo0ToDeleteToolStripMenuItem"
+        Me.SetQuantityTo0ToDeleteToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
+        Me.SetQuantityTo0ToDeleteToolStripMenuItem.Text = "Set quantity to 0 to delete"
+        '
         'AddressesBindingSource
         '
         Me.AddressesBindingSource.DataMember = "Addresses"
@@ -223,18 +235,6 @@ Partial Class OrderDetails
         Me.Status.Name = "Status"
         Me.Status.Size = New System.Drawing.Size(0, 0)
         '
-        'OrderItemContextMenuStrip
-        '
-        Me.OrderItemContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetQuantityTo0ToDeleteToolStripMenuItem})
-        Me.OrderItemContextMenuStrip.Name = "ContextMenuStrip"
-        Me.OrderItemContextMenuStrip.Size = New System.Drawing.Size(210, 48)
-        '
-        'SetQuantityTo0ToDeleteToolStripMenuItem
-        '
-        Me.SetQuantityTo0ToDeleteToolStripMenuItem.Name = "SetQuantityTo0ToDeleteToolStripMenuItem"
-        Me.SetQuantityTo0ToDeleteToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
-        Me.SetQuantityTo0ToDeleteToolStripMenuItem.Text = "Set quantity to 0 to delete"
-        '
         'AddressDataGridView
         '
         Me.AddressDataGridView.AllowUserToAddRows = False
@@ -249,7 +249,7 @@ Partial Class OrderDetails
         Me.AddressDataGridView.ReadOnly = True
         Me.AddressDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.AddressDataGridView.Size = New System.Drawing.Size(390, 121)
-        Me.AddressDataGridView.TabIndex = 15
+        Me.AddressDataGridView.TabIndex = 2
         '
         'street
         '
@@ -295,7 +295,7 @@ Partial Class OrderDetails
         Me.OrderDatePicker.Margin = New System.Windows.Forms.Padding(2)
         Me.OrderDatePicker.Name = "OrderDatePicker"
         Me.OrderDatePicker.Size = New System.Drawing.Size(199, 20)
-        Me.OrderDatePicker.TabIndex = 16
+        Me.OrderDatePicker.TabIndex = 7
         Me.OrderDatePicker.Value = New Date(2015, 4, 7, 19, 49, 21, 0)
         '
         'Label1
@@ -380,20 +380,20 @@ Partial Class OrderDetails
         'btnSave
         '
         Me.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnSave.Location = New System.Drawing.Point(359, 592)
+        Me.btnSave.Location = New System.Drawing.Point(370, 592)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
-        Me.btnSave.TabIndex = 25
+        Me.btnSave.TabIndex = 8
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
         '
         'btnCancel
         '
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(440, 592)
+        Me.btnCancel.Location = New System.Drawing.Point(451, 591)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
-        Me.btnCancel.TabIndex = 26
+        Me.btnCancel.TabIndex = 9
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
@@ -449,10 +449,10 @@ Partial Class OrderDetails
         CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AddressBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.orderItemGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.OrderItemContextMenuStrip.ResumeLayout(False)
         CType(Me.AddressesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        Me.OrderItemContextMenuStrip.ResumeLayout(False)
         CType(Me.AddressDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
