@@ -64,19 +64,21 @@
     End Sub
 
     Private Sub CustChangedEventHandler(cust As Customer)
+        Status.Text = "Customer list updated."
         RefreshLists()
     End Sub
 
     Private Sub ProdChangedEventHandler(prod As Product)
+        Status.Text = "Product list updated."
         RefreshLists()
     End Sub
 
     Private Sub OrderchangedEventHandler()
+        Status.Text = "Order list updated."
         RefreshLists()
     End Sub
 
-
-    Private Sub deleteSelectedProducts_clicked(sender As Object, e As EventArgs) Handles DeleteSelectedProductsToolStripMenuItem.Click, btnProductRemove.Click
+    Private Sub deleteSelectedProducts_clicked(sender As Object, e As EventArgs) Handles DeleteSelectedProductsToolStripMenuItem.Click
         Dim bFailed As Boolean = False
         For Each item As DataGridViewRow In ProductDataGridView.SelectedRows
             Dim p As Product = TryCast(item.DataBoundItem, Product)
@@ -88,9 +90,9 @@
         Next
         RefreshLists()
         If bFailed Then
-            ToolStripStatusLabel1.Text = "Failed to remove a product(s)"
+            Status.Text = "Failed to remove a product(s)"
         Else
-            ToolStripStatusLabel1.Text = "Successfully removed product(s) "
+            Status.Text = "Successfully removed product(s)"
         End If
     End Sub
 

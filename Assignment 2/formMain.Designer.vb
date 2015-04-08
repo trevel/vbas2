@@ -25,7 +25,6 @@ Partial Class formMain
         Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tabProducts = New System.Windows.Forms.TabPage()
-        Me.btnProductRemove = New System.Windows.Forms.Button()
         Me.btnProductAdd = New System.Windows.Forms.Button()
         Me.ProductDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -36,7 +35,6 @@ Partial Class formMain
         Me.DeleteSelectedProductsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProductBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.tabCustomers = New System.Windows.Forms.TabPage()
-        Me.btnCustRemove = New System.Windows.Forms.Button()
         Me.btnCustAdd = New System.Windows.Forms.Button()
         Me.CustomerDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -62,7 +60,11 @@ Partial Class formMain
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.Status = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.CustomerContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OrderContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.tabProducts.SuspendLayout()
         CType(Me.ProductDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,6 +79,8 @@ Partial Class formMain
         CType(Me.bindingProductsList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
+        Me.CustomerContextMenu.SuspendLayout()
+        Me.OrderContextMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -94,7 +98,6 @@ Partial Class formMain
         '
         'tabProducts
         '
-        Me.tabProducts.Controls.Add(Me.btnProductRemove)
         Me.tabProducts.Controls.Add(Me.btnProductAdd)
         Me.tabProducts.Controls.Add(Me.ProductDataGridView)
         Me.tabProducts.Location = New System.Drawing.Point(4, 22)
@@ -105,22 +108,13 @@ Partial Class formMain
         Me.tabProducts.Text = "Products"
         Me.tabProducts.UseVisualStyleBackColor = True
         '
-        'btnProductRemove
-        '
-        Me.btnProductRemove.Location = New System.Drawing.Point(81, 6)
-        Me.btnProductRemove.Name = "btnProductRemove"
-        Me.btnProductRemove.Size = New System.Drawing.Size(75, 23)
-        Me.btnProductRemove.TabIndex = 3
-        Me.btnProductRemove.Text = "Remove"
-        Me.btnProductRemove.UseVisualStyleBackColor = True
-        '
         'btnProductAdd
         '
-        Me.btnProductAdd.Location = New System.Drawing.Point(0, 6)
+        Me.btnProductAdd.Location = New System.Drawing.Point(6, 6)
         Me.btnProductAdd.Name = "btnProductAdd"
-        Me.btnProductAdd.Size = New System.Drawing.Size(75, 23)
+        Me.btnProductAdd.Size = New System.Drawing.Size(90, 23)
         Me.btnProductAdd.TabIndex = 2
-        Me.btnProductAdd.Text = "Add"
+        Me.btnProductAdd.Text = "New Product"
         Me.btnProductAdd.UseVisualStyleBackColor = True
         '
         'ProductDataGridView
@@ -187,7 +181,6 @@ Partial Class formMain
         '
         'tabCustomers
         '
-        Me.tabCustomers.Controls.Add(Me.btnCustRemove)
         Me.tabCustomers.Controls.Add(Me.btnCustAdd)
         Me.tabCustomers.Controls.Add(Me.CustomerDataGridView)
         Me.tabCustomers.Location = New System.Drawing.Point(4, 22)
@@ -198,22 +191,13 @@ Partial Class formMain
         Me.tabCustomers.Text = "Customers"
         Me.tabCustomers.UseVisualStyleBackColor = True
         '
-        'btnCustRemove
-        '
-        Me.btnCustRemove.Location = New System.Drawing.Point(90, 6)
-        Me.btnCustRemove.Name = "btnCustRemove"
-        Me.btnCustRemove.Size = New System.Drawing.Size(75, 23)
-        Me.btnCustRemove.TabIndex = 2
-        Me.btnCustRemove.Text = "Remove"
-        Me.btnCustRemove.UseVisualStyleBackColor = True
-        '
         'btnCustAdd
         '
         Me.btnCustAdd.Location = New System.Drawing.Point(9, 6)
         Me.btnCustAdd.Name = "btnCustAdd"
-        Me.btnCustAdd.Size = New System.Drawing.Size(75, 23)
+        Me.btnCustAdd.Size = New System.Drawing.Size(98, 23)
         Me.btnCustAdd.TabIndex = 1
-        Me.btnCustAdd.Text = "Add"
+        Me.btnCustAdd.Text = "New Customer"
         Me.btnCustAdd.UseVisualStyleBackColor = True
         '
         'CustomerDataGridView
@@ -282,7 +266,7 @@ Partial Class formMain
         Me.btnOrderAdd.Name = "btnOrderAdd"
         Me.btnOrderAdd.Size = New System.Drawing.Size(106, 23)
         Me.btnOrderAdd.TabIndex = 1
-        Me.btnOrderAdd.Text = "Create New Order"
+        Me.btnOrderAdd.Text = "New Order"
         Me.btnOrderAdd.UseVisualStyleBackColor = True
         '
         'OrderDataGridView
@@ -391,18 +375,41 @@ Partial Class formMain
         '
         'StatusStrip
         '
-        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Status})
         Me.StatusStrip.Location = New System.Drawing.Point(0, 484)
         Me.StatusStrip.Name = "StatusStrip"
         Me.StatusStrip.Size = New System.Drawing.Size(649, 22)
         Me.StatusStrip.TabIndex = 3
         Me.StatusStrip.Text = "StatusStrip"
         '
-        'ToolStripStatusLabel1
+        'Status
         '
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(67, 17)
-        Me.ToolStripStatusLabel1.Text = "StatusLabel"
+        Me.Status.Name = "Status"
+        Me.Status.Size = New System.Drawing.Size(0, 17)
+        '
+        'CustomerContextMenu
+        '
+        Me.CustomerContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.CustomerContextMenu.Name = "prodContextMenu"
+        Me.CustomerContextMenu.Size = New System.Drawing.Size(205, 26)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(204, 22)
+        Me.ToolStripMenuItem1.Text = "Delete Selected Products"
+        '
+        'OrderContextMenu
+        '
+        Me.OrderContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2})
+        Me.OrderContextMenu.Name = "prodContextMenu"
+        Me.OrderContextMenu.Size = New System.Drawing.Size(205, 26)
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(204, 22)
+        Me.ToolStripMenuItem2.Text = "Delete Selected Products"
         '
         'formMain
         '
@@ -431,6 +438,8 @@ Partial Class formMain
         Me.MenuStrip1.PerformLayout()
         Me.StatusStrip.ResumeLayout(False)
         Me.StatusStrip.PerformLayout()
+        Me.CustomerContextMenu.ResumeLayout(False)
+        Me.OrderContextMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -459,16 +468,14 @@ Partial Class formMain
     Friend WithEvents total As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ProductDataGridView As System.Windows.Forms.DataGridView
     Friend WithEvents ProductBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents btnProductRemove As System.Windows.Forms.Button
     Friend WithEvents btnProductAdd As System.Windows.Forms.Button
     Friend WithEvents StatusStrip As System.Windows.Forms.StatusStrip
-    Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents Status As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RefreshToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents btnCustRemove As System.Windows.Forms.Button
     Friend WithEvents btnCustAdd As System.Windows.Forms.Button
     Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -480,5 +487,9 @@ Partial Class formMain
     Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents prodContextMenu As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents DeleteSelectedProductsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CustomerContextMenu As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OrderContextMenu As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
 
 End Class

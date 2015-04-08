@@ -43,7 +43,7 @@ Partial Class OrderDetails
         Me.AddressesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.Status = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.OrderItemContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SetQuantityTo0ToDeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddressDataGridView = New System.Windows.Forms.DataGridView()
         Me.street = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -71,7 +71,7 @@ Partial Class OrderDetails
         CType(Me.orderItemGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AddressesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
-        Me.ContextMenuStrip.SuspendLayout()
+        Me.OrderItemContextMenuStrip.SuspendLayout()
         CType(Me.AddressDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -156,6 +156,7 @@ Partial Class OrderDetails
         Me.orderItemGridView.AllowUserToDeleteRows = False
         Me.orderItemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.orderItemGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Product, Me.Price, Me.Quantity, Me.ShipDate, Me.prodid, Me.OrderItemId})
+        Me.orderItemGridView.ContextMenuStrip = Me.OrderItemContextMenuStrip
         Me.orderItemGridView.Location = New System.Drawing.Point(12, 246)
         Me.orderItemGridView.Name = "orderItemGridView"
         Me.orderItemGridView.Size = New System.Drawing.Size(490, 277)
@@ -222,11 +223,11 @@ Partial Class OrderDetails
         Me.Status.Name = "Status"
         Me.Status.Size = New System.Drawing.Size(0, 0)
         '
-        'ContextMenuStrip
+        'OrderItemContextMenuStrip
         '
-        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetQuantityTo0ToDeleteToolStripMenuItem})
-        Me.ContextMenuStrip.Name = "ContextMenuStrip"
-        Me.ContextMenuStrip.Size = New System.Drawing.Size(210, 26)
+        Me.OrderItemContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetQuantityTo0ToDeleteToolStripMenuItem})
+        Me.OrderItemContextMenuStrip.Name = "ContextMenuStrip"
+        Me.OrderItemContextMenuStrip.Size = New System.Drawing.Size(210, 48)
         '
         'SetQuantityTo0ToDeleteToolStripMenuItem
         '
@@ -451,7 +452,7 @@ Partial Class OrderDetails
         CType(Me.AddressesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        Me.ContextMenuStrip.ResumeLayout(False)
+        Me.OrderItemContextMenuStrip.ResumeLayout(False)
         CType(Me.AddressDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -471,7 +472,7 @@ Partial Class OrderDetails
     Friend WithEvents AddressesBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents Status As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents ContextMenuStrip As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents OrderItemContextMenuStrip As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents SetQuantityTo0ToDeleteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AddressDataGridView As System.Windows.Forms.DataGridView
     Friend WithEvents street As System.Windows.Forms.DataGridViewTextBoxColumn
