@@ -586,6 +586,10 @@ Public Class DBAccessHelper
         Return o
     End Function
 
+    Public Shared Function DBInsertOrUpdateOrder(o As Order, items As List(Of OrderItem)) As Integer
+        Return -1
+    End Function
+
     Public Shared Function DBInsertOrUpdateOrder(o As Order) As Integer
         If o Is Nothing Then
             Return -1
@@ -747,6 +751,7 @@ Public Class DBAccessHelper
         End Try
         Return i
     End Function
+
 
     Public Shared Function DBInsertOrUpdateOrderItem(i As OrderItem) As Integer
         If i Is Nothing Then
