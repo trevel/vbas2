@@ -587,7 +587,63 @@ Public Class DBAccessHelper
     End Function
 
     Public Shared Function DBInsertOrUpdateOrder(o As Order, items As List(Of OrderItem)) As Integer
-        Return -1
+        ' Get the connection
+        Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
+        Dim transaction As SqlTransaction = Nothing
+        Dim cmd As SqlCommand = Nothing
+        Dim bFailure As Boolean = False
+        Try
+            conn.Open()
+            cmd = conn.CreateCommand
+            ' Set the command type and text for the stored procedure
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.CommandText = "dbo.sp_insert_order"
+            ' Set up the Input parameters
+            DBSetOrderParameters(o, cmd, True)
+            transaction = conn.BeginTransaction()   '# begin the transaction
+            cmd.Transaction = transaction           '# setup command transaction
+            cmd.ExecuteScalar()                     '# call SQL Stored procedure
+            o.ID = cmd.Parameters("@id").Value
+            If o.ID = -1 Then
+                bFailure = True
+            Else
+                ' go through the list of items and add each one inside the transaction
+                cmd.CommandText = "dbo.sp_insert_orderline"
+                For Each ol As OrderItem In items
+                    ol.order_id = o.ID
+                    DBSetOrderItemParameters(ol, cmd, True)
+                    cmd.ExecuteScalar()
+                    ol.ID = cmd.Parameters("@id").Value
+                    If ol.ID = -1 Then
+                        bFailure = True
+                        Exit For
+                    End If
+                Next
+            End If
+            If bFailure = True Then
+                transaction.Rollback()          '# rollback transaction
+            Else
+                transaction.Commit()            '# commit transaction
+            End If
+        Catch sqlExcept As SqlException          '# transaction failure
+            bFailure = True
+            If transaction IsNot Nothing Then
+                transaction.Rollback()          '# rollback transaction
+            End If
+        Finally
+            Try
+                conn.Close()
+            Catch ex As Exception
+                ex = Nothing
+            Finally
+                conn = Nothing
+            End Try
+        End Try
+        If bFailure = True Then
+            Return -1
+        Else
+            Return o.ID
+        End If
     End Function
 
     Public Shared Function DBInsertOrUpdateOrder(o As Order) As Integer
@@ -605,6 +661,24 @@ Public Class DBAccessHelper
         End If
     End Function
 
+    Private Shared Sub DBSetOrderParameters(o As Order, cmd As SqlCommand, bIsNewOrder As Boolean)
+        ' Set up the parameters and values
+        cmd.Parameters.Clear()
+        cmd.Parameters.Add("@date", SqlDbType.Date)
+        cmd.Parameters("@date").Value = o.order_date
+        cmd.Parameters.Add("@custid", SqlDbType.Int)
+        cmd.Parameters("@custid").Value = o.customer_id
+        cmd.Parameters.Add("@disc", SqlDbType.Float)
+        cmd.Parameters("@disc").Value = o.discount
+        cmd.Parameters.Add("@shipaddr", SqlDbType.Int)
+        cmd.Parameters("@shipaddr").Value = o.ship_addr_id
+        cmd.Parameters.Add("@id", SqlDbType.Int)
+        cmd.Parameters("@id").Value = o.ID
+        If bIsNewOrder Then
+            cmd.Parameters("@id").Direction = ParameterDirection.Output
+        End If
+    End Sub
+
     ' return the order id of the new item, -1 on fail
     Public Shared Function DBInsertOrder(o As Order) As Integer
         Dim retVal As Integer = -1
@@ -621,18 +695,8 @@ Public Class DBAccessHelper
         cmd.CommandText = "dbo.sp_insert_order"
 
         ' Set up the parameters and values
-        cmd.Parameters.Add("@date", SqlDbType.Date)
-        cmd.Parameters("@date").Value = o.order_date
-        cmd.Parameters.Add("@custid", SqlDbType.Int)
-        cmd.Parameters("@custid").Value = o.customer_id
-        cmd.Parameters.Add("@disc", SqlDbType.Float)
-        cmd.Parameters("@disc").Value = o.discount
-        cmd.Parameters.Add("@shipaddr", SqlDbType.Int)
-        cmd.Parameters("@shipaddr").Value = o.ship_addr_id
+        DBSetOrderParameters(o, cmd, True)
 
-        ' set up the output parameter that we use to extract the id
-        cmd.Parameters.Add("@id", SqlDbType.Int)
-        cmd.Parameters("@id").Direction = ParameterDirection.Output
         If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
             retVal = cmd.Parameters("@id").Value
         End If
@@ -683,16 +747,7 @@ Public Class DBAccessHelper
         cmd.CommandText = "dbo.sp_update_order"
 
         ' Set up the parameters and values
-        cmd.Parameters.Add("@id", SqlDbType.Int)
-        cmd.Parameters("@id").Value = o.ID
-        cmd.Parameters.Add("@date", SqlDbType.Date)
-        cmd.Parameters("@date").Value = o.order_date
-        cmd.Parameters.Add("@custid", SqlDbType.Int)
-        cmd.Parameters("@custid").Value = o.customer_id
-        cmd.Parameters.Add("@disc", SqlDbType.Float)
-        cmd.Parameters("@disc").Value = o.discount
-        cmd.Parameters.Add("@shipaddr", SqlDbType.Int)
-        cmd.Parameters("@shipaddr").Value = o.ship_addr_id
+        DBSetOrderParameters(o, cmd, False)
 
         If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
             bRetVal = True
@@ -768,6 +823,26 @@ Public Class DBAccessHelper
         End If
     End Function
 
+    Private Shared Sub DBSetOrderItemParameters(i As OrderItem, cmd As SqlCommand, bIsNewItem As Boolean)
+        cmd.Parameters.Clear()
+        cmd.Parameters.Add("@shipdate", SqlDbType.Date)
+        If IsNothing(i.ship_date) Then
+            cmd.Parameters("@shipdate").Value = DBNull.Value
+        Else
+            cmd.Parameters("@shipdate").Value = i.ship_date
+        End If
+        cmd.Parameters.Add("@orderid", SqlDbType.Int)
+        cmd.Parameters("@orderid").Value = i.order_id
+        cmd.Parameters.Add("@prodid", SqlDbType.Int)
+        cmd.Parameters("@prodid").Value = i.product_id
+        cmd.Parameters.Add("@quantity", SqlDbType.Int)
+        cmd.Parameters("@quantity").Value = i.quantity
+        cmd.Parameters.Add("@id", SqlDbType.Int)
+        If bIsNewItem Then
+            cmd.Parameters("@id").Direction = ParameterDirection.Output
+        End If
+    End Sub
+
     ' return the product id of the new item, -1 on fail
     Public Shared Function DBInsertOrderItem(i As OrderItem) As Integer
         Dim retVal As Integer = -1
@@ -783,23 +858,9 @@ Public Class DBAccessHelper
         cmd.CommandType = CommandType.StoredProcedure
         cmd.CommandText = "dbo.sp_insert_orderline"
 
-        ' Set up the parameters and values
-        cmd.Parameters.Add("@shipdate", SqlDbType.Date)
-        If IsNothing(i.ship_date) Then
-            cmd.Parameters("@shipdate").Value = DBNull.Value
-        Else
-            cmd.Parameters("@shipdate").Value = i.ship_date
-        End If
-        cmd.Parameters.Add("@orderid", SqlDbType.Int)
-        cmd.Parameters("@orderid").Value = i.order_id
-        cmd.Parameters.Add("@prodid", SqlDbType.Int)
-        cmd.Parameters("@prodid").Value = i.product_id
-        cmd.Parameters.Add("@quantity", SqlDbType.Int)
-        cmd.Parameters("@quantity").Value = i.quantity
+        ' Set up the input parameters and values
+        DBSetOrderItemParameters(i, cmd, True)
 
-        ' set up the output parameter that we use to extract the id
-        cmd.Parameters.Add("@id", SqlDbType.Int)
-        cmd.Parameters("@id").Direction = ParameterDirection.Output
         If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
             retVal = cmd.Parameters("@id").Value
         End If
@@ -849,21 +910,8 @@ Public Class DBAccessHelper
         cmd.CommandText = "dbo.sp_update_orderline"
 
         ' Set up the parameters and values
-        cmd.Parameters.Add("@id", SqlDbType.Int)
-        cmd.Parameters("@id").Value = i.ID
+        DBSetOrderItemParameters(i, cmd, False)
 
-        cmd.Parameters.Add("@orderid", SqlDbType.Int)
-        cmd.Parameters("@orderid").Value = i.order_id
-        cmd.Parameters.Add("@prodid", SqlDbType.Int)
-        cmd.Parameters("@prodid").Value = i.product_id
-        cmd.Parameters.Add("@quantity", SqlDbType.Int)
-        cmd.Parameters("@quantity").Value = i.quantity
-        cmd.Parameters.Add("@shipdate", SqlDbType.Date)
-        If IsNothing(i.ship_date) Then
-            cmd.Parameters("@shipdate").Value = DBNull.Value
-        Else
-            cmd.Parameters("@shipdate").Value = i.ship_date
-        End If
         If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
             bRetVal = True
         End If

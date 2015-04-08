@@ -295,4 +295,34 @@ Imports Database.Address
         Assert.IsTrue(DBAccessHelper.DBDeleteOrderItem(ol2.ID))
     End Sub
 
+    <TestMethod()> Public Sub TestDBOrderBatch()
+        Dim o1 As Order = Nothing
+        Dim ol1 As OrderItem = Nothing
+        Dim ol2 As OrderItem = Nothing
+        Dim ol3 As OrderItem = Nothing
+        Dim items As New List(Of OrderItem)
+        Dim c1 = New Customer(0, "New Customer", "test@gmail.com", 0, 0, "878-878-7878", 9999)
+        c1.ID = DBAccessHelper.DBInsertOrUpdateCustomer(c1)
+        Dim a1 As New Address(0, cust1.ID, "111 Mulock Drive", "Newmarket", "BC", "T3E2T3", AddressType.shipping_address)
+        a1.ID = DBAccessHelper.DBInsertOrUpdateAddress(a1)
+        o1 = New Order(0, c1.ID, Today, 10, addr1.ID)
+        ol1 = New OrderItem(0, 0, 2, 99, Nothing)
+        ol2 = New OrderItem(0, 0, 3, 44, Nothing)
+        ol3 = New OrderItem(0, 0, 44, 44, Nothing)
+        items.Add(ol1)
+        items.Add(ol2)
+        ' this one should succeed
+        Assert.AreNotEqual(DBAccessHelper.DBInsertOrUpdateOrder(o1, items), -1)
+
+        ' now lets try one that should fail
+        items.Add(ol3)
+        Assert.AreEqual(DBAccessHelper.DBInsertOrUpdateOrder(o1, items), -1)
+        Assert.IsTrue(DBAccessHelper.DBDeleteOrderItem(ol1.ID))
+        Assert.IsTrue(DBAccessHelper.DBDeleteOrderItem(ol2.ID))
+        Assert.IsTrue(DBAccessHelper.DBDeleteOrderItem(ol3.ID))
+        Assert.IsTrue(DBAccessHelper.DBDeleteOrder(o1.ID))
+        Assert.IsTrue(DBAccessHelper.DBDeleteAddress(a1.ID))
+        Assert.IsTrue(DBAccessHelper.DBDeleteCustomer(c1.ID))
+    End Sub
+
 End Class
