@@ -7,11 +7,15 @@ Imports System.Data.SqlClient
 Imports Database
 Imports System.Configuration
 Public Class DBAccessHelper
-    Private Shared connString As String = Nothing
+    Private Shared connString As String = My.Settings.ConnectionString
     ' Propagate the connection string down from Assignment_2
     Public Shared Sub DBSetConnectionString(cs As String)
         connString = cs
     End Sub
+
+    Public Shared Function getConnectionString() As String
+        Return connString
+    End Function
 
     Public Shared Function DBGetConnection() As SqlClient.SqlConnection
         Return (New SqlConnection(connString))
@@ -929,5 +933,6 @@ Public Class DBAccessHelper
     Public Shared Function DBOrderShip(id As Integer) As Integer
         Return 0
     End Function
+
 End Class
 

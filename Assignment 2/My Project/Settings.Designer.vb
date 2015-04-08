@@ -53,17 +53,6 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=135.23.74.62;Initial Catalog=cvb815a_assign2;Persist Security Info=Tr"& _ 
-            "ue;User ID=programaccess;Password=butterfly")>  _
-        Public ReadOnly Property cvb815a_assign2ConnectionString() As String
-            Get
-                Return CType(Me("cvb815a_assign2ConnectionString"),String)
-            End Get
-        End Property
     End Class
 End Namespace
 

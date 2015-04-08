@@ -125,6 +125,7 @@ Partial Class formMain
         '
         'ProductDataGridView
         '
+        Me.ProductDataGridView.AllowUserToAddRows = False
         Me.ProductDataGridView.AllowUserToDeleteRows = False
         Me.ProductDataGridView.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)

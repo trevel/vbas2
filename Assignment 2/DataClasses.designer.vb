@@ -70,7 +70,7 @@ Partial Public Class DataClassesDataContext
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.Assignment_2.My.MySettings.Default.cvb815a_assign2ConnectionString, mappingSource)
+        MyBase.New(DBAccessLib.DBAccessHelper.getConnectionString, mappingSource)
 		OnCreated
 	End Sub
 	

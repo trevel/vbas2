@@ -1,9 +1,8 @@
 ﻿Public Class formMain
-    Dim db As New DataClassesDataContext
+    Dim db As New DataClassesDataContext(DBAccessLib.DBAccessHelper.getConnectionString)
     Private Sub formMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ' Dim dt = New DataTable
-        DBAccessLib.DBAccessHelper.DBSetConnectionString(Assignment_2.My.Settings.cvb815a_assign2ConnectionString)
         RefreshLists()
     End Sub
 
