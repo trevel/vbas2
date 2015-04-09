@@ -1,58 +1,12 @@
 
-3/26/2015
-CREATE ORDER:
-- Context menu for customer list/grid view
-- Button on Orders
-- Menu item? 
-- Right click on product to order it? 
-ADD to order? (Web form)
-
-
----
-Interface: 
-- Customer : Add, update, delete
-- Address : Add, update, delete
-- Order : Add, update, delete
-- OrderItem: 
-
-TASKS: 
-- Manage products
-- Manage customers
-- Manage addresses (subset of customers)
-- Manage orders
-
-
-Label
-Textbox
-GridDataView
-Button
-Menu Item
-List View
-Status Bar
-ComboBox
-ContextMenu
-Tab Control
-
-TODO:
-DONE - delete order context
-DONE - delete customer context
-DONE - calculate max for each product in an order (DBA?)
-
-- update order (DBA) - if id = 0 insert, if id=# update, if id=# and quantity = 0 and shipdate = nothing delete
-Ship
-- for each item, if product_available >= product_ordered
-- ship it (shipping log?): 
--- Add ship-date to product, remove quantity from inventory
-- DBA?
-
-DBship(order #)
-
-- Attempt to delete product in use - should inactivate
-- Help! 
-- readme file
-
+4/09/2015
 OPTIONAL - On productchange - if pending orders, ship.
-OPTIONAL - Lists allow add, double clicking on list opens add dialog
-Polish - Make sure all forms follow the same setups...
-done - Polish - tab order
-done - Polish - jingle (bells?)
+OPTIONAL - Change lists to allow add directly
+OPTIONAL - keyboard shortcuts
+OPTIONAL - Better image in about box
+OPTIONAL - Remove Database and Data Conext and replace with Entity Framework
+OPTIONAL - 
+
+BUG:
+Double-clicking on a row only counts if it's clicking on data behind the row. WORKAROUND: Double-click on words. 
+
