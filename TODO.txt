@@ -34,9 +34,9 @@ ContextMenu
 Tab Control
 
 TODO:
-bugged - delete order context
+DONE - delete order context
 DONE - delete customer context
-- calculate max for each product in an order (DBA?)
+DONE - calculate max for each product in an order (DBA?)
 
 - update order (DBA) - if id = 0 insert, if id=# update, if id=# and quantity = 0 and shipdate = nothing delete
 Ship
