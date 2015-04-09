@@ -117,7 +117,7 @@
     Private Sub DeleteSelectedOrders_Click(sender As Object, e As EventArgs) Handles DeleteSelectedOrdersToolStripMenuItem.Click
         Dim bFailed As Boolean = False
         For Each item As DataGridViewRow In OrderDataGridView.SelectedRows
-            Dim o As Order = TryCast(item.DataBoundItem, Order)
+            Dim o As ExpandedOrders = TryCast(item.DataBoundItem, ExpandedOrders)
             If o IsNot Nothing Then
                 If Not DBAccessLib.DBAccessHelper.DBDeleteOrder(o.id) Then
                     bFailed = True
@@ -135,7 +135,7 @@
     Private Sub ShipSelectedOrders_Click(sender As Object, e As EventArgs) Handles ShipSelectedOrdersToolStripMenuItem.Click
         Dim bFailed As Boolean = False
         For Each item As DataGridViewRow In OrderDataGridView.SelectedRows
-            Dim o As Order = TryCast(item.DataBoundItem, Order)
+            Dim o As ExpandedOrders = TryCast(item.DataBoundItem, ExpandedOrders)
             If o IsNot Nothing Then
                 If Not DBAccessLib.DBAccessHelper.DBOrderShip(o.id) Then
                     bFailed = True
