@@ -156,10 +156,10 @@
             End If
         Next
         Dim message As String = "" & (ship_full + ship_none + ship_partial + ship_fail) & " order(s) processed"
-        If ship_full <> 0 Then message += ": " & ship_full & " full orders shipped"
-        If ship_partial <> 0 Then message += ": " & ship_partial & " partial orders shipped"
-        If ship_none <> 0 Then message += ": " & ship_none & " orders not shipped"
-        If ship_fail <> 0 Then message += ": " & ship_fail & " blocked by connection errors"
+        If ship_full <> 0 Then message += ": " & ship_full & " order(s) fully shipped"
+        If ship_partial <> 0 Then message += ": " & ship_partial & " order(s) partially shipped"
+        If ship_none <> 0 Then message += ": " & ship_none & " order(s) not shipped"
+        If ship_fail <> 0 Then message += ": " & ship_fail & " untouched because of connection errors"
         Status.Text = message
         RefreshLists()
     End Sub
