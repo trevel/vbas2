@@ -21,7 +21,6 @@ Imports Database.Address
     ' some initial items that are added to database for test cases
     <TestInitialize()> Public Sub Initialize()
         Assert.IsNull(prod1)
-        DBAccessLib.DBAccessHelper.DBSetConnectionString("Data Source=135.23.74.62;Initial Catalog=cvb815a_assign2;Persist Security Info=True;User ID=programaccess;Password=butterfly")
         prod1 = New Product(0, "Something", 1.0, 1, True)
         cust1 = New Customer(0, "One", "one@one.com", 0, 0, "123-232-1243", 5342)
         'objects are created and references are updated accordingly
@@ -200,106 +199,12 @@ Imports Database.Address
         Assert.AreEqual(a.type, addr1.type)
     End Sub
 
-    ' Test inserting an order and order item
-    <TestMethod()> Public Sub TestDBInsertOrderAndLines()
-        Dim c1 = New Customer(0, "New Customer", "cust@gmail.com", 0, 0, "878-878-7878", 9999)
-        c1.ID = DBAccessHelper.DBInsertOrUpdateCustomer(c1)
-        Dim a1 = New Address(0, c1.ID, "111 Leslie St", "Newmarket", "ON", "L3Y 1S3", AddressType.shipping_address)
-        a1.ID = DBAccessHelper.DBInsertOrUpdateAddress(a1)
-        Dim o1 As New Order(0, c1.ID, Today, 10, a1.ID)
-        Dim o2 As Order = Nothing
-
-        o1.ID = DBAccessHelper.DBInsertOrUpdateOrder(o1)
-        Assert.IsTrue(o1.ID > 0)
-        ' read the product back and compare it
-        o2 = DBAccessHelper.DBReadOrderByID(o1.ID)
-        Assert.IsNotNull(o2)
-        Assert.AreEqual(o2.customer_id, o1.customer_id)
-        Assert.AreEqual(o2.order_date, o1.order_date)
-        Assert.AreEqual(o2.discount, o1.discount)
-        Assert.AreEqual(o2.ship_addr_id, o1.ship_addr_id)
-
-        Dim p1 As New Product(0, "Test Product 3", 8.88, 88, True)
-        p1.ID = DBAccessHelper.DBInsertOrUpdateProduct(p1)
-        Assert.IsTrue(p1.ID > 0)
-        Dim i1 As New OrderItem(0, o1.ID, p1.ID, 5, Nothing)
-        Dim i2 As OrderItem = Nothing
-        i1.ID = DBAccessHelper.DBInsertOrUpdateOrderItem(i1)
-        Assert.IsTrue(i1.ID > 0)
-        i2 = DBAccessHelper.DBReadOrderItemByID(i1.ID)
-        Assert.IsNotNull(i2)
-        Assert.AreEqual(i2.order_id, i1.order_id)
-        Assert.AreEqual(i2.product_id, i1.product_id)
-        Assert.AreEqual(i2.quantity, i1.quantity)
-        Assert.AreEqual(i2.ship_date, i1.ship_date)
-    End Sub
-
-    ' Test deleting an order and associated order item
-    <TestMethod()> Public Sub TestDBDeleteOrderAndLine()
-        Dim o1 As Order = Nothing
-        Dim o2 As Order = Nothing
-        Dim ol1 As OrderItem = Nothing
-        Dim ol2 As OrderItem = Nothing
-        addr1.ID = DBAccessHelper.DBInsertAddress(addr1)
-        o1 = New Order(0, cust1.ID, Today, 10, addr1.ID)
-        o1.ID = DBAccessHelper.DBInsertOrder(o1)
-        ol1 = New OrderItem(0, o1.ID, prod1.ID, 99, Nothing)
-        ol1.ID = DBAccessHelper.DBInsertOrderItem(ol1)
-        Assert.IsNotNull(ol1)
-        Assert.IsNotNull(o1)
-        Assert.IsTrue(DBAccessHelper.DBDeleteOrderItem(ol1.ID))
-        Assert.IsTrue(DBAccessHelper.DBDeleteOrder(o1.ID))
-        ol2 = DBAccessHelper.DBReadOrderItemByID(ol1.ID)
-        Assert.IsNull(ol2)
-        o2 = DBAccessHelper.DBReadOrderByID(o1.ID)
-        Assert.IsNull(o2)
-    End Sub
-
-    ' Test updating an order, and an order line...update them, read them back and compare
-    <TestMethod()> Public Sub TestDBUpdateOrder()
-        Dim o1 As Order = Nothing
-        Dim o2 As Order = Nothing
-        Dim ol1 As OrderItem = Nothing
-        Dim ol2 As OrderItem = Nothing
-
-        o1 = New Order(0, cust1.ID, Today, 10, addr1.ID)
-        o1.ID = DBAccessHelper.DBInsertOrder(o1)
-        o1.customer_id = 1
-        o1.order_date = Today
-        o1.discount = 50
-        o1.ship_addr_id = 1
-        Assert.AreNotEqual(DBAccessHelper.DBInsertOrUpdateOrder(o1), -1)
-        o2 = DBAccessHelper.DBReadOrderByID(o1.ID)
-        Assert.IsNotNull(o2)
-        Assert.AreEqual(o2.ID, o1.ID)
-        Assert.AreEqual(o2.customer_id, o1.customer_id)
-        Assert.AreEqual(o2.order_date, o1.order_date)
-        Assert.AreEqual(o2.discount, o1.discount)
-        Assert.AreEqual(o2.ship_addr_id, o1.ship_addr_id)
-
-        ol1 = New OrderItem(0, o1.ID, prod1.ID, 99, Nothing)
-        ol1.ID = DBAccessHelper.DBInsertOrderItem(ol1)
-        ol1.order_id = 1
-        ol1.product_id = 2
-        ol1.quantity = 77
-        ol1.ship_date = Today
-        Assert.AreNotEqual(DBAccessHelper.DBInsertOrUpdateOrderItem(ol1), -1)
-        ol2 = DBAccessHelper.DBReadOrderItemByID(ol1.ID)
-        Assert.IsNotNull(ol2)
-        Assert.AreEqual(ol2.ID, ol1.ID)
-        Assert.AreEqual(ol2.order_id, ol1.order_id)
-        Assert.AreEqual(ol2.product_id, ol1.product_id)
-        Assert.AreEqual(ol2.quantity, ol1.quantity)
-        Assert.AreEqual(ol2.ship_date, ol1.ship_date)
-        Assert.IsTrue(DBAccessHelper.DBDeleteOrder(o2.ID))
-        Assert.IsTrue(DBAccessHelper.DBDeleteOrderItem(ol2.ID))
-    End Sub
-
     <TestMethod()> Public Sub TestDBOrderBatch()
         Dim o1 As Order = Nothing
         Dim ol1 As OrderItem = Nothing
         Dim ol2 As OrderItem = Nothing
         Dim ol3 As OrderItem = Nothing
+        Dim ol4 As OrderItem = Nothing
         Dim items As New List(Of OrderItem)
         Dim c1 = New Customer(0, "New Customer", "test@gmail.com", 0, 0, "878-878-7878", 9999)
         c1.ID = DBAccessHelper.DBInsertOrUpdateCustomer(c1)
@@ -308,19 +213,33 @@ Imports Database.Address
         o1 = New Order(0, c1.ID, Today, 10, addr1.ID)
         ol1 = New OrderItem(0, 0, 2, 99, Nothing)
         ol2 = New OrderItem(0, 0, 3, 44, Nothing)
-        ol3 = New OrderItem(0, 0, 44, 44, Nothing)
+        ol3 = New OrderItem(0, 0, 4, 44, Nothing)
+        ol4 = New OrderItem(0, 0, 44, 44, Nothing)
         items.Add(ol1)
         items.Add(ol2)
+
         ' this one should succeed
+        o1.ID = DBAccessHelper.DBInsertOrUpdateOrder(o1, items)
+        Assert.AreNotEqual(o1.ID, -1)
+        ' now add an item that should fail
+        items.Add(ol3)
+        items.Add(ol4)
+        Assert.AreEqual(DBAccessHelper.DBInsertOrUpdateOrder(o1, items), -1)
+
+        ' remove the bad item and try again
+        items.Remove(ol4)
         Assert.AreNotEqual(DBAccessHelper.DBInsertOrUpdateOrder(o1, items), -1)
 
-        ' now lets try one that should fail
-        items.Add(ol3)
-        Assert.AreEqual(DBAccessHelper.DBInsertOrUpdateOrder(o1, items), -1)
-        Assert.IsTrue(DBAccessHelper.DBDeleteOrderItem(ol1.ID))
-        Assert.IsTrue(DBAccessHelper.DBDeleteOrderItem(ol2.ID))
-        Assert.IsTrue(DBAccessHelper.DBDeleteOrderItem(ol3.ID))
+        ' now modify a ship date and update the order
+        ol2.ship_date = Today
+        Assert.AreNotEqual(DBAccessHelper.DBInsertOrUpdateOrder(o1, items), -1)
+        ' deletion should fail
+        Assert.IsFalse(DBAccessHelper.DBDeleteOrder(o1.ID))
+        ' now modify a ship date back to null so delete will work
+        ol2.ship_date = nothing
+        Assert.AreNotEqual(DBAccessHelper.DBInsertOrUpdateOrder(o1, items), -1)
         Assert.IsTrue(DBAccessHelper.DBDeleteOrder(o1.ID))
+        ' clean up
         Assert.IsTrue(DBAccessHelper.DBDeleteAddress(a1.ID))
         Assert.IsTrue(DBAccessHelper.DBDeleteCustomer(c1.ID))
     End Sub

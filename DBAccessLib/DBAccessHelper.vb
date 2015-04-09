@@ -9,9 +9,6 @@ Imports System.Configuration
 Public Class DBAccessHelper
     Private Shared connString As String = My.Settings.ConnectionString
     ' Propagate the connection string down from Assignment_2
-    Public Shared Sub DBSetConnectionString(cs As String)
-        connString = cs
-    End Sub
 
     Public Shared Function getConnectionString() As String
         Return connString
@@ -590,6 +587,8 @@ Public Class DBAccessHelper
         Return o
     End Function
 
+    ' adds or updates an order and the associated line items. line item is sent with quantity
+    ' of 0 for deletion
     Public Shared Function DBInsertOrUpdateOrder(o As Order, items As List(Of OrderItem)) As Integer
         ' Get the connection
         Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
@@ -599,44 +598,59 @@ Public Class DBAccessHelper
         Try
             conn.Open()
             cmd = conn.CreateCommand
-            ' Set the command type and text for the stored procedure
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.CommandText = "dbo.sp_insert_order"
-            ' Set up the Input parameters
-            DBSetOrderParameters(o, cmd, True)
             transaction = conn.BeginTransaction()   '# begin the transaction
             cmd.Transaction = transaction           '# setup command transaction
-            cmd.ExecuteScalar()                     '# call SQL Stored procedure
-            o.ID = cmd.Parameters("@id").Value
-            If o.ID = -1 Then
-                bFailure = True
+            cmd.CommandType = CommandType.StoredProcedure '# command type is stored procedure
+            ' for existing order we update
+            If o.ID <> 0 Then
+                cmd.CommandText = "dbo.sp_update_order"
+                ' Set up the Input parameters
+                DBSetOrderParameters(o, cmd, False)
+                cmd.ExecuteScalar()                     '# call SQL Stored procedure
             Else
-                ' go through the list of items and add each one inside the transaction
-                cmd.CommandText = "dbo.sp_insert_orderline"
-                For Each ol As OrderItem In items
+                ' its a new order
+                cmd.CommandText = "dbo.sp_insert_order"
+                ' Set up the Input parameters
+                DBSetOrderParameters(o, cmd, True)
+                cmd.ExecuteScalar()                     '# call SQL Stored procedure
+                o.ID = cmd.Parameters("@id").Value
+            End If
+            ' any failure above should generate exception and fall to catch block
+            ' go through the list of items and add or remove each one inside the transaction
+            For Each ol As OrderItem In items
+                If ol.ID = 0 Then
+                    ' it's a new order line to add
+                    cmd.CommandText = "dbo.sp_insert_orderline"
                     ol.order_id = o.ID
-                    ' LAURIE - TODO if quantity is 0, then delete the item
-                    ' else add the item
                     DBSetOrderItemParameters(ol, cmd, True)
                     cmd.ExecuteScalar()
                     ol.ID = cmd.Parameters("@id").Value
-                    If ol.ID = -1 Then
-                        bFailure = True
-                        Exit For
+                Else
+                    If ol.ship_date Is Nothing Then
+                        If ol.quantity > 0 Then
+                            cmd.CommandText = "dbo.sp_update_orderline"
+                            DBSetOrderItemParameters(ol, cmd, False)
+                        Else
+                            cmd.CommandText = "dbo.sp_delete_orderline"
+                            ' Set up the parameters and values
+                            cmd.Parameters.Clear()
+                            cmd.Parameters.Add("@id", SqlDbType.Int)
+                            cmd.Parameters("@id").Value = ol.ID
+                        End If
+                        cmd.ExecuteScalar()
                     End If
-                Next
-            End If
-            If bFailure = True Then
-                transaction.Rollback()          '# rollback transaction
-            Else
-                transaction.Commit()            '# commit transaction
-            End If
+                End If
+            Next
         Catch sqlExcept As SqlException          '# transaction failure
             bFailure = True
-            If transaction IsNot Nothing Then
-                transaction.Rollback()          '# rollback transaction
-            End If
         Finally
+            If transaction IsNot Nothing Then
+                If bFailure = True Then
+                    transaction.Rollback()          '# rollback transaction
+                Else
+                    transaction.Commit()            '# commit transaction
+                End If
+            End If
             Try
                 conn.Close()
             Catch ex As Exception
@@ -652,22 +666,7 @@ Public Class DBAccessHelper
         End If
     End Function
 
-
-    Public Shared Function DBInsertOrUpdateOrder(o As Order) As Integer
-        If o Is Nothing Then
-            Return -1
-        End If
-        If o.ID = 0 Then
-            Return DBInsertOrder(o)
-        Else
-            If DBUpdateOrder(o) Then
-                Return o.ID
-            Else
-                Return -1
-            End If
-        End If
-    End Function
-
+    ' set up the parameters to the stored procedure call for adding the order
     Private Shared Sub DBSetOrderParameters(o As Order, cmd As SqlCommand, bIsNewOrder As Boolean)
         ' Set up the parameters and values
         cmd.Parameters.Clear()
@@ -686,153 +685,48 @@ Public Class DBAccessHelper
         End If
     End Sub
 
-    ' return the order id of the new item, -1 on fail
-    Public Shared Function DBInsertOrder(o As Order) As Integer
-        Dim retVal As Integer = -1
-        If o Is Nothing Then
-            Return -1
-        End If
-        ' Get the connection
-        Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
-        ' Create the command
-        Dim cmd As SqlCommand = conn.CreateCommand
-
-        ' Set the command type and text for the stored procedure
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.CommandText = "dbo.sp_insert_order"
-
-        ' Set up the parameters and values
-        DBSetOrderParameters(o, cmd, True)
-
-        If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
-            retVal = cmd.Parameters("@id").Value
-        End If
-        DBAccessHelper.DBConnectionClose(conn)
-        conn = Nothing
-        Return retVal
-    End Function
-
-    ' 
-    ' true on success, false on fail
+    ' true on success, false on fail. Will attempt to delete order and all line
+    ' items. If any items are shipped, the operation will fail
     Public Shared Function DBDeleteOrder(id As Integer) As Boolean
-        Dim bRetVal As Boolean = False
-
-        ' Get the connection
         Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
-        ' Create the command
-        Dim cmd As SqlCommand = conn.CreateCommand
-
-        ' Set the command type and text for the stored procedure
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.CommandText = "dbo.sp_delete_order"
-
-        ' Set up the parameters and values
-        cmd.Parameters.Add("@id", SqlDbType.Int)
-        cmd.Parameters("@id").Value = id
-
-        ' LAURIE - TODO check each order line - if not item not shipped then remove it
-        ' if an item is shipped we need to roll back
-
-        If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
-            bRetVal = True
-        End If
-        DBAccessHelper.DBConnectionClose(conn)
-        conn = Nothing
-        Return bRetVal
-    End Function
-
-    ' true on success, false on fail
-    Public Shared Function DBUpdateOrder(o As Order) As Boolean
-        Dim bRetVal As Boolean = False
-        If o Is Nothing Then
-            Return bRetVal
-        End If
-        ' Get the connection
-        Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
-        ' Create the command
-        Dim cmd As SqlCommand = conn.CreateCommand
-
-        ' Set the command type and text for the stored procedure
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.CommandText = "dbo.sp_update_order"
-
-        ' Set up the parameters and values
-        DBSetOrderParameters(o, cmd, False)
-
-        If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
-            bRetVal = True
-        End If
-        DBAccessHelper.DBConnectionClose(conn)
-        conn = Nothing
-        Return bRetVal
-    End Function
-
-    ' return Nothing if orderitem not found, otherwise returns an OrderItem
-    Public Shared Function DBReadOrderItemByID(id As Integer) As OrderItem
-        ' Get the connection
-        Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
-        ' Create the command
-        Dim cmd As SqlCommand = conn.CreateCommand
-        Dim i As OrderItem = Nothing
-
-        ' Set the command type and text for the stored procedure
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.CommandText = "dbo.sp_read_orderline"
-
-        ' Set up the input and output parameters
-        cmd.Parameters.Add("@id", SqlDbType.Int)
-        cmd.Parameters("@id").Direction = ParameterDirection.InputOutput
-        cmd.Parameters("@id").Value = id
-        cmd.Parameters.Add("@orderid", SqlDbType.Int)
-        cmd.Parameters("@orderid").Direction = ParameterDirection.Output
-        cmd.Parameters.Add("@prodid", SqlDbType.Int)
-        cmd.Parameters("@prodid").Direction = ParameterDirection.Output
-        cmd.Parameters.Add("@shipdate", SqlDbType.Date)
-        cmd.Parameters("@shipdate").Direction = ParameterDirection.Output
-        cmd.Parameters.Add("@quantity", SqlDbType.Int)
-        cmd.Parameters("@quantity").Direction = ParameterDirection.Output
+        Dim transaction As SqlTransaction = Nothing
+        Dim cmd As SqlCommand = Nothing
+        Dim bRetVal = True
 
         Try
             conn.Open()
-            cmd.ExecuteScalar()                     '# call SQL Stored procedure
-            id = cmd.Parameters("@id").Value        ' retrieve the in/out param value
-            If id <> -1 Then
-                ' found the record, create and populate the new product object
-                'Public Sub New(id As Integer, order_id As Integer, product As Integer, quantity As UInteger)
-                Dim ship As Date? = Nothing
-                If IsDBNull(cmd.Parameters("@shipdate").Value) = False Then
-                    ship = cmd.Parameters("@shipdate").Value
-                End If
+            cmd = conn.CreateCommand
+            transaction = conn.BeginTransaction()   '# begin the transaction
+            cmd.Transaction = transaction           '# setup command transaction
+            cmd.CommandType = CommandType.StoredProcedure '# command type is stored procedure
+            cmd.CommandText = "dbo.sp_delete_order"
 
-                i = New OrderItem(id, cmd.Parameters("@orderid").Value,
-                                cmd.Parameters("@prodid").Value,
-                                cmd.Parameters("@quantity").Value, ship)
-            End If
-
-        Catch sqlExcept As SqlException
-            ' nothing to do here...since the read is just a query
+            ' Set up the parameters and values
+            cmd.Parameters.Add("@id", SqlDbType.Int)
+            cmd.Parameters("@id").Value = id
+            cmd.ExecuteScalar()
+        Catch
+            bRetVal = False
         Finally
-            DBAccessHelper.DBConnectionClose(conn)
-        End Try
-        Return i
-    End Function
-
-
-    Public Shared Function DBInsertOrUpdateOrderItem(i As OrderItem) As Integer
-        If i Is Nothing Then
-            Return -1
-        End If
-        If i.ID = 0 Then
-            Return DBInsertOrderItem(i)
-        Else
-            If DBUpdateOrderItem(i) Then
-                Return i.ID
-            Else
-                Return -1
+            If transaction IsNot Nothing Then
+                If bRetVal = False Then
+                    transaction.Rollback()          '# rollback transaction
+                Else
+                    transaction.Commit()            '# commit transaction
+                End If
             End If
-        End If
+            Try
+                conn.Close()
+            Catch ex As Exception
+                ex = Nothing
+            Finally
+                conn = Nothing
+            End Try
+        End Try
+        Return bRetVal
     End Function
 
+    ' sets up the parameters for the stored procedure call for adding an order line
     Private Shared Sub DBSetOrderItemParameters(i As OrderItem, cmd As SqlCommand, bIsNewItem As Boolean)
         cmd.Parameters.Clear()
         cmd.Parameters.Add("@shipdate", SqlDbType.Date)
@@ -848,88 +742,15 @@ Public Class DBAccessHelper
         cmd.Parameters.Add("@quantity", SqlDbType.Int)
         cmd.Parameters("@quantity").Value = i.quantity
         cmd.Parameters.Add("@id", SqlDbType.Int)
+        cmd.Parameters("@id").Value = i.ID
         If bIsNewItem Then
             cmd.Parameters("@id").Direction = ParameterDirection.Output
         End If
     End Sub
 
-    ' return the product id of the new item, -1 on fail
-    Public Shared Function DBInsertOrderItem(i As OrderItem) As Integer
-        Dim retVal As Integer = -1
-        If i Is Nothing Then
-            Return -1
-        End If
-        ' Get the connection
-        Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
-        ' Create the command
-        Dim cmd As SqlCommand = conn.CreateCommand
-
-        ' Set the command type and text for the stored procedure
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.CommandText = "dbo.sp_insert_orderline"
-
-        ' Set up the input parameters and values
-        DBSetOrderItemParameters(i, cmd, True)
-
-        If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
-            retVal = cmd.Parameters("@id").Value
-        End If
-        DBAccessHelper.DBConnectionClose(conn)
-        conn = Nothing
-        Return retVal
-    End Function
-
-    ' true on success, false on fail
-    Public Shared Function DBDeleteOrderItem(id As Integer) As Boolean
-        Dim bRetVal As Boolean = False
-
-        ' Get the connection
-        Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
-        ' Create the command
-        Dim cmd As SqlCommand = conn.CreateCommand
-
-        ' Set the command type and text for the stored procedure
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.CommandText = "dbo.sp_delete_orderline"
-
-        ' Set up the parameters and values
-        cmd.Parameters.Add("@id", SqlDbType.Int)
-        cmd.Parameters("@id").Value = id
-
-        If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
-            bRetVal = True
-        End If
-        DBAccessHelper.DBConnectionClose(conn)
-        conn = Nothing
-        Return bRetVal
-    End Function
-
-    ' true on success, false on fail
-    Public Shared Function DBUpdateOrderItem(i As OrderItem) As Boolean
-        Dim bRetVal As Boolean = False
-        If i Is Nothing Then
-            Return bRetVal
-        End If
-        ' Get the connection
-        Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
-        ' Create the command
-        Dim cmd As SqlCommand = conn.CreateCommand
-
-        ' Set the command type and text for the stored procedure
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.CommandText = "dbo.sp_update_orderline"
-
-        ' Set up the parameters and values
-        DBSetOrderItemParameters(i, cmd, False)
-
-        If DBAccessHelper.DBSQLExecute(conn, cmd) = True Then
-            bRetVal = True
-        End If
-        DBAccessHelper.DBConnectionClose(conn)
-        conn = Nothing
-        Return bRetVal
-    End Function
-
+    ' ship all items that we can in the order specified. Returns 0 
+    ' on fail or no items shipped, otherwise returns number of lines 
+    ' shipped
     Public Shared Function DBOrderShip(id As Integer) As Integer
         Return 0
     End Function
