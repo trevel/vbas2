@@ -27,7 +27,6 @@
         pd.Show()
     End Sub
 
-
     Private Sub RefreshLists()
         db = New DataClassesDataContext
         ProductDataGridView.DataSource = db.Products
@@ -42,16 +41,11 @@
         od.Show()
     End Sub
 
-    Private Sub btnProductRemove_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
     Private Sub btnProductAdd_Click(sender As Object, e As EventArgs) Handles btnProductAdd.Click
         Dim prodD As ProductDetails = New ProductDetails()
         AddHandler prodD.prodChanged, AddressOf ProdChangedEventHandler
         prodD.Show()
     End Sub
-
 
     Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
         RefreshLists()
@@ -135,6 +129,24 @@
             Status.Text = "Failed to remove an order(s)"
         Else
             Status.Text = "Successfully removed order(s)"
+        End If
+    End Sub
+
+    Private Sub ShipSelectedOrders_Click(sender As Object, e As EventArgs) Handles ShipSelectedOrdersToolStripMenuItem.Click
+        Dim bFailed As Boolean = False
+        For Each item As DataGridViewRow In OrderDataGridView.SelectedRows
+            Dim o As Order = TryCast(item.DataBoundItem, Order)
+            If o IsNot Nothing Then
+                If Not DBAccessLib.DBAccessHelper.DBOrderShip(o.id) Then
+                    bFailed = True
+                End If
+            End If
+        Next
+        RefreshLists()
+        If bFailed Then
+            Status.Text = "Failed to ship an order(s)"
+        Else
+            Status.Text = "Successfully shipped order(s)"
         End If
     End Sub
 

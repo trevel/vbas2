@@ -237,9 +237,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Bobs Fish Jingle.mp3" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Bobs Fish Jingle.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

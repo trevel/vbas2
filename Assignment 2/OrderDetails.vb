@@ -46,6 +46,9 @@
                 orderItemGridView.Rows(row).Cells("Quantity").ReadOnly = False
             End If
         Next
+
+        tbDiscount.Text = order.discount
+
         CalculateTotals()
         Me.OrderDatePicker.Value = order.order_date
     End Sub

@@ -34,11 +34,11 @@ ContextMenu
 Tab Control
 
 TODO:
-- delete order context
-- delete customer context
+bugged - delete order context
+DONE - delete customer context
 - calculate max for each product in an order (DBA?)
-- update order (DBA) - if id = 0 insert, if id=# update, if id=# and quantity = 0 and shipdate = nothing delete
 
+- update order (DBA) - if id = 0 insert, if id=# update, if id=# and quantity = 0 and shipdate = nothing delete
 Ship
 - for each item, if product_available >= product_ordered
 - ship it (shipping log?): 
@@ -54,5 +54,5 @@ DBship(order #)
 OPTIONAL - On productchange - if pending orders, ship.
 OPTIONAL - Lists allow add, double clicking on list opens add dialog
 Polish - Make sure all forms follow the same setups...
-Polish - tab order
-Polish - jingle (bells?)
+done - Polish - tab order
+done - Polish - jingle (bells?)

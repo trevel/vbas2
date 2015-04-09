@@ -50,6 +50,7 @@ Partial Class formMain
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.Status = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.JingleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -65,7 +66,7 @@ Partial Class formMain
         Me.DiscountDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.bindingProductsList = New System.Windows.Forms.BindingSource(Me.components)
-        Me.JingleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShipSelectedOrdersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.OrderContextMenu.SuspendLayout()
         Me.tabProducts.SuspendLayout()
@@ -100,9 +101,9 @@ Partial Class formMain
         '
         'OrderContextMenu
         '
-        Me.OrderContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteSelectedOrdersToolStripMenuItem})
+        Me.OrderContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteSelectedOrdersToolStripMenuItem, Me.ShipSelectedOrdersToolStripMenuItem})
         Me.OrderContextMenu.Name = "prodContextMenu"
-        Me.OrderContextMenu.Size = New System.Drawing.Size(193, 26)
+        Me.OrderContextMenu.Size = New System.Drawing.Size(193, 48)
         '
         'DeleteSelectedOrdersToolStripMenuItem
         '
@@ -327,6 +328,12 @@ Partial Class formMain
         Me.Status.Name = "Status"
         Me.Status.Size = New System.Drawing.Size(0, 17)
         '
+        'JingleToolStripMenuItem
+        '
+        Me.JingleToolStripMenuItem.Name = "JingleToolStripMenuItem"
+        Me.JingleToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.JingleToolStripMenuItem.Text = "Jingle"
+        '
         'DataGridViewTextBoxColumn6
         '
         Me.DataGridViewTextBoxColumn6.DataPropertyName = "Description"
@@ -416,11 +423,11 @@ Partial Class formMain
         '
         Me.OrderBindingSource.DataSource = GetType(Assignment_2.ExpandedOrders)
         '
-        'JingleToolStripMenuItem
+        'ShipSelectedOrdersToolStripMenuItem
         '
-        Me.JingleToolStripMenuItem.Name = "JingleToolStripMenuItem"
-        Me.JingleToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.JingleToolStripMenuItem.Text = "Jingle"
+        Me.ShipSelectedOrdersToolStripMenuItem.Name = "ShipSelectedOrdersToolStripMenuItem"
+        Me.ShipSelectedOrdersToolStripMenuItem.Size = New System.Drawing.Size(192, 22)
+        Me.ShipSelectedOrdersToolStripMenuItem.Text = "Ship Selected Orders"
         '
         'formMain
         '
@@ -503,5 +510,6 @@ Partial Class formMain
     Friend WithEvents OrderContextMenu As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents DeleteSelectedOrdersToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents JingleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ShipSelectedOrdersToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
