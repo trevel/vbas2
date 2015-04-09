@@ -41,18 +41,20 @@
             btnProdAdd.Visible = True
             prodCombo.Visible = True
 
+            Else
+            btnNewAddress.Visible = False
+            AddressDataGridView.Enabled = False
+            tbDiscount.Enabled = False
+
             'if an order has been shipped AND no items have NOT been shipped, you can't edit anything
-        ElseIf unshipped_orders = 0 Then
-            btnNewAddress.Visible = False
-            AddressDataGridView.Enabled = False
-            btnProdAdd.Visible = False
-            prodCombo.Visible = False
-        Else
-            ' if an order has been shipped, but orders remain, you can't change addresses but CAN add products
-            btnNewAddress.Visible = False
-            AddressDataGridView.Enabled = False
-            btnProdAdd.Visible = True
-            prodCombo.Visible = True
+            If unshipped_orders = 0 Then
+                btnProdAdd.Visible = False
+                prodCombo.Visible = False
+            Else
+                ' if an order has been shipped, but orders remain, you can't change addresses but CAN add products
+                btnProdAdd.Visible = True
+                prodCombo.Visible = True
+            End If
         End If
 
 
