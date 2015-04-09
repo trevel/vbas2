@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RichTextBox1.Text" xml:space="preserve">
+    <value>Welcome
+
+Welcome to the Bob’s World of Fish custom-built inventory, customer and order management software! I’m sure you’ll enjoy it. It’s fisherific! 
+
+Using
+
+Using the software is easy as one-fish, two-fish! Just start it and you’ll immediately (depending on the speed of your computer) be given the management interface. There are three tabs available, each for a vital purpose: Managing products, managing customers, and managing orders. 
+
+Products
+
+There are three main things you’ll want to do with your products. You’ll want to add new products – it’s rather useless until you add at least one – and you’ll want to edit the products, and finally you’ll want to delete (or inactivate) products you no longer sell. 
+
+Adding a new product
+
+To add a product, ensure you’re on the product tab and click “New Product”. It’s that simple! You’ll have to fill in some important information, like a description of what the product is, how much you’re selling it for, and how many of them you have in stock. “Active” means that you’ll be ordering more of the product if you need it; in most cases you’ll just be leaving that checked. 
+
+Updating a product
+
+To update a product – if your store is anything like ours, you’ll be constantly needing to indicate new stock – just double click on the product. You might recognize the interface from when you created the product: It’s the same one! Just change whatever values need to be changed and save. 
+
+Inactivating a product
+
+Occasionally a supplier goes out of business and you’ll want to get rid of your existing stock, but not order in any new stock. Thankfully, the Bob’s World of Fish Inventory Management Software makes that as easy as spotting an adult salmon in a goldfish tank! Just updating the record to flag it as inactive. Once inventory is zero, it’ll be completely unavailable for purchase – you might want to go ahead and set that, if you really don’t want to sell any more of them. 
+
+Deleting a product
+
+You can’t delete a product you’ve already sold – you’ll need to check back on it, sometimes – but if you select a product record or two, right click and select “Delete selected products” it’ll delete any records it can and inactivate the others for you. 
+
+Customers
+
+A business without customers is like an anemone without clownfish! Make sure you record yours as you develop them! 
+
+Adding a customer
+
+If you’re reading this in order or looking at the customer tab, you can probably work it out yourself, but just in case you like to be told things you already know: Yes! Just click on “New Customer” and you’ll be entering customer details to your heart’s content. 
+
+Editing a customer
+
+Double click on a customer record in the customer tab, and hey, look! It’s your old friend, the customer edit menu. If you’re having trouble, make sure you’re clicking on text, not just empty space. 
+
+Deleting a customer
+
+You can’t delete a customer that has an order, but it’s easy to delete the ones that don’t: Just select the ones you want to delete on the customer tab, right click on them and select “Delete selected customers.”
+
+Addresses
+
+Adding an address
+
+You can also add addresses for the customer – they don’t need them for the customer to exist, but you’ll need them when it comes time to ship. Just click on the “Add” button by the addresses window while you’re in the customer window and you’ll be on your way. 
+
+Editing an address
+
+When you’re looking at the customer detail, it’s easy as piefish to edit a customer address – just double click on it! You’ll be editing the address before you can say she sells sea shells by the sea shore, unless you’re incredibly good at tongue twisters and very bad at clicking. 
+
+Deleting an address
+
+From the customer details, select as many addresses as you no longer want, then right click on them and select – you guessed it – delete selected address. Gone! Unless they’re used for an order already, in which case, still there! 
+
+Orders
+
+Adding an order
+
+Go to the order tab and click on the incredibly obfuscated “New Order” button. 
+
+Adding an order is a touch more complicated than adding a customer, an address, or a product – largely because it involves all three of those! The first step is to select (or, if you’re impatient and skipped the first few steps, create) a Customer. There’s a drop down list with all customers in it, and a New Customer button beside it for when none of the current customers will do. 
+
+After this, select (or, again, create) a shipping address. You can pick from all the addresses the customer already has, or add a new one if none of the old ones will do. 
+
+Next, add products to purchase. Just select them from the dropdown and click on “Add” beside it – they’ll appear below along with price. Just edit the quantity if you want more – or, if you’ve changed your mind, set quantity to 0. The total cost will be updated at the bottom of the list. If you order too many of an inactive item, the status bar will let you know, and you won’t be able to submit. 
+
+Finally, if the customer gets a discount, put it into the discount box – and if for some reason you want to predate the order, there’s the order date box just waiting for you to change it. Don’t get confused, though – you can’t postdate an order. If you want to order something in the future, you’ll have to wait for the future! 
+Then hit save and you’re done!  
+
+Editing an order
+
+Double click on the order, and there you are! Now, depending on if anything has been shipped, there’ll be some fields you can’t change – you can’t change an address after it’s been shipped, and you certainly can’t change how many of something you want after it’s been shipped. That would just be silly! But you can change how many of something you want BEFORE it’s been shipped, or add a new item altogether. 
+Just open it up, make your changes, and save it again – and soon those delicious or friendly fish will be on their way 
+
+Deleting orders
+
+Select orders to delete, right click, delete selected orders. They won’t delete if any of them have been shipped. If you want to delete a single item FROM an order, just edit the quantity ordered down to zero. 
+
+Shipping orders
+
+Select all orders you want to ship, right click, and then Ship selected orders. As long as you have inventory, each order item will ship – if you don’t, they won’t. But don’t worry – they won’t ship twice! It’ll even deduct the shipped products from your inventory, just to stay on your good side! 
+
+Conclusion
+
+Now that you’ve read all that, you’re ready to go and make tons of money selling Fish for Bob’s World of Fish! Just remember to keep track of your incoming inventory, and if you have any troubles with it (or ideas for new and helpful features), remember: We bill by the minute! So don’t hesitate to call! 
+</value>
+  </data>
+</root>
