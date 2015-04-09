@@ -1,4 +1,6 @@
-﻿Public Class AddressDetail
+﻿Imports DBAccessLib
+
+Public Class AddressDetail
     Public address As New Address
     Sub New(custname As String)
         MyBase.New()

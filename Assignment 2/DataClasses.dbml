@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="cvb815a_assign2" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=135.23.74.62;Initial Catalog=cvb815a_assign2;Persist Security Info=True;User ID=programaccess" SettingsObjectName="Assignment_2.My.MySettings" SettingsPropertyName="cvb815a_assign2ConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=135.23.74.62;Initial Catalog=cvb815a_assign2;Persist Security Info=True;User ID=programaccess" SettingsObjectName="DBAccessLib.My.MySettings" SettingsPropertyName="ConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Address" Member="Addresses">
     <Type Name="Address">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -99,9 +99,9 @@
       <Column Name="subtotal" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="discount" Type="System.Decimal" DbType="Decimal(3,0) NOT NULL" CanBeNull="false" />
       <Column Name="total" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Association Name="ExpandedOrders_Order" Member="Orders" ThisKey="id" OtherKey="id" Type="Order" Cardinality="One" />
-      <Association Name="ExpandedOrders_Order_Line" Member="Order_Lines" ThisKey="id" OtherKey="order_id" Type="Order_Line" />
       <Association Name="ExpandedOrders_Customer" Member="Customers" ThisKey="customer_id" OtherKey="id" Type="Customer" />
+      <Association Name="ExpandedOrders_Order_Line" Member="Order_Lines" ThisKey="id" OtherKey="order_id" Type="Order_Line" />
+      <Association Name="ExpandedOrders_Order" Member="Orders" ThisKey="id" OtherKey="id" Type="Order" Cardinality="One" />
     </Type>
   </Table>
 </Database>

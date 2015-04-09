@@ -105,9 +105,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DataClasses.designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses.dbml</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="DataClasses.vb">
       <DependentUpon>DataClasses.dbml</DependentUpon>
@@ -154,9 +154,6 @@
     <EmbeddedResource Include="ProductDetails.resx">
       <DependentUpon>ProductDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <None Include="DataClasses.dbml.layout">
-      <DependentUpon>DataClasses.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="AddressDetail.resx">
       <DependentUpon>AddressDetail.vb</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +172,14 @@
     <EmbeddedResource Include="OrderDetails.resx">
       <DependentUpon>OrderDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <None Include="DataClasses.dbml">
+      <SubType>Designer</SubType>
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClasses.designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataClasses.dbml.layout">
+      <DependentUpon>DataClasses.dbml</DependentUpon>
+    </None>
     <None Include="My Project\Settings.settings">
       <CustomToolNamespace>My</CustomToolNamespace>
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -182,11 +187,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DataClasses.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataClasses.designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

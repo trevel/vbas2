@@ -134,20 +134,34 @@
 
     Private Sub ShipSelectedOrders_Click(sender As Object, e As EventArgs) Handles ShipSelectedOrdersToolStripMenuItem.Click
         Dim bFailed As Boolean = False
+        Dim ship_full As Integer = 0
+        Dim ship_partial As Integer = 0
+        Dim ship_none As Integer = 0
+        Dim ship_fail As Integer = 0
+        Dim ship_total As Integer = 0
+
         For Each item As DataGridViewRow In OrderDataGridView.SelectedRows
             Dim o As ExpandedOrders = TryCast(item.DataBoundItem, ExpandedOrders)
             If o IsNot Nothing Then
-                If Not DBAccessLib.DBAccessHelper.DBOrderShip(o.id) Then
-                    bFailed = True
+                Dim lines_shipped As Integer = DBAccessLib.DBAccessHelper.DBOrderShip(o.id)
+                If lines_shipped = o.Order_Lines.Count Then
+                    ship_full += 1
+                ElseIf lines_shipped = 0 Then
+                    ship_none += 1
+                ElseIf lines_shipped = -1 Then
+                    ship_fail += 1
+                Else
+                    ship_partial += 1
                 End If
             End If
         Next
+        Dim message As String = "" & (ship_full + ship_none + ship_partial + ship_fail) & " order(s) processed"
+        If ship_full <> 0 Then message += ": " & ship_full & " full orders shipped"
+        If ship_partial <> 0 Then message += ": " & ship_partial & " partial orders shipped"
+        If ship_none <> 0 Then message += ": " & ship_none & " orders not shipped"
+        If ship_fail <> 0 Then message += ": " & ship_fail & " blocked by connection errors"
+        Status.Text = message
         RefreshLists()
-        If bFailed Then
-            Status.Text = "Failed to ship an order(s)"
-        Else
-            Status.Text = "Successfully shipped order(s)"
-        End If
     End Sub
 
     Private Sub JingleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles JingleToolStripMenuItem.Click
