@@ -61,9 +61,11 @@ Partial Class CustomerDetails
         '
         'tbName
         '
+        Me.tbName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbName.Location = New System.Drawing.Point(16, 30)
         Me.tbName.Name = "tbName"
-        Me.tbName.Size = New System.Drawing.Size(316, 20)
+        Me.tbName.Size = New System.Drawing.Size(283, 20)
         Me.tbName.TabIndex = 0
         '
         'Label2
@@ -77,9 +79,11 @@ Partial Class CustomerDetails
         '
         'tbEmail
         '
+        Me.tbEmail.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbEmail.Location = New System.Drawing.Point(16, 70)
         Me.tbEmail.Name = "tbEmail"
-        Me.tbEmail.Size = New System.Drawing.Size(316, 20)
+        Me.tbEmail.Size = New System.Drawing.Size(283, 20)
         Me.tbEmail.TabIndex = 1
         '
         'Label3
@@ -93,9 +97,11 @@ Partial Class CustomerDetails
         '
         'tbPhoneNumber
         '
+        Me.tbPhoneNumber.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbPhoneNumber.Location = New System.Drawing.Point(16, 114)
         Me.tbPhoneNumber.Name = "tbPhoneNumber"
-        Me.tbPhoneNumber.Size = New System.Drawing.Size(316, 20)
+        Me.tbPhoneNumber.Size = New System.Drawing.Size(283, 20)
         Me.tbPhoneNumber.TabIndex = 2
         '
         'Label4
@@ -109,9 +115,11 @@ Partial Class CustomerDetails
         '
         'tbCreditLimit
         '
+        Me.tbCreditLimit.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbCreditLimit.Location = New System.Drawing.Point(13, 158)
         Me.tbCreditLimit.Name = "tbCreditLimit"
-        Me.tbCreditLimit.Size = New System.Drawing.Size(319, 20)
+        Me.tbCreditLimit.Size = New System.Drawing.Size(286, 20)
         Me.tbCreditLimit.TabIndex = 3
         '
         'Label5
@@ -126,7 +134,7 @@ Partial Class CustomerDetails
         'btnAdd
         '
         Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAdd.Location = New System.Drawing.Point(349, 169)
+        Me.btnAdd.Location = New System.Drawing.Point(305, 169)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(41, 23)
         Me.btnAdd.TabIndex = 4
@@ -137,7 +145,7 @@ Partial Class CustomerDetails
         '
         Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnSave.Location = New System.Drawing.Point(246, 317)
+        Me.btnSave.Location = New System.Drawing.Point(202, 308)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 6
@@ -148,7 +156,7 @@ Partial Class CustomerDetails
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(327, 317)
+        Me.btnCancel.Location = New System.Drawing.Point(283, 308)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 7
@@ -158,9 +166,9 @@ Partial Class CustomerDetails
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.status})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 345)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 336)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(402, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(358, 22)
         Me.StatusStrip1.TabIndex = 13
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -185,7 +193,7 @@ Partial Class CustomerDetails
         Me.AddressDataGridView.Name = "AddressDataGridView"
         Me.AddressDataGridView.ReadOnly = True
         Me.AddressDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.AddressDataGridView.Size = New System.Drawing.Size(374, 113)
+        Me.AddressDataGridView.Size = New System.Drawing.Size(330, 104)
         Me.AddressDataGridView.TabIndex = 5
         '
         'street
@@ -242,7 +250,7 @@ Partial Class CustomerDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(402, 367)
+        Me.ClientSize = New System.Drawing.Size(358, 358)
         Me.Controls.Add(Me.AddressDataGridView)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.btnCancel)
@@ -257,6 +265,7 @@ Partial Class CustomerDetails
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.tbName)
         Me.Controls.Add(Me.Label1)
+        Me.MinimumSize = New System.Drawing.Size(265, 370)
         Me.Name = "CustomerDetails"
         Me.Text = "CustomerDetails"
         Me.StatusStrip1.ResumeLayout(False)

@@ -44,7 +44,7 @@ Partial Class AddressDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbStreet.Location = New System.Drawing.Point(13, 61)
         Me.tbStreet.Name = "tbStreet"
-        Me.tbStreet.Size = New System.Drawing.Size(333, 20)
+        Me.tbStreet.Size = New System.Drawing.Size(332, 20)
         Me.tbStreet.TabIndex = 0
         '
         'Label1
@@ -71,7 +71,7 @@ Partial Class AddressDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbCity.Location = New System.Drawing.Point(13, 105)
         Me.tbCity.Name = "tbCity"
-        Me.tbCity.Size = New System.Drawing.Size(333, 20)
+        Me.tbCity.Size = New System.Drawing.Size(332, 20)
         Me.tbCity.TabIndex = 1
         '
         'Label3
@@ -121,7 +121,7 @@ Partial Class AddressDetail
         '
         Me.btnSaveAddress.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSaveAddress.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnSaveAddress.Location = New System.Drawing.Point(192, 156)
+        Me.btnSaveAddress.Location = New System.Drawing.Point(191, 151)
         Me.btnSaveAddress.Name = "btnSaveAddress"
         Me.btnSaveAddress.Size = New System.Drawing.Size(75, 23)
         Me.btnSaveAddress.TabIndex = 4
@@ -132,7 +132,7 @@ Partial Class AddressDetail
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(273, 156)
+        Me.btnCancel.Location = New System.Drawing.Point(272, 151)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 5
@@ -142,9 +142,9 @@ Partial Class AddressDetail
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Status})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 186)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 181)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(360, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(359, 22)
         Me.StatusStrip1.TabIndex = 9
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -157,7 +157,7 @@ Partial Class AddressDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(360, 208)
+        Me.ClientSize = New System.Drawing.Size(359, 203)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSaveAddress)
@@ -170,6 +170,7 @@ Partial Class AddressDetail
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.tbStreet)
+        Me.MinimumSize = New System.Drawing.Size(375, 235)
         Me.Name = "AddressDetail"
         Me.Text = "AddressDetail"
         Me.StatusStrip1.ResumeLayout(False)

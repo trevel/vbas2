@@ -51,7 +51,6 @@ Partial Class formMain
         Me.btnOrderAdd = New System.Windows.Forms.Button()
         Me.OrderDataGridView = New System.Windows.Forms.DataGridView()
         Me.customer_name = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CustomeridDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrderdateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.subtotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DiscountDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -65,9 +64,6 @@ Partial Class formMain
         Me.ViewHelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.JingleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.INeedSomebodyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ButNotJustAnybodyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.YouKnowINeedSomeoneToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.Status = New System.Windows.Forms.ToolStripStatusLabel()
         Me.bindingProductsList = New System.Windows.Forms.BindingSource(Me.components)
@@ -96,11 +92,10 @@ Partial Class formMain
         Me.TabControl1.Controls.Add(Me.tabCustomers)
         Me.TabControl1.Controls.Add(Me.tabOrders)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Location = New System.Drawing.Point(0, 46)
-        Me.TabControl1.Margin = New System.Windows.Forms.Padding(6)
+        Me.TabControl1.Location = New System.Drawing.Point(0, 24)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1298, 927)
+        Me.TabControl1.Size = New System.Drawing.Size(565, 418)
         Me.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.TabControl1.TabIndex = 0
         '
@@ -108,39 +103,37 @@ Partial Class formMain
         '
         Me.OrderContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteSelectedOrdersToolStripMenuItem, Me.ShipSelectedOrdersToolStripMenuItem})
         Me.OrderContextMenu.Name = "prodContextMenu"
-        Me.OrderContextMenu.Size = New System.Drawing.Size(337, 76)
+        Me.OrderContextMenu.Size = New System.Drawing.Size(193, 48)
         '
         'DeleteSelectedOrdersToolStripMenuItem
         '
         Me.DeleteSelectedOrdersToolStripMenuItem.Name = "DeleteSelectedOrdersToolStripMenuItem"
-        Me.DeleteSelectedOrdersToolStripMenuItem.Size = New System.Drawing.Size(336, 36)
+        Me.DeleteSelectedOrdersToolStripMenuItem.Size = New System.Drawing.Size(192, 22)
         Me.DeleteSelectedOrdersToolStripMenuItem.Text = "Delete Selected Orders"
         '
         'ShipSelectedOrdersToolStripMenuItem
         '
         Me.ShipSelectedOrdersToolStripMenuItem.Name = "ShipSelectedOrdersToolStripMenuItem"
-        Me.ShipSelectedOrdersToolStripMenuItem.Size = New System.Drawing.Size(336, 36)
+        Me.ShipSelectedOrdersToolStripMenuItem.Size = New System.Drawing.Size(192, 22)
         Me.ShipSelectedOrdersToolStripMenuItem.Text = "Ship Selected Orders"
         '
         'tabProducts
         '
         Me.tabProducts.Controls.Add(Me.btnProductAdd)
         Me.tabProducts.Controls.Add(Me.ProductDataGridView)
-        Me.tabProducts.Location = New System.Drawing.Point(4, 34)
-        Me.tabProducts.Margin = New System.Windows.Forms.Padding(6)
+        Me.tabProducts.Location = New System.Drawing.Point(4, 22)
         Me.tabProducts.Name = "tabProducts"
-        Me.tabProducts.Padding = New System.Windows.Forms.Padding(6)
-        Me.tabProducts.Size = New System.Drawing.Size(1290, 889)
+        Me.tabProducts.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabProducts.Size = New System.Drawing.Size(557, 392)
         Me.tabProducts.TabIndex = 0
         Me.tabProducts.Text = "Products"
         Me.tabProducts.UseVisualStyleBackColor = True
         '
         'btnProductAdd
         '
-        Me.btnProductAdd.Location = New System.Drawing.Point(12, 12)
-        Me.btnProductAdd.Margin = New System.Windows.Forms.Padding(6)
+        Me.btnProductAdd.Location = New System.Drawing.Point(6, 6)
         Me.btnProductAdd.Name = "btnProductAdd"
-        Me.btnProductAdd.Size = New System.Drawing.Size(180, 44)
+        Me.btnProductAdd.Size = New System.Drawing.Size(90, 23)
         Me.btnProductAdd.TabIndex = 2
         Me.btnProductAdd.Text = "New Product"
         Me.btnProductAdd.UseVisualStyleBackColor = True
@@ -157,12 +150,11 @@ Partial Class formMain
         Me.ProductDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewCheckBoxColumn1})
         Me.ProductDataGridView.ContextMenuStrip = Me.prodContextMenu
         Me.ProductDataGridView.DataSource = Me.ProductBindingSource
-        Me.ProductDataGridView.Location = New System.Drawing.Point(6, 64)
-        Me.ProductDataGridView.Margin = New System.Windows.Forms.Padding(6)
+        Me.ProductDataGridView.Location = New System.Drawing.Point(3, 33)
         Me.ProductDataGridView.Name = "ProductDataGridView"
         Me.ProductDataGridView.ReadOnly = True
         Me.ProductDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.ProductDataGridView.Size = New System.Drawing.Size(1270, 773)
+        Me.ProductDataGridView.Size = New System.Drawing.Size(551, 338)
         Me.ProductDataGridView.TabIndex = 1
         '
         'DataGridViewTextBoxColumn6
@@ -197,12 +189,12 @@ Partial Class formMain
         '
         Me.prodContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteSelectedProductsToolStripMenuItem})
         Me.prodContextMenu.Name = "prodContextMenu"
-        Me.prodContextMenu.Size = New System.Drawing.Size(358, 40)
+        Me.prodContextMenu.Size = New System.Drawing.Size(205, 26)
         '
         'DeleteSelectedProductsToolStripMenuItem
         '
         Me.DeleteSelectedProductsToolStripMenuItem.Name = "DeleteSelectedProductsToolStripMenuItem"
-        Me.DeleteSelectedProductsToolStripMenuItem.Size = New System.Drawing.Size(357, 36)
+        Me.DeleteSelectedProductsToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
         Me.DeleteSelectedProductsToolStripMenuItem.Text = "Delete Selected Products"
         '
         'ProductBindingSource
@@ -213,21 +205,19 @@ Partial Class formMain
         '
         Me.tabCustomers.Controls.Add(Me.btnCustAdd)
         Me.tabCustomers.Controls.Add(Me.CustomerDataGridView)
-        Me.tabCustomers.Location = New System.Drawing.Point(4, 34)
-        Me.tabCustomers.Margin = New System.Windows.Forms.Padding(6)
+        Me.tabCustomers.Location = New System.Drawing.Point(4, 22)
         Me.tabCustomers.Name = "tabCustomers"
-        Me.tabCustomers.Padding = New System.Windows.Forms.Padding(6)
-        Me.tabCustomers.Size = New System.Drawing.Size(1290, 889)
+        Me.tabCustomers.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabCustomers.Size = New System.Drawing.Size(557, 392)
         Me.tabCustomers.TabIndex = 1
         Me.tabCustomers.Text = "Customers"
         Me.tabCustomers.UseVisualStyleBackColor = True
         '
         'btnCustAdd
         '
-        Me.btnCustAdd.Location = New System.Drawing.Point(18, 12)
-        Me.btnCustAdd.Margin = New System.Windows.Forms.Padding(6)
+        Me.btnCustAdd.Location = New System.Drawing.Point(9, 6)
         Me.btnCustAdd.Name = "btnCustAdd"
-        Me.btnCustAdd.Size = New System.Drawing.Size(196, 44)
+        Me.btnCustAdd.Size = New System.Drawing.Size(98, 23)
         Me.btnCustAdd.TabIndex = 1
         Me.btnCustAdd.Text = "New Customer"
         Me.btnCustAdd.UseVisualStyleBackColor = True
@@ -244,12 +234,11 @@ Partial Class formMain
         Me.CustomerDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5})
         Me.CustomerDataGridView.ContextMenuStrip = Me.CustomerContextMenu
         Me.CustomerDataGridView.DataSource = Me.CustomerBindingSource
-        Me.CustomerDataGridView.Location = New System.Drawing.Point(6, 64)
-        Me.CustomerDataGridView.Margin = New System.Windows.Forms.Padding(6)
+        Me.CustomerDataGridView.Location = New System.Drawing.Point(3, 33)
         Me.CustomerDataGridView.Name = "CustomerDataGridView"
         Me.CustomerDataGridView.ReadOnly = True
         Me.CustomerDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.CustomerDataGridView.Size = New System.Drawing.Size(1270, 775)
+        Me.CustomerDataGridView.Size = New System.Drawing.Size(551, 339)
         Me.CustomerDataGridView.TabIndex = 0
         '
         'DataGridViewTextBoxColumn2
@@ -284,12 +273,12 @@ Partial Class formMain
         '
         Me.CustomerContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteSelectedCustomersToolStripMenuItem})
         Me.CustomerContextMenu.Name = "prodContextMenu"
-        Me.CustomerContextMenu.Size = New System.Drawing.Size(369, 40)
+        Me.CustomerContextMenu.Size = New System.Drawing.Size(210, 26)
         '
         'DeleteSelectedCustomersToolStripMenuItem
         '
         Me.DeleteSelectedCustomersToolStripMenuItem.Name = "DeleteSelectedCustomersToolStripMenuItem"
-        Me.DeleteSelectedCustomersToolStripMenuItem.Size = New System.Drawing.Size(368, 36)
+        Me.DeleteSelectedCustomersToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
         Me.DeleteSelectedCustomersToolStripMenuItem.Text = "Delete Selected Customer"
         '
         'CustomerBindingSource
@@ -300,21 +289,19 @@ Partial Class formMain
         '
         Me.tabOrders.Controls.Add(Me.btnOrderAdd)
         Me.tabOrders.Controls.Add(Me.OrderDataGridView)
-        Me.tabOrders.Location = New System.Drawing.Point(4, 34)
-        Me.tabOrders.Margin = New System.Windows.Forms.Padding(6)
+        Me.tabOrders.Location = New System.Drawing.Point(4, 22)
         Me.tabOrders.Name = "tabOrders"
-        Me.tabOrders.Padding = New System.Windows.Forms.Padding(6)
-        Me.tabOrders.Size = New System.Drawing.Size(1290, 889)
+        Me.tabOrders.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabOrders.Size = New System.Drawing.Size(557, 392)
         Me.tabOrders.TabIndex = 2
         Me.tabOrders.Text = "Orders"
         Me.tabOrders.UseVisualStyleBackColor = True
         '
         'btnOrderAdd
         '
-        Me.btnOrderAdd.Location = New System.Drawing.Point(6, 12)
-        Me.btnOrderAdd.Margin = New System.Windows.Forms.Padding(6)
+        Me.btnOrderAdd.Location = New System.Drawing.Point(3, 6)
         Me.btnOrderAdd.Name = "btnOrderAdd"
-        Me.btnOrderAdd.Size = New System.Drawing.Size(212, 44)
+        Me.btnOrderAdd.Size = New System.Drawing.Size(106, 23)
         Me.btnOrderAdd.TabIndex = 1
         Me.btnOrderAdd.Text = "New Order"
         Me.btnOrderAdd.UseVisualStyleBackColor = True
@@ -328,15 +315,14 @@ Partial Class formMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.OrderDataGridView.AutoGenerateColumns = False
         Me.OrderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.OrderDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.customer_name, Me.CustomeridDataGridViewTextBoxColumn, Me.OrderdateDataGridViewTextBoxColumn, Me.subtotal, Me.DiscountDataGridViewTextBoxColumn, Me.total})
+        Me.OrderDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.customer_name, Me.OrderdateDataGridViewTextBoxColumn, Me.subtotal, Me.DiscountDataGridViewTextBoxColumn, Me.total})
         Me.OrderDataGridView.DataSource = Me.OrderBindingSource
-        Me.OrderDataGridView.Location = New System.Drawing.Point(-8, 69)
-        Me.OrderDataGridView.Margin = New System.Windows.Forms.Padding(6)
+        Me.OrderDataGridView.Location = New System.Drawing.Point(-4, 36)
         Me.OrderDataGridView.MultiSelect = False
         Me.OrderDataGridView.Name = "OrderDataGridView"
         Me.OrderDataGridView.ReadOnly = True
         Me.OrderDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.OrderDataGridView.Size = New System.Drawing.Size(1298, 769)
+        Me.OrderDataGridView.Size = New System.Drawing.Size(565, 336)
         Me.OrderDataGridView.TabIndex = 0
         '
         'customer_name
@@ -345,13 +331,6 @@ Partial Class formMain
         Me.customer_name.HeaderText = "customer_name"
         Me.customer_name.Name = "customer_name"
         Me.customer_name.ReadOnly = True
-        '
-        'CustomeridDataGridViewTextBoxColumn
-        '
-        Me.CustomeridDataGridViewTextBoxColumn.DataPropertyName = "customer_id"
-        Me.CustomeridDataGridViewTextBoxColumn.HeaderText = "customer_id"
-        Me.CustomeridDataGridViewTextBoxColumn.Name = "CustomeridDataGridViewTextBoxColumn"
-        Me.CustomeridDataGridViewTextBoxColumn.ReadOnly = True
         '
         'OrderdateDataGridViewTextBoxColumn
         '
@@ -390,8 +369,7 @@ Partial Class formMain
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(12, 4, 0, 4)
-        Me.MenuStrip1.Size = New System.Drawing.Size(1298, 46)
+        Me.MenuStrip1.Size = New System.Drawing.Size(565, 24)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -399,73 +377,52 @@ Partial Class formMain
         '
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RefreshToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(64, 38)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
         'RefreshToolStripMenuItem
         '
         Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
-        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(170, 36)
+        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(113, 22)
         Me.RefreshToolStripMenuItem.Text = "Refresh"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(170, 36)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(113, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'HelpToolStripMenuItem
         '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewHelpToolStripMenuItem, Me.AboutToolStripMenuItem, Me.JingleToolStripMenuItem, Me.INeedSomebodyToolStripMenuItem})
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewHelpToolStripMenuItem, Me.AboutToolStripMenuItem, Me.JingleToolStripMenuItem})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(77, 38)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
         'ViewHelpToolStripMenuItem
         '
         Me.ViewHelpToolStripMenuItem.Name = "ViewHelpToolStripMenuItem"
-        Me.ViewHelpToolStripMenuItem.Size = New System.Drawing.Size(276, 36)
+        Me.ViewHelpToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
         Me.ViewHelpToolStripMenuItem.Text = "View Help"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(276, 36)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'JingleToolStripMenuItem
         '
         Me.JingleToolStripMenuItem.Name = "JingleToolStripMenuItem"
-        Me.JingleToolStripMenuItem.Size = New System.Drawing.Size(276, 36)
+        Me.JingleToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
         Me.JingleToolStripMenuItem.Text = "Jingle"
-        '
-        'INeedSomebodyToolStripMenuItem
-        '
-        Me.INeedSomebodyToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ButNotJustAnybodyToolStripMenuItem})
-        Me.INeedSomebodyToolStripMenuItem.Name = "INeedSomebodyToolStripMenuItem"
-        Me.INeedSomebodyToolStripMenuItem.Size = New System.Drawing.Size(276, 36)
-        Me.INeedSomebodyToolStripMenuItem.Text = "I need somebody"
-        '
-        'ButNotJustAnybodyToolStripMenuItem
-        '
-        Me.ButNotJustAnybodyToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YouKnowINeedSomeoneToolStripMenuItem})
-        Me.ButNotJustAnybodyToolStripMenuItem.Name = "ButNotJustAnybodyToolStripMenuItem"
-        Me.ButNotJustAnybodyToolStripMenuItem.Size = New System.Drawing.Size(274, 36)
-        Me.ButNotJustAnybodyToolStripMenuItem.Text = "Not just anybody"
-        '
-        'YouKnowINeedSomeoneToolStripMenuItem
-        '
-        Me.YouKnowINeedSomeoneToolStripMenuItem.Name = "YouKnowINeedSomeoneToolStripMenuItem"
-        Me.YouKnowINeedSomeoneToolStripMenuItem.Size = New System.Drawing.Size(375, 36)
-        Me.YouKnowINeedSomeoneToolStripMenuItem.Text = "You know I need someone"
         '
         'StatusStrip
         '
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Status})
-        Me.StatusStrip.Location = New System.Drawing.Point(0, 951)
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 420)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Padding = New System.Windows.Forms.Padding(2, 0, 28, 0)
-        Me.StatusStrip.Size = New System.Drawing.Size(1298, 22)
+        Me.StatusStrip.Size = New System.Drawing.Size(565, 22)
         Me.StatusStrip.TabIndex = 3
         Me.StatusStrip.Text = "StatusStrip"
         '
@@ -476,14 +433,14 @@ Partial Class formMain
         '
         'formMain
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1298, 973)
+        Me.ClientSize = New System.Drawing.Size(565, 442)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Margin = New System.Windows.Forms.Padding(6)
+        Me.MinimumSize = New System.Drawing.Size(490, 240)
         Me.Name = "formMain"
         Me.Text = "Bob's World of Fish"
         Me.TabControl1.ResumeLayout(False)
@@ -524,12 +481,6 @@ Partial Class formMain
     Friend WithEvents btnOrderAdd As System.Windows.Forms.Button
     Friend WithEvents CustomerDataGridView As System.Windows.Forms.DataGridView
     Friend WithEvents CustomerBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents customer_name As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents CustomeridDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents OrderdateDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents subtotal As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DiscountDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents total As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ProductDataGridView As System.Windows.Forms.DataGridView
     Friend WithEvents ProductBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents btnProductAdd As System.Windows.Forms.Button
@@ -558,8 +509,10 @@ Partial Class formMain
     Friend WithEvents JingleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ShipSelectedOrdersToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ViewHelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents INeedSomebodyToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ButNotJustAnybodyToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents YouKnowINeedSomeoneToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents customer_name As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents OrderdateDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents subtotal As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DiscountDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents total As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

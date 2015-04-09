@@ -165,7 +165,11 @@
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Dim order As Database.Order
         Dim items As New List(Of Database.OrderItem)
-
+        If orderItemGridView.Rows.Count = 0 Then
+            Status.Text = "No items ordered"
+            DialogResult = Windows.Forms.DialogResult.None
+            Return
+        End If
         Try
             order = New Database.Order(_order.id, Me.custCombo.SelectedItem.id, OrderDatePicker.Value, getDiscount, AddressDataGridView.SelectedRows(0).Cells(4).Value)
         Catch ex As Exception

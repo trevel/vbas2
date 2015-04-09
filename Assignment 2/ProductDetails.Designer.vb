@@ -96,7 +96,8 @@ Partial Class ProductDetails
         '
         'btnProdCancel
         '
-        Me.btnProdCancel.Location = New System.Drawing.Point(197, 214)
+        Me.btnProdCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnProdCancel.Location = New System.Drawing.Point(167, 194)
         Me.btnProdCancel.Name = "btnProdCancel"
         Me.btnProdCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnProdCancel.TabIndex = 5
@@ -105,7 +106,8 @@ Partial Class ProductDetails
         '
         'btnProdSave
         '
-        Me.btnProdSave.Location = New System.Drawing.Point(116, 214)
+        Me.btnProdSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnProdSave.Location = New System.Drawing.Point(86, 194)
         Me.btnProdSave.Name = "btnProdSave"
         Me.btnProdSave.Size = New System.Drawing.Size(75, 23)
         Me.btnProdSave.TabIndex = 4
@@ -115,23 +117,22 @@ Partial Class ProductDetails
         'statusProd
         '
         Me.statusProd.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statusProdLbl})
-        Me.statusProd.Location = New System.Drawing.Point(0, 240)
+        Me.statusProd.Location = New System.Drawing.Point(0, 220)
         Me.statusProd.Name = "statusProd"
-        Me.statusProd.Size = New System.Drawing.Size(284, 22)
+        Me.statusProd.Size = New System.Drawing.Size(254, 22)
         Me.statusProd.TabIndex = 9
         Me.statusProd.Text = "Status"
         '
         'statusProdLbl
         '
         Me.statusProdLbl.Name = "statusProdLbl"
-        Me.statusProdLbl.Size = New System.Drawing.Size(121, 17)
-        Me.statusProdLbl.Text = "ToolStripStatusLabel1"
+        Me.statusProdLbl.Size = New System.Drawing.Size(0, 17)
         '
         'ProductDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 262)
+        Me.ClientSize = New System.Drawing.Size(254, 242)
         Me.Controls.Add(Me.statusProd)
         Me.Controls.Add(Me.btnProdSave)
         Me.Controls.Add(Me.btnProdCancel)
@@ -142,6 +143,7 @@ Partial Class ProductDetails
         Me.Controls.Add(Me.lblProdPrice)
         Me.Controls.Add(Me.tbProdDesc)
         Me.Controls.Add(Me.lblProdDesc)
+        Me.MinimumSize = New System.Drawing.Size(270, 280)
         Me.Name = "ProductDetails"
         Me.Text = "ProductDetails"
         Me.statusProd.ResumeLayout(False)

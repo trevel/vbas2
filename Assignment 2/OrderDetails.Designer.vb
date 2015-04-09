@@ -23,8 +23,8 @@ Partial Class OrderDetails
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.custCombo = New System.Windows.Forms.ComboBox()
         Me.CustomerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.btnNewCustomerForm = New System.Windows.Forms.Button()
@@ -141,7 +141,7 @@ Partial Class OrderDetails
         'tbDiscount
         '
         Me.tbDiscount.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.tbDiscount.Location = New System.Drawing.Point(358, 542)
+        Me.tbDiscount.Location = New System.Drawing.Point(358, 451)
         Me.tbDiscount.Name = "tbDiscount"
         Me.tbDiscount.Size = New System.Drawing.Size(38, 20)
         Me.tbDiscount.TabIndex = 8
@@ -166,7 +166,7 @@ Partial Class OrderDetails
         Me.orderItemGridView.ContextMenuStrip = Me.OrderItemContextMenuStrip
         Me.orderItemGridView.Location = New System.Drawing.Point(12, 246)
         Me.orderItemGridView.Name = "orderItemGridView"
-        Me.orderItemGridView.Size = New System.Drawing.Size(490, 277)
+        Me.orderItemGridView.Size = New System.Drawing.Size(490, 186)
         Me.orderItemGridView.TabIndex = 6
         '
         'Product
@@ -192,17 +192,17 @@ Partial Class OrderDetails
         '
         'ShipDate
         '
-        DataGridViewCellStyle1.Format = "d"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.ShipDate.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Format = "d"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.ShipDate.DefaultCellStyle = DataGridViewCellStyle3
         Me.ShipDate.HeaderText = "Shipping Date"
         Me.ShipDate.Name = "ShipDate"
         Me.ShipDate.ReadOnly = True
         '
         'prodid
         '
-        DataGridViewCellStyle2.Format = "yyyy-MM-dd"
-        Me.prodid.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Format = "yyyy-MM-dd"
+        Me.prodid.DefaultCellStyle = DataGridViewCellStyle4
         Me.prodid.HeaderText = "Prodid"
         Me.prodid.Name = "prodid"
         Me.prodid.ReadOnly = True
@@ -241,7 +241,7 @@ Partial Class OrderDetails
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Status})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 620)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 529)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(0, 0, 7, 0)
         Me.StatusStrip1.Size = New System.Drawing.Size(526, 22)
@@ -310,8 +310,8 @@ Partial Class OrderDetails
         '
         Me.OrderDatePicker.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.OrderDatePicker.CustomFormat = "yyyy-mm-dd"
-        Me.OrderDatePicker.Location = New System.Drawing.Point(16, 541)
-        Me.OrderDatePicker.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.OrderDatePicker.Location = New System.Drawing.Point(16, 450)
+        Me.OrderDatePicker.Margin = New System.Windows.Forms.Padding(2)
         Me.OrderDatePicker.Name = "OrderDatePicker"
         Me.OrderDatePicker.Size = New System.Drawing.Size(199, 20)
         Me.OrderDatePicker.TabIndex = 7
@@ -321,7 +321,7 @@ Partial Class OrderDetails
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(356, 526)
+        Me.Label1.Location = New System.Drawing.Point(356, 435)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(49, 13)
@@ -332,7 +332,7 @@ Partial Class OrderDetails
         '
         Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(13, 526)
+        Me.Label2.Location = New System.Drawing.Point(13, 435)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(59, 13)
@@ -373,7 +373,7 @@ Partial Class OrderDetails
         '
         Me.subtotalLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.subtotalLabel.AutoSize = True
-        Me.subtotalLabel.Location = New System.Drawing.Point(273, 526)
+        Me.subtotalLabel.Location = New System.Drawing.Point(273, 435)
         Me.subtotalLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.subtotalLabel.Name = "subtotalLabel"
         Me.subtotalLabel.Size = New System.Drawing.Size(53, 13)
@@ -384,7 +384,7 @@ Partial Class OrderDetails
         '
         Me.LabelTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelTotal.AutoSize = True
-        Me.LabelTotal.Location = New System.Drawing.Point(436, 526)
+        Me.LabelTotal.Location = New System.Drawing.Point(436, 435)
         Me.LabelTotal.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LabelTotal.Name = "LabelTotal"
         Me.LabelTotal.Size = New System.Drawing.Size(34, 13)
@@ -395,7 +395,7 @@ Partial Class OrderDetails
         '
         Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(390, 545)
+        Me.Label6.Location = New System.Drawing.Point(390, 454)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(15, 13)
         Me.Label6.TabIndex = 24
@@ -405,7 +405,7 @@ Partial Class OrderDetails
         '
         Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnSave.Location = New System.Drawing.Point(370, 592)
+        Me.btnSave.Location = New System.Drawing.Point(370, 501)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 8
@@ -416,7 +416,7 @@ Partial Class OrderDetails
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCancel.Location = New System.Drawing.Point(451, 591)
+        Me.btnCancel.Location = New System.Drawing.Point(451, 500)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 9
@@ -427,7 +427,7 @@ Partial Class OrderDetails
         '
         Me.subtotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.subtotal.AutoSize = True
-        Me.subtotal.Location = New System.Drawing.Point(273, 544)
+        Me.subtotal.Location = New System.Drawing.Point(273, 453)
         Me.subtotal.Name = "subtotal"
         Me.subtotal.Size = New System.Drawing.Size(39, 13)
         Me.subtotal.TabIndex = 27
@@ -437,7 +437,7 @@ Partial Class OrderDetails
         '
         Me.Total.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Total.AutoSize = True
-        Me.Total.Location = New System.Drawing.Point(436, 544)
+        Me.Total.Location = New System.Drawing.Point(436, 453)
         Me.Total.Name = "Total"
         Me.Total.Size = New System.Drawing.Size(39, 13)
         Me.Total.TabIndex = 28
@@ -447,7 +447,7 @@ Partial Class OrderDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(526, 642)
+        Me.ClientSize = New System.Drawing.Size(526, 551)
         Me.Controls.Add(Me.Total)
         Me.Controls.Add(Me.subtotal)
         Me.Controls.Add(Me.btnCancel)
@@ -470,6 +470,7 @@ Partial Class OrderDetails
         Me.Controls.Add(Me.btnNewAddress)
         Me.Controls.Add(Me.btnNewCustomerForm)
         Me.Controls.Add(Me.custCombo)
+        Me.MinimumSize = New System.Drawing.Size(540, 470)
         Me.Name = "OrderDetails"
         Me.Text = "OrderDetails"
         CType(Me.CustomerBindingSource,System.ComponentModel.ISupportInitialize).EndInit
