@@ -167,4 +167,9 @@
     Private Sub JingleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles JingleToolStripMenuItem.Click
         My.Computer.Audio.Play(My.Resources.Bobs_Fish_Jingle, AudioPlayMode.Background)
     End Sub
+
+    Private Sub ViewHelpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewHelpToolStripMenuItem.Click
+        Dim f As New Help
+        f.Show()
+    End Sub
 End Class
