@@ -41,7 +41,7 @@
         End If
 
         For Each item As Order_Line In order.Order_Lines
-            Dim row As Integer = orderItemGridView.Rows.Add(item.Product.description, item.Product.price, item.quantity, item.ship_date, item.product_id, item.id)
+            Dim row As Integer = orderItemGridView.Rows.Add(item.Product.description, item.Product.price, item.quantity, item.ship_date, item.product_id, item.id, If(item.Product.active, Integer.MaxValue, item.Product.inventory))
             If item.ship_date Is Nothing Then
                 orderItemGridView.Rows(row).Cells("Quantity").ReadOnly = False
             End If
@@ -63,7 +63,7 @@
         Next
         For Each row As DataGridViewRow In AddressDataGridView.Rows
             If row.Cells.Item(4).Value = selected Then
-                row.Selected = True
+                AddressDataGridView.CurrentCell = row.Cells.Item(0)
             End If
         Next
     End Sub
@@ -113,7 +113,7 @@
                        Where rows.Cells.Item(0).Value = prod.description And ShipDate Is Nothing
                        Select rows.Index
             If item Is Nothing Or item.Count = 0 Then
-                Dim row As Integer = orderItemGridView.Rows.Add(prod.description, prod.price, 1, Nothing, prod.id, 0)
+                Dim row As Integer = orderItemGridView.Rows.Add(prod.description, prod.price, 1, Nothing, prod.id, 0, If(prod.active, Integer.MaxValue, prod.inventory))
                 orderItemGridView.Rows.Item(row).Cells("Quantity").ReadOnly = False
             Else
                 orderItemGridView.Rows.Item(item(0)).Cells.Item("Quantity").Value += 1
@@ -195,5 +195,21 @@
         End If
         RaiseEvent OrderChanged()
         Me.Close()
+    End Sub
+
+    Private Sub orderItemGridView_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles orderItemGridView.CellValidating
+        Dim order_amount As Integer
+        Dim order_max As Integer
+        If e.ColumnIndex = 2 AndAlso Integer.TryParse(orderItemGridView.Rows(e.RowIndex).Cells("Available").Value, order_max) Then
+            If Integer.TryParse(e.FormattedValue, order_amount) Then
+                If order_amount > order_max Then
+                    e.Cancel = True
+                    Status.Text = "Quantity too high; we don't have that many"
+                End If
+            Else
+                e.Cancel = True
+                Status.Text = "Invalid quantity."
+            End If
+        End If
     End Sub
 End Class

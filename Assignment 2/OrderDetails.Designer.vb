@@ -34,12 +34,6 @@ Partial Class OrderDetails
         Me.OrderItemBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.AddressBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.orderItemGridView = New System.Windows.Forms.DataGridView()
-        Me.Product = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ShipDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.prodid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OrderItemId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrderItemContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SetQuantityTo0ToDeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddressesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -64,24 +58,31 @@ Partial Class OrderDetails
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.subtotal = New System.Windows.Forms.Label()
         Me.Total = New System.Windows.Forms.Label()
-        CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AddressBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.orderItemGridView, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.OrderItemContextMenuStrip.SuspendLayout()
-        CType(Me.AddressesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.StatusStrip1.SuspendLayout()
-        CType(Me.AddressDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
+        Me.Product = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ShipDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.prodid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OrderItemId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Available = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        CType(Me.CustomerBindingSource,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.ProductBindingSource,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.OrderItemBindingSource,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.AddressBindingSource,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.orderItemGridView,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.OrderItemContextMenuStrip.SuspendLayout
+        CType(Me.AddressesBindingSource,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.StatusStrip1.SuspendLayout
+        CType(Me.AddressDataGridView,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.SuspendLayout
         '
         'custCombo
         '
-        Me.custCombo.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.CustomerBindingSource, "id", True))
-        Me.custCombo.DataBindings.Add(New System.Windows.Forms.Binding("SelectedItem", Me.CustomerBindingSource, "name", True))
+        Me.custCombo.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.CustomerBindingSource, "id", true))
+        Me.custCombo.DataBindings.Add(New System.Windows.Forms.Binding("SelectedItem", Me.CustomerBindingSource, "name", true))
         Me.custCombo.DataSource = Me.CustomerBindingSource
         Me.custCombo.DisplayMember = "name"
-        Me.custCombo.FormattingEnabled = True
+        Me.custCombo.FormattingEnabled = true
         Me.custCombo.Location = New System.Drawing.Point(13, 35)
         Me.custCombo.Name = "custCombo"
         Me.custCombo.Size = New System.Drawing.Size(391, 21)
@@ -100,7 +101,7 @@ Partial Class OrderDetails
         Me.btnNewCustomerForm.Size = New System.Drawing.Size(92, 23)
         Me.btnNewCustomerForm.TabIndex = 1
         Me.btnNewCustomerForm.Text = "New Customer"
-        Me.btnNewCustomerForm.UseVisualStyleBackColor = True
+        Me.btnNewCustomerForm.UseVisualStyleBackColor = true
         '
         'btnNewAddress
         '
@@ -109,13 +110,13 @@ Partial Class OrderDetails
         Me.btnNewAddress.Size = New System.Drawing.Size(92, 23)
         Me.btnNewAddress.TabIndex = 3
         Me.btnNewAddress.Text = "New Address"
-        Me.btnNewAddress.UseVisualStyleBackColor = True
+        Me.btnNewAddress.UseVisualStyleBackColor = true
         '
         'prodCombo
         '
         Me.prodCombo.DataSource = Me.ProductBindingSource
         Me.prodCombo.DisplayMember = "description"
-        Me.prodCombo.FormattingEnabled = True
+        Me.prodCombo.FormattingEnabled = true
         Me.prodCombo.Location = New System.Drawing.Point(12, 224)
         Me.prodCombo.Name = "prodCombo"
         Me.prodCombo.Size = New System.Drawing.Size(272, 21)
@@ -133,7 +134,7 @@ Partial Class OrderDetails
         Me.btnProdAdd.Size = New System.Drawing.Size(40, 23)
         Me.btnProdAdd.TabIndex = 5
         Me.btnProdAdd.Text = "Add"
-        Me.btnProdAdd.UseVisualStyleBackColor = True
+        Me.btnProdAdd.UseVisualStyleBackColor = true
         '
         'tbDiscount
         '
@@ -152,56 +153,15 @@ Partial Class OrderDetails
         '
         'orderItemGridView
         '
-        Me.orderItemGridView.AllowUserToAddRows = False
-        Me.orderItemGridView.AllowUserToDeleteRows = False
+        Me.orderItemGridView.AllowUserToAddRows = false
+        Me.orderItemGridView.AllowUserToDeleteRows = false
         Me.orderItemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.orderItemGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Product, Me.Price, Me.Quantity, Me.ShipDate, Me.prodid, Me.OrderItemId})
+        Me.orderItemGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Product, Me.Price, Me.Quantity, Me.ShipDate, Me.prodid, Me.OrderItemId, Me.Available})
         Me.orderItemGridView.ContextMenuStrip = Me.OrderItemContextMenuStrip
         Me.orderItemGridView.Location = New System.Drawing.Point(12, 246)
         Me.orderItemGridView.Name = "orderItemGridView"
         Me.orderItemGridView.Size = New System.Drawing.Size(490, 277)
         Me.orderItemGridView.TabIndex = 6
-        '
-        'Product
-        '
-        Me.Product.DataPropertyName = "Product"
-        Me.Product.HeaderText = "Product"
-        Me.Product.Name = "Product"
-        Me.Product.ReadOnly = True
-        Me.Product.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Product.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'Price
-        '
-        Me.Price.HeaderText = "Price"
-        Me.Price.Name = "Price"
-        Me.Price.ReadOnly = True
-        '
-        'Quantity
-        '
-        Me.Quantity.HeaderText = "Quantity"
-        Me.Quantity.Name = "Quantity"
-        Me.Quantity.ReadOnly = True
-        '
-        'ShipDate
-        '
-        Me.ShipDate.HeaderText = "Shipping Date"
-        Me.ShipDate.Name = "ShipDate"
-        Me.ShipDate.ReadOnly = True
-        '
-        'prodid
-        '
-        Me.prodid.HeaderText = "Prodid"
-        Me.prodid.Name = "prodid"
-        Me.prodid.ReadOnly = True
-        Me.prodid.Visible = False
-        '
-        'OrderItemId
-        '
-        Me.OrderItemId.HeaderText = "OrderItemId"
-        Me.OrderItemId.Name = "OrderItemId"
-        Me.OrderItemId.ReadOnly = True
-        Me.OrderItemId.Visible = False
         '
         'OrderItemContextMenuStrip
         '
@@ -237,16 +197,16 @@ Partial Class OrderDetails
         '
         'AddressDataGridView
         '
-        Me.AddressDataGridView.AllowUserToAddRows = False
-        Me.AddressDataGridView.AllowUserToDeleteRows = False
-        Me.AddressDataGridView.AllowUserToOrderColumns = True
+        Me.AddressDataGridView.AllowUserToAddRows = false
+        Me.AddressDataGridView.AllowUserToDeleteRows = false
+        Me.AddressDataGridView.AllowUserToOrderColumns = true
         Me.AddressDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.AddressDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.AddressDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.street, Me.city, Me.province, Me.postal_code, Me.id})
         Me.AddressDataGridView.Location = New System.Drawing.Point(13, 80)
-        Me.AddressDataGridView.MultiSelect = False
+        Me.AddressDataGridView.MultiSelect = false
         Me.AddressDataGridView.Name = "AddressDataGridView"
-        Me.AddressDataGridView.ReadOnly = True
+        Me.AddressDataGridView.ReadOnly = true
         Me.AddressDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.AddressDataGridView.Size = New System.Drawing.Size(390, 121)
         Me.AddressDataGridView.TabIndex = 2
@@ -255,14 +215,14 @@ Partial Class OrderDetails
         '
         Me.street.HeaderText = "Street"
         Me.street.Name = "street"
-        Me.street.ReadOnly = True
+        Me.street.ReadOnly = true
         Me.street.Width = 60
         '
         'city
         '
         Me.city.HeaderText = "City"
         Me.city.Name = "city"
-        Me.city.ReadOnly = True
+        Me.city.ReadOnly = true
         Me.city.Width = 49
         '
         'province
@@ -270,7 +230,7 @@ Partial Class OrderDetails
         Me.province.HeaderText = "Province"
         Me.province.MaxInputLength = 2
         Me.province.Name = "province"
-        Me.province.ReadOnly = True
+        Me.province.ReadOnly = true
         Me.province.Width = 74
         '
         'postal_code
@@ -278,15 +238,15 @@ Partial Class OrderDetails
         Me.postal_code.HeaderText = "PostalCode"
         Me.postal_code.MaxInputLength = 7
         Me.postal_code.Name = "postal_code"
-        Me.postal_code.ReadOnly = True
+        Me.postal_code.ReadOnly = true
         Me.postal_code.Width = 86
         '
         'id
         '
         Me.id.HeaderText = "id"
         Me.id.Name = "id"
-        Me.id.ReadOnly = True
-        Me.id.Visible = False
+        Me.id.ReadOnly = true
+        Me.id.Visible = false
         '
         'OrderDatePicker
         '
@@ -300,7 +260,7 @@ Partial Class OrderDetails
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
+        Me.Label1.AutoSize = true
         Me.Label1.Location = New System.Drawing.Point(356, 526)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
@@ -310,7 +270,7 @@ Partial Class OrderDetails
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
+        Me.Label2.AutoSize = true
         Me.Label2.Location = New System.Drawing.Point(13, 576)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
@@ -320,7 +280,7 @@ Partial Class OrderDetails
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
+        Me.Label3.AutoSize = true
         Me.Label3.Location = New System.Drawing.Point(10, 19)
         Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
@@ -330,7 +290,7 @@ Partial Class OrderDetails
         '
         'Label4
         '
-        Me.Label4.AutoSize = True
+        Me.Label4.AutoSize = true
         Me.Label4.Location = New System.Drawing.Point(13, 62)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
@@ -340,7 +300,7 @@ Partial Class OrderDetails
         '
         'Label5
         '
-        Me.Label5.AutoSize = True
+        Me.Label5.AutoSize = true
         Me.Label5.Location = New System.Drawing.Point(13, 207)
         Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
@@ -350,7 +310,7 @@ Partial Class OrderDetails
         '
         'subtotalLabel
         '
-        Me.subtotalLabel.AutoSize = True
+        Me.subtotalLabel.AutoSize = true
         Me.subtotalLabel.Location = New System.Drawing.Point(273, 526)
         Me.subtotalLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.subtotalLabel.Name = "subtotalLabel"
@@ -360,7 +320,7 @@ Partial Class OrderDetails
         '
         'LabelTotal
         '
-        Me.LabelTotal.AutoSize = True
+        Me.LabelTotal.AutoSize = true
         Me.LabelTotal.Location = New System.Drawing.Point(436, 526)
         Me.LabelTotal.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LabelTotal.Name = "LabelTotal"
@@ -370,7 +330,7 @@ Partial Class OrderDetails
         '
         'Label6
         '
-        Me.Label6.AutoSize = True
+        Me.Label6.AutoSize = true
         Me.Label6.Location = New System.Drawing.Point(390, 545)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(15, 13)
@@ -385,7 +345,7 @@ Partial Class OrderDetails
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 8
         Me.btnSave.Text = "Save"
-        Me.btnSave.UseVisualStyleBackColor = True
+        Me.btnSave.UseVisualStyleBackColor = true
         '
         'btnCancel
         '
@@ -395,11 +355,11 @@ Partial Class OrderDetails
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 9
         Me.btnCancel.Text = "Cancel"
-        Me.btnCancel.UseVisualStyleBackColor = True
+        Me.btnCancel.UseVisualStyleBackColor = true
         '
         'subtotal
         '
-        Me.subtotal.AutoSize = True
+        Me.subtotal.AutoSize = true
         Me.subtotal.Location = New System.Drawing.Point(273, 544)
         Me.subtotal.Name = "subtotal"
         Me.subtotal.Size = New System.Drawing.Size(39, 13)
@@ -408,16 +368,63 @@ Partial Class OrderDetails
         '
         'Total
         '
-        Me.Total.AutoSize = True
+        Me.Total.AutoSize = true
         Me.Total.Location = New System.Drawing.Point(436, 544)
         Me.Total.Name = "Total"
         Me.Total.Size = New System.Drawing.Size(39, 13)
         Me.Total.TabIndex = 28
         Me.Total.Text = "Label8"
         '
+        'Product
+        '
+        Me.Product.DataPropertyName = "Product"
+        Me.Product.HeaderText = "Product"
+        Me.Product.Name = "Product"
+        Me.Product.ReadOnly = true
+        Me.Product.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Product.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'Price
+        '
+        Me.Price.HeaderText = "Price"
+        Me.Price.Name = "Price"
+        Me.Price.ReadOnly = true
+        '
+        'Quantity
+        '
+        Me.Quantity.HeaderText = "Quantity"
+        Me.Quantity.Name = "Quantity"
+        Me.Quantity.ReadOnly = true
+        '
+        'ShipDate
+        '
+        Me.ShipDate.HeaderText = "Shipping Date"
+        Me.ShipDate.Name = "ShipDate"
+        Me.ShipDate.ReadOnly = true
+        '
+        'prodid
+        '
+        Me.prodid.HeaderText = "Prodid"
+        Me.prodid.Name = "prodid"
+        Me.prodid.ReadOnly = true
+        Me.prodid.Visible = false
+        '
+        'OrderItemId
+        '
+        Me.OrderItemId.HeaderText = "OrderItemId"
+        Me.OrderItemId.Name = "OrderItemId"
+        Me.OrderItemId.ReadOnly = true
+        Me.OrderItemId.Visible = false
+        '
+        'Available
+        '
+        Me.Available.HeaderText = "Available"
+        Me.Available.Name = "Available"
+        Me.Available.Visible = false
+        '
         'OrderDetails
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(526, 640)
         Me.Controls.Add(Me.Total)
@@ -444,20 +451,20 @@ Partial Class OrderDetails
         Me.Controls.Add(Me.custCombo)
         Me.Name = "OrderDetails"
         Me.Text = "OrderDetails"
-        CType(Me.CustomerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ProductBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.OrderItemBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AddressBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.orderItemGridView, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.OrderItemContextMenuStrip.ResumeLayout(False)
-        CType(Me.AddressesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
-        CType(Me.AddressDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        CType(Me.CustomerBindingSource,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.ProductBindingSource,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.OrderItemBindingSource,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.AddressBindingSource,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.orderItemGridView,System.ComponentModel.ISupportInitialize).EndInit
+        Me.OrderItemContextMenuStrip.ResumeLayout(false)
+        CType(Me.AddressesBindingSource,System.ComponentModel.ISupportInitialize).EndInit
+        Me.StatusStrip1.ResumeLayout(false)
+        Me.StatusStrip1.PerformLayout
+        CType(Me.AddressDataGridView,System.ComponentModel.ISupportInitialize).EndInit
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Friend WithEvents custCombo As System.Windows.Forms.ComboBox
     Friend WithEvents btnNewCustomerForm As System.Windows.Forms.Button
     Friend WithEvents btnNewAddress As System.Windows.Forms.Button
@@ -499,4 +506,5 @@ Partial Class OrderDetails
     Friend WithEvents ShipDate As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents prodid As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents OrderItemId As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Available As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class
