@@ -29,16 +29,33 @@
 
         Me.prodCombo.DataSource = db.Products
 
-        Dim x As Integer = Aggregate lines In order.Order_Lines
+        Dim shipped_orders As Integer = Aggregate lines In order.Order_Lines
                                  Where lines.ship_date IsNot Nothing
                                  Into Count()
-        If x = 0 Then
+        Dim unshipped_orders As Integer = Aggregate lines In order.Order_Lines Where lines.ship_date Is Nothing Into Count()
+
+        ' If no orders have been shipped, you can change addresses and add products
+        If shipped_orders = 0 Then
             btnNewAddress.Visible = True
             AddressDataGridView.Enabled = True
-        Else
+            btnProdAdd.Visible = True
+            prodCombo.Visible = True
+
+            'if an order has been shipped AND no items have NOT been shipped, you can't edit anything
+        ElseIf unshipped_orders = 0 Then
             btnNewAddress.Visible = False
             AddressDataGridView.Enabled = False
+            btnProdAdd.Visible = False
+            prodCombo.Visible = False
+        Else
+            ' if an order has been shipped, but orders remain, you can't change addresses but CAN add products
+            btnNewAddress.Visible = False
+            AddressDataGridView.Enabled = False
+            btnProdAdd.Visible = True
+            prodCombo.Visible = True
         End If
+
+
 
         For Each item As Order_Line In order.Order_Lines
             Dim row As Integer = orderItemGridView.Rows.Add(item.Product.description, item.Product.price, item.quantity, item.ship_date, item.product_id, item.id, If(item.Product.active, Integer.MaxValue, item.Product.inventory))
@@ -110,13 +127,13 @@
         If prodCombo.SelectedItem IsNot Nothing Then
             Dim prod As Product = prodCombo.SelectedItem
             Dim item = From rows As DataGridViewRow In orderItemGridView.Rows
-                       Where rows.Cells.Item(0).Value = prod.description And ShipDate Is Nothing
+                       Where rows.Cells("prodid").Value = prod.id And rows.Cells("ShipDate").Value Is Nothing
                        Select rows.Index
             If item Is Nothing Or item.Count = 0 Then
                 Dim row As Integer = orderItemGridView.Rows.Add(prod.description, prod.price, 1, Nothing, prod.id, 0, If(prod.active, Integer.MaxValue, prod.inventory))
-                orderItemGridView.Rows.Item(row).Cells("Quantity").ReadOnly = False
+                orderItemGridView.Rows(row).Cells("Quantity").ReadOnly = False
             Else
-                orderItemGridView.Rows.Item(item(0)).Cells.Item("Quantity").Value += 1
+                orderItemGridView.Rows(item(0)).Cells.Item("Quantity").Value += 1
             End If
         End If
         CalculateTotals()

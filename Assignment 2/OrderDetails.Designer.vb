@@ -23,8 +23,8 @@ Partial Class OrderDetails
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.custCombo = New System.Windows.Forms.ComboBox()
         Me.CustomerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.btnNewCustomerForm = New System.Windows.Forms.Button()
@@ -192,17 +192,17 @@ Partial Class OrderDetails
         '
         'ShipDate
         '
-        DataGridViewCellStyle3.Format = "d"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.ShipDate.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Format = "d"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.ShipDate.DefaultCellStyle = DataGridViewCellStyle1
         Me.ShipDate.HeaderText = "Shipping Date"
         Me.ShipDate.Name = "ShipDate"
         Me.ShipDate.ReadOnly = True
         '
         'prodid
         '
-        DataGridViewCellStyle4.Format = "yyyy-MM-dd"
-        Me.prodid.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Format = "yyyy-MM-dd"
+        Me.prodid.DefaultCellStyle = DataGridViewCellStyle2
         Me.prodid.HeaderText = "Prodid"
         Me.prodid.Name = "prodid"
         Me.prodid.ReadOnly = True
@@ -429,9 +429,9 @@ Partial Class OrderDetails
         Me.subtotal.AutoSize = True
         Me.subtotal.Location = New System.Drawing.Point(273, 453)
         Me.subtotal.Name = "subtotal"
-        Me.subtotal.Size = New System.Drawing.Size(39, 13)
+        Me.subtotal.Size = New System.Drawing.Size(13, 13)
         Me.subtotal.TabIndex = 27
-        Me.subtotal.Text = "Label7"
+        Me.subtotal.Text = "0"
         '
         'Total
         '
@@ -439,9 +439,9 @@ Partial Class OrderDetails
         Me.Total.AutoSize = True
         Me.Total.Location = New System.Drawing.Point(436, 453)
         Me.Total.Name = "Total"
-        Me.Total.Size = New System.Drawing.Size(39, 13)
+        Me.Total.Size = New System.Drawing.Size(13, 13)
         Me.Total.TabIndex = 28
-        Me.Total.Text = "Label8"
+        Me.Total.Text = "0"
         '
         'OrderDetails
         '
