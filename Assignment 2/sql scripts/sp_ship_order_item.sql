@@ -1,12 +1,13 @@
 USE [cvb815a_assign2]
 GO
 
-/****** Object:  StoredProcedure [dbo].[sp_ship_order_item]    Script Date: 08/04/2015 9:51:57 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ship_order_item]    Script Date: 09/04/2015 9:20:07 AM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 
 
@@ -16,7 +17,9 @@ GO
 -- Description:	<Description,,>
 -- =============================================
 CREATE PROCEDURE [dbo].[sp_ship_order_item](
-	@id int)
+	@id int,
+	@prodid int OUTPUT,
+	@qty int OUTPUT)
 AS
 
 BEGIN
@@ -26,7 +29,11 @@ BEGIN
 	SET NOCOUNT ON;
 
 UPDATE dbo.Order_Line
-SET ship_date=getdate()
+SET ship_date=DATEADD(dd, DATEDIFF(dd, 0, getdate()), 0)
+WHERE id=@id;
+
+SELECT @prodid=product_id,@qty=quantity
+FROM dbo.Order_line
 WHERE id=@id;
 
 END

@@ -742,71 +742,76 @@ Public Class DBAccessHelper
         End If
     End Sub
 
-    ' ship all items that we can in the order specified. Returns 0 
-    ' on fail or no items shipped, otherwise returns number of lines 
+    ' ship all items that we can in the order specified. Returns -1
+    ' on fail otherwise returns a count of number of lines
     ' shipped
     Public Shared Function DBOrderShip(id As Integer) As Integer
-        Dim conn1 As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
-        Dim conn2 As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
+        Dim conn As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
         Dim transaction As SqlTransaction = Nothing
-        Dim cmd1 As SqlCommand = Nothing
-        Dim cmd2 As SqlCommand = Nothing
+        Dim cmd As SqlCommand = Nothing
         Dim count As Integer = 0
         Dim dr As SqlDataReader = Nothing
+        Dim tmpList As New List(Of Integer)
+        Dim prodId As Integer
+        Dim quantity As Integer
 
         Try
-            conn1.Open()
-            cmd1 = conn1.CreateCommand
-            cmd1.CommandType = CommandType.Text
-            cmd1.CommandText = "SELECT o.id, o.product_id, o.quantity, o.ship_date, p.inventory FROM dbo.Order_Line o " _
-                            + "JOIN dbo.Product p ON (o.product_id=p.id) WHERE o.order_id=@id"
-            cmd1.Parameters.Add("@id", SqlDbType.Int)
-            cmd1.Parameters("@id").Value = id
-            dr = cmd1.ExecuteReader  'result set will be returned as a read only data reader
+            conn.Open()
+            cmd = conn.CreateCommand
+            cmd.CommandType = CommandType.Text
+            cmd.CommandText = "SELECT o.id FROM dbo.Order_Line o " _
+                        + "JOIN dbo.Product p ON (o.product_id=p.id)  " _
+                        + " WHERE o.order_id = @id " _
+                        + " AND o.quantity <= p.inventory " _
+                        + " AND o.ship_date IS null"
 
-            ' now set up a 2nd command
-            cmd2 = conn2.CreateCommand
-            transaction = conn2.BeginTransaction()   '# begin the transaction
-            cmd2.Transaction = transaction
-            cmd2.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.Add("@id", SqlDbType.Int)
+            cmd.Parameters("@id").Value = id
+            dr = cmd.ExecuteReader  'result set will be returned as a read only data reader
             While dr.Read()
-                Dim lineid As Integer = dr.GetInt32(0)
-                Dim prodid As Integer = dr.GetInt32(1)
-                Dim qty As Integer = dr.GetInt32(2)
-                Dim ship As Date? = Nothing
-                Dim temp As Integer = dr.GetOrdinal("ship_date")
-                If Not dr.IsDBNull(temp) Then
-                    ship = dr.GetDateTime(temp)
-                End If
-                Dim inv As Integer = dr.GetInt32(4)
-                If qty <= inv And ship Is Nothing Then
-                    cmd2.CommandText = "dbo.sp_ship_order_item"
-                    cmd2.Parameters.Add("@id", SqlDbType.Int)
-                    cmd2.Parameters("@id").Value = lineid
-                    cmd2.ExecuteScalar()
-                    cmd2.Parameters.Clear()
-                    cmd2.CommandText = "dbo.sp_product_removeinv"
-                    cmd2.Parameters.Add("@id", SqlDbType.Int)
-                    cmd2.Parameters("@id").Value = prodid
-                    cmd2.ExecuteScalar()
-                    count = count + 1
-                End If
+                ' store the IDs from the order_items in a temporary list
+                tmpList.Add(dr.GetInt32(0))
             End While
+            dr.Close()
+            ' now set up the stored procedure calls
+            cmd = conn.CreateCommand
+            transaction = conn.BeginTransaction()   '# begin the transaction
+            cmd.Transaction = transaction
+            cmd.CommandType = CommandType.StoredProcedure
+            For Each i As Integer In tmpList
+                cmd.Parameters.Clear()
+                cmd.CommandText = "dbo.sp_ship_order_item"
+                cmd.Parameters.Add("@id", SqlDbType.Int)
+                cmd.Parameters("@id").Value = i
+                cmd.Parameters.Add("@prodid", SqlDbType.Int)
+                cmd.Parameters("@prodid").Direction = ParameterDirection.Output
+                cmd.Parameters.Add("@qty", SqlDbType.Int)
+                cmd.Parameters("@qty").Direction = ParameterDirection.Output
+                cmd.ExecuteScalar()
+                prodId = cmd.Parameters("@prodid").Value
+                quantity = cmd.Parameters("@qty").Value
+                cmd.Parameters.Clear()
+                cmd.CommandText = "dbo.sp_product_removeinv"
+                cmd.Parameters.Add("@id", SqlDbType.Int)
+                cmd.Parameters("@id").Value = prodId
+                cmd.Parameters.Add("@amt", SqlDbType.Int)
+                cmd.Parameters("@amt").Value = quantity
+                cmd.ExecuteScalar()
+                count = count + 1
+            Next
             transaction.Commit()
         Catch
-            count = 0
+            count = -1
             If transaction IsNot Nothing Then
                 transaction.Rollback()          '# rollback transaction
             End If
         Finally
             Try
-                conn1.Close()
-                conn2.Close()
+                conn.Close()
             Catch ex As Exception
                 ex = Nothing
             Finally
-                conn1 = Nothing
-                conn2 = Nothing
+                conn = Nothing
             End Try
         End Try
         Return count
