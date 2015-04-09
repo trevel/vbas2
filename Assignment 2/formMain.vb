@@ -41,6 +41,7 @@
         od.Show()
     End Sub
 
+
     Private Sub btnProductAdd_Click(sender As Object, e As EventArgs) Handles btnProductAdd.Click
         Dim prodD As ProductDetails = New ProductDetails()
         AddHandler prodD.prodChanged, AddressOf ProdChangedEventHandler

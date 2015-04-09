@@ -5,7 +5,8 @@ OPTIONAL - Change lists to allow add directly
 OPTIONAL - keyboard shortcuts
 OPTIONAL - Better image in about box
 OPTIONAL - Remove Database and Data Conext and replace with Entity Framework
-OPTIONAL - 
+
+Pending: Some way to indicate which address is for mailings. (Answer: email address, save a tree)
 
 BUG:
 Double-clicking on a row only counts if it's clicking on data behind the row. WORKAROUND: Double-click on words. 
