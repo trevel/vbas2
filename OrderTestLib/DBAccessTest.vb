@@ -230,14 +230,9 @@ Imports Database.Address
         items.Remove(ol4)
         Assert.AreNotEqual(DBAccessHelper.DBInsertOrUpdateOrder(o1, items), -1)
 
-        ' now modify a ship date and update the order
-        ol2.ship_date = Today
-        Assert.AreNotEqual(DBAccessHelper.DBInsertOrUpdateOrder(o1, items), -1)
-        ' deletion should fail
-        Assert.IsFalse(DBAccessHelper.DBDeleteOrder(o1.ID))
-        ' now modify a ship date back to null so delete will work
-        ol2.ship_date = nothing
-        Assert.AreNotEqual(DBAccessHelper.DBInsertOrUpdateOrder(o1, items), -1)
+        DBAccessHelper.DBOrderShip(o1.ID)
+
+        Assert.IsTrue(DBAccessHelper.DBOrderShip(o1.ID) > 0)
         Assert.IsTrue(DBAccessHelper.DBDeleteOrder(o1.ID))
         ' clean up
         Assert.IsTrue(DBAccessHelper.DBDeleteAddress(a1.ID))

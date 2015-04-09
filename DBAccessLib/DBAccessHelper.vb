@@ -641,16 +641,13 @@ Public Class DBAccessHelper
                     End If
                 End If
             Next
+            transaction.Commit()
         Catch sqlExcept As SqlException          '# transaction failure
             bFailure = True
-        Finally
             If transaction IsNot Nothing Then
-                If bFailure = True Then
-                    transaction.Rollback()          '# rollback transaction
-                Else
-                    transaction.Commit()            '# commit transaction
-                End If
+                transaction.Rollback()          '# rollback transaction
             End If
+        Finally
             Try
                 conn.Close()
             Catch ex As Exception
@@ -705,16 +702,13 @@ Public Class DBAccessHelper
             cmd.Parameters.Add("@id", SqlDbType.Int)
             cmd.Parameters("@id").Value = id
             cmd.ExecuteScalar()
+            transaction.Commit()
         Catch
             bRetVal = False
-        Finally
             If transaction IsNot Nothing Then
-                If bRetVal = False Then
-                    transaction.Rollback()          '# rollback transaction
-                Else
-                    transaction.Commit()            '# commit transaction
-                End If
+                transaction.Rollback()          '# rollback transaction
             End If
+        Finally
             Try
                 conn.Close()
             Catch ex As Exception
@@ -752,8 +746,70 @@ Public Class DBAccessHelper
     ' on fail or no items shipped, otherwise returns number of lines 
     ' shipped
     Public Shared Function DBOrderShip(id As Integer) As Integer
-        Return 0
-    End Function
+        Dim conn1 As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
+        Dim conn2 As SqlClient.SqlConnection = DBAccessHelper.DBGetConnection()
+        Dim transaction As SqlTransaction = Nothing
+        Dim cmd1 As SqlCommand = Nothing
+        Dim cmd2 As SqlCommand = Nothing
+        Dim count As Integer = 0
+        Dim dr As SqlDataReader = Nothing
 
+        Try
+            conn1.Open()
+            cmd1 = conn1.CreateCommand
+            cmd1.CommandType = CommandType.Text
+            cmd1.CommandText = "SELECT o.id, o.product_id, o.quantity, o.ship_date, p.inventory FROM dbo.Order_Line o " _
+                            + "JOIN dbo.Product p ON (o.product_id=p.id) WHERE o.order_id=@id"
+            cmd1.Parameters.Add("@id", SqlDbType.Int)
+            cmd1.Parameters("@id").Value = id
+            dr = cmd1.ExecuteReader  'result set will be returned as a read only data reader
+
+            ' now set up a 2nd command
+            cmd2 = conn2.CreateCommand
+            transaction = conn2.BeginTransaction()   '# begin the transaction
+            cmd2.Transaction = transaction
+            cmd2.CommandType = CommandType.StoredProcedure
+            While dr.Read()
+                Dim lineid As Integer = dr.GetInt32(0)
+                Dim prodid As Integer = dr.GetInt32(1)
+                Dim qty As Integer = dr.GetInt32(2)
+                Dim ship As Date? = Nothing
+                Dim temp As Integer = dr.GetOrdinal("ship_date")
+                If Not dr.IsDBNull(temp) Then
+                    ship = dr.GetDateTime(temp)
+                End If
+                Dim inv As Integer = dr.GetInt32(4)
+                If qty <= inv And ship Is Nothing Then
+                    cmd2.CommandText = "dbo.sp_ship_order_item"
+                    cmd2.Parameters.Add("@id", SqlDbType.Int)
+                    cmd2.Parameters("@id").Value = lineid
+                    cmd2.ExecuteScalar()
+                    cmd2.Parameters.Clear()
+                    cmd2.CommandText = "dbo.sp_product_removeinv"
+                    cmd2.Parameters.Add("@id", SqlDbType.Int)
+                    cmd2.Parameters("@id").Value = prodid
+                    cmd2.ExecuteScalar()
+                    count = count + 1
+                End If
+            End While
+            transaction.Commit()
+        Catch
+            count = 0
+            If transaction IsNot Nothing Then
+                transaction.Rollback()          '# rollback transaction
+            End If
+        Finally
+            Try
+                conn1.Close()
+                conn2.Close()
+            Catch ex As Exception
+                ex = Nothing
+            Finally
+                conn1 = Nothing
+                conn2 = Nothing
+            End Try
+        End Try
+        Return count
+    End Function
 End Class
 
